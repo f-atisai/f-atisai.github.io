@@ -45,6 +45,7 @@ body {
   padding: 0;
 }
 
+/* BOUNDARY INSPECTOR */
 /* body * {
     border: 1px solid hsl(231, 82%, 44%);
 } */
@@ -56,15 +57,21 @@ body {
   scroll-snap-type: x mandatory;
 }
 
+/* HEADER */
 .header {
   border-bottom: 1px solid hsl(0, 0%, 87%);
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
   height: 5rem;
+  width: 100%;
 }
 
+.header .github-link {
+  font-size: 2.5rem;
+}
+
+/* FOOTER */
 .footer {
   display: flex;
   justify-content: center;
