@@ -79,6 +79,14 @@ body {
   height: 3rem;
 }
 
+.footer .main-nav ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  list-style-type: none;
+}
+
 .section {
   /* flex: 1; */
   display: flex;
