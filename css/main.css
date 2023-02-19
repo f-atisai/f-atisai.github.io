@@ -50,9 +50,9 @@ body {
 /* LAYOUT */
 .main-container {
   display: flex;
-  overflow: auto;
-  overflow-x: auto;
+  overflow-x: scroll;
   scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
