@@ -36,10 +36,6 @@ li {
 
 body {
   background: hsl(0, 0%, 93%);
-  /* display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column; */
   min-height: 100vh;
   margin: 0;
   padding: 0;
@@ -55,6 +51,16 @@ body {
   display: flex;
   overflow: auto;
   scroll-snap-type: x mandatory;
+}
+
+.section {
+  /* flex: 1; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 8rem);
+  min-width: 100vw;
+  scroll-snap-align: start;
 }
 
 /* HEADER */
@@ -87,18 +93,74 @@ body {
   list-style-type: none;
 }
 
-/* SECTION DEFAULT STYLING */
-.section {
-  /* flex: 1; */
+/* HERO */
+.hero {
+  /* background-color: hsl(0, 19%, 51%); */
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: calc(100vw - 8rem);
-  min-width: 100vw;
-  scroll-snap-align: start;
+  flex-direction: column;
+  width: 100%;
+  max-width: 650px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
 }
 
-/* HERO */
+.hero-head {
+  margin-bottom: 2rem;
+  width: 100%;
+  /* background-color: hsl(115, 71%, 34%); */
+}
+
+.hero-head .name {
+  font-size: 2.65rem;
+  font-weight: 700;
+  letter-spacing: -2px;
+  /* line-height: 1.6; */
+  margin-bottom: 0.5rem;
+}
+
+.hero-head .about {
+  font-size: 0.875rem;
+  padding-left: 2px;
+}
+
+.hero-head .about .role {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.hero-head .about .role .line {
+  width: 1.25rem;
+  border-top: 2px solid black;
+}
+
+.hero-head .about .summary {
+  font-weight: 300;
+  margin-left: 2.25rem;
+  width: 11.25rem;
+}
+
+@media screen and (min-width: 600px) {
+  .hero {
+    padding-bottom: 2rem;
+  }
+
+  .hero-head {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 10;
+    margin: 0;
+  }
+}
 
 /* RINGS */
 .rings {
