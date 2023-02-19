@@ -106,6 +106,38 @@ body {
   list-style-type: none;
 }
 
+.footer .main-nav ul li a {
+  padding: 0.25rem;
+}
+
+/* Stroke */
+.footer .main-nav ul li a,
+.footer .main-nav ul li a::before,
+.footer .main-nav ul li a::after {
+  transition: all 0.5s;
+}
+
+.main-nav.stroke ul li a {
+  position: relative;
+}
+
+.main-nav.stroke ul li a::after {
+  content: "";
+  color: transparent;
+  background: hsl(0, 0%, 7%);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 0%;
+  height: 2px;
+}
+
+.main-nav.main-nav.stroke ul li a:hover::after {
+  width: 100%;
+}
+
 /* HERO */
 .hero {
   /* background-color: hsl(0, 19%, 51%); */
