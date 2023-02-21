@@ -134,11 +134,6 @@ body {
 }
 /* END FOOTER */
 
-/* BOUNDARY INSPECTOR */
-/* body * {
-  border: 1px solid hsl(231, 82%, 44%);
-} */
-
 /* PROJECTS */
 .section.projects .container {
   padding: 2rem 1rem;
@@ -193,8 +188,6 @@ body {
   display: flex;
   align-items: center;
   gap: 1rem;
-  /* font-weight: 700; */
-  /* margin-bottom: 0.5rem; */
 }
 
 .desc__line {
@@ -270,55 +263,39 @@ body {
 }
 /* END PROJECTS */
 
+/* BOUNDARY INSPECTOR */
+/* body * {
+  border: 1px solid hsl(231, 82%, 44%);
+} */
+
 /* HERO */
 .hero {
-  /* background-color: hsl(0, 19%, 51%); */
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 100%;
-  max-width: 700px;
   padding-left: 1rem;
   padding-right: 1rem;
   padding-bottom: 2rem;
   padding-top: 2rem;
+  width: 100%;
+  max-width: 700px;
 }
 
-.hero-head {
-  margin-bottom: 2rem;
+.hero__head {
   width: 100%;
 }
 
-.hero-head .name {
-  font-size: 2.65rem;
-  font-weight: 700;
-  letter-spacing: -2px;
+.hero__tagline {
   margin-bottom: 0.5rem;
 }
 
-.hero-head .about {
-  font-size: 0.875rem;
-  padding-left: 2px;
-}
-
-.hero-head .about .role {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+.hero__role {
   font-weight: 700;
-  margin-bottom: 0.5rem;
 }
 
-.hero-head .about .role .line {
-  width: 1.25rem;
-  border-top: 2px solid black;
-}
-
-.hero-head .about .summary {
-  font-weight: 300;
-  margin-left: 2.25rem;
+.hero__summary {
   width: 11.25rem;
 }
 
@@ -332,7 +309,7 @@ body {
     padding-bottom: 2rem;
   }
 
-  .hero-head {
+  .hero__head {
     position: absolute;
     display: flex;
     justify-content: center;
