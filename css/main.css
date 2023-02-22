@@ -327,8 +327,41 @@ body {
 }
 
 /* INTERESTS */
-.hero .interests {
+.interests {
   display: none;
+}
+
+/* interest__void takes up space on left to push 
+  invisible ring (setting interest shape) to center */
+.interests__void {
+  width: 45%;
+}
+
+.arc-list {
+  width: 100%;
+}
+
+.arc-list__circle {
+  float: left;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  shape-outside: circle(50%);
+}
+
+.list {
+  color: hsl(var(--text) / 0.6);
+  font-weight: 300;
+  list-style: none;
+  padding-top: 5.25rem;
+}
+
+.list__item:hover {
+  color: hsl(var(--accent));
+}
+
+.list__item:not(:last-child) {
+  margin-bottom: 0.5rem;
 }
 
 @media screen and (min-width: 768px) {
@@ -345,7 +378,7 @@ body {
     z-index: 10;
   }
 
-  .hero .interests {
+  .interests {
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -356,39 +389,6 @@ body {
     height: 100%;
     margin-top: -1rem;
     z-index: 12;
-  }
-
-  /* empty takes up space on left to push invisible 
-  ring (setting interest shape) to center */
-  .hero .interests .empty {
-    width: 45%;
-  }
-
-  .hero .interests .main-interests {
-    width: 100%;
-  }
-
-  .interests .circle-path {
-    float: left;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    shape-outside: circle(50%);
-  }
-
-  .main-interests ul {
-    color: hsl(var(--text) / 0.6);
-    font-weight: 300;
-    list-style: none;
-    padding-top: 5.25rem;
-  }
-
-  .main-interests ul li:hover {
-    color: hsl(var(--accent));
-  }
-
-  .main-interests ul li:not(:last-child) {
-    margin-bottom: 0.5rem;
   }
 }
 
