@@ -81,7 +81,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: calc(100vh - 8rem);
+  min-height: calc(100vh - 13rem);
   min-width: 100vw;
   scroll-snap-align: start;
 }
@@ -108,7 +108,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 3rem;
+  height: 8rem;
 }
 /* END FOOTER */
 
