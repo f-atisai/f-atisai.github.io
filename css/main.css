@@ -43,6 +43,11 @@ body {
 }
 /* END RESETS */
 
+/* BOUNDARY INSPECTOR */
+/* body * {
+  border: 1px solid hsl(231, 82%, 44%);
+} */
+
 /* LAYOUT */
 .main-container {
   display: flex;
@@ -146,36 +151,35 @@ body {
 
 /* FOOTER */
 .footer {
+  /* background: cadetblue; */
   display: flex;
   justify-content: center;
   align-items: center;
   height: 3rem;
 }
+/* END FOOTER */
 
-.footer .main-nav ul {
+/* NAVBAR */
+.navbar {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   gap: 1.5rem;
-  list-style-type: none;
 }
 
-.footer .main-nav ul li a {
+.navbar__item {
   padding: 0.25rem;
-}
-
-/* Stroke */
-.footer .main-nav ul li a,
-.footer .main-nav ul li a::before,
-.footer .main-nav ul li a::after {
-  transition: all 0.5s;
-}
-
-.main-nav.stroke ul li a {
   position: relative;
 }
 
-.main-nav.stroke ul li a::after {
+/* Stroke */
+.navbar__item,
+.navbar__item::before,
+.navbar__item::after {
+  transition: all 0.5s;
+}
+
+.navbar__item::after {
   content: "";
   color: transparent;
   background: hsl(0, 0%, 7%);
@@ -184,14 +188,14 @@ body {
   left: 0;
   right: 0;
   margin: auto;
-  width: 0%;
   height: 2px;
+  width: 0%;
 }
 
-.main-nav.main-nav.stroke ul li a:hover::after {
+.navbar__item:hover::after {
   width: 100%;
 }
-/* END FOOTER */
+/* END NAVBAR */
 
 /* PROJECTS */
 .projects .container {
@@ -265,11 +269,6 @@ body {
   }
 }
 /* END PROJECTS */
-
-/* BOUNDARY INSPECTOR */
-/* body * {
-  border: 1px solid hsl(231, 82%, 44%);
-} */
 
 /* HERO */
 .hero {
