@@ -81,7 +81,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* height: calc(100vh - 8rem); */
+  min-height: calc(100vh - 8rem);
   min-width: 100vw;
   scroll-snap-align: start;
 }
@@ -296,6 +296,7 @@ body {
 /* END PROJECTS */
 
 /* HERO */
+/* TODO: use shorthand for padding */
 .hero {
   position: relative;
   display: flex;
