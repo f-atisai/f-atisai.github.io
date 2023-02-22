@@ -36,11 +36,12 @@ li {
 }
 
 body {
-  background: hsl(0, 0%, 93%);
-  min-height: 100vh;
+  background: hsl(0, 0%, 97%);
+  /* min-height: 100vh; */
   margin: 0;
   padding: 0;
 }
+/* END RESETS */
 
 /* LAYOUT */
 .main-container {
@@ -70,76 +71,7 @@ body {
   min-width: 100vw;
   scroll-snap-align: start;
 }
-
-/* HEADER */
-.header {
-  border-bottom: 1px solid hsl(0, 0%, 87%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 5rem;
-  width: 100%;
-}
-
-.header .github-link {
-  font-size: 2.5rem;
-}
-
-/* FOOTER */
-.footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 3rem;
-}
-
-.footer .main-nav ul {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1.5rem;
-  list-style-type: none;
-}
-
-.footer .main-nav ul li a {
-  padding: 0.25rem;
-}
-
-/* Stroke */
-.footer .main-nav ul li a,
-.footer .main-nav ul li a::before,
-.footer .main-nav ul li a::after {
-  transition: all 0.5s;
-}
-
-.main-nav.stroke ul li a {
-  position: relative;
-}
-
-.main-nav.stroke ul li a::after {
-  content: "";
-  color: transparent;
-  background: hsl(0, 0%, 7%);
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  width: 0%;
-  height: 2px;
-}
-
-.main-nav.main-nav.stroke ul li a:hover::after {
-  width: 100%;
-}
-/* END FOOTER */
-
-/* PROJECTS */
-.section.projects .container {
-  padding: 2rem 1rem;
-  width: 100%;
-  max-width: 700px;
-}
+/* END LAYOUT */
 
 /* REUSABLE COMPONENTS/ELEMENTS */
 /* LEVEL */
@@ -197,6 +129,77 @@ body {
 
 /* END DESC */
 
+/* HEADER */
+.header {
+  border-bottom: 1px solid hsl(0, 0%, 87%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5rem;
+  width: 100%;
+}
+
+.header .github-link {
+  font-size: 2.5rem;
+}
+/* END HEADER */
+
+/* FOOTER */
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
+}
+
+.footer .main-nav ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  list-style-type: none;
+}
+
+.footer .main-nav ul li a {
+  padding: 0.25rem;
+}
+
+/* Stroke */
+.footer .main-nav ul li a,
+.footer .main-nav ul li a::before,
+.footer .main-nav ul li a::after {
+  transition: all 0.5s;
+}
+
+.main-nav.stroke ul li a {
+  position: relative;
+}
+
+.main-nav.stroke ul li a::after {
+  content: "";
+  color: transparent;
+  background: hsl(0, 0%, 7%);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 0%;
+  height: 2px;
+}
+
+.main-nav.main-nav.stroke ul li a:hover::after {
+  width: 100%;
+}
+/* END FOOTER */
+
+/* PROJECTS */
+.projects .container {
+  padding: 2rem 1rem;
+  width: 100%;
+  max-width: 700px;
+}
+
 /* TILES */
 .tiles {
   border: 1px solid hsl(0, 0%, 60%);
@@ -253,7 +256,7 @@ body {
 /* END TILES */
 
 @media screen and (min-width: 768px) {
-  .section.projects .container {
+  .projects .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -314,8 +317,8 @@ body {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    z-index: 10;
     margin: 0;
+    z-index: 10;
   }
 
   .hero .interests {
@@ -331,6 +334,8 @@ body {
     z-index: 12;
   }
 
+  /* empty takes up space on left to push invisible 
+  ring (setting interest shape) to center */
   .hero .interests .empty {
     width: 45%;
   }
@@ -360,7 +365,6 @@ body {
 
 /* RINGS */
 .rings {
-  /* background: hsl(0, 0%, 27%); */
   border-radius: 100%;
   position: relative;
   display: flex;
@@ -431,3 +435,4 @@ body {
   stroke-dasharray: 944;
   stroke-dashoffset: 571;
 }
+/* END RINGS */
