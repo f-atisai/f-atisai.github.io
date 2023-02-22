@@ -1,3 +1,15 @@
+/* CSS VARIABLES */
+:root {
+  /* colors */
+  --primary: 0 0% 7%;
+  --text: 0 0% 87%;
+  --accent: 14 87% 56%;
+  --border: 0 0% 18%;
+
+  /* spacing */
+  --mx-width: 700px;
+}
+
 /* RESETS */
 html {
   font-size: 16px;
