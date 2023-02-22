@@ -164,6 +164,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.navbar__menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 1.5rem;
 }
 
