@@ -87,64 +87,6 @@ body {
 }
 /* END LAYOUT */
 
-/* REUSABLE COMPONENTS/ELEMENTS */
-/* LEVEL */
-/* .level {
-  border: 1px solid hsl(231, 82%, 44%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-.level__left,
-.level__right {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
-/* END LEVEL */
-
-/* DESC */
-.desc {
-  margin-bottom: 2rem;
-}
-
-.desc__title {
-  color: hsl(var(--text) / 0.87);
-  font-size: 2.65rem;
-  font-weight: 700;
-  letter-spacing: -2px;
-  margin-bottom: 0.5rem;
-}
-
-.desc__subtitle {
-  color: hsl(var(--text) / 0.87);
-  font-size: 0.875rem;
-}
-
-.desc__summary {
-  color: hsl(var(--text) / 0.87);
-  font-weight: 300;
-  padding-left: 2px;
-}
-
-.desc--ml {
-  margin-left: 2.25rem;
-}
-
-.desc__tagline {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.desc__line {
-  width: 1.25rem;
-  border-top: 2px solid hsl(var(--text) / 0.87);
-}
-/* END DESC */
-
 /* HEADER */
 .header {
   border-bottom: 1px solid hsl(var(--text) / 0.18);
@@ -226,6 +168,64 @@ body {
   width: 100%;
   max-width: 700px;
 }
+
+/* REUSABLE COMPONENTS/ELEMENTS */
+/* LEVEL */
+/* .level {
+  border: 1px solid hsl(231, 82%, 44%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.level__left,
+.level__right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+/* END LEVEL */
+
+/* DESC */
+.desc {
+  margin-bottom: 2rem;
+}
+
+.desc__title {
+  color: hsl(var(--text) / 0.87);
+  font-size: 2.65rem;
+  font-weight: 700;
+  letter-spacing: -2px;
+  margin-bottom: 0.5rem;
+}
+
+.desc__subtitle {
+  color: hsl(var(--text) / 0.87);
+  font-size: 0.875rem;
+}
+
+.desc__summary {
+  color: hsl(var(--text) / 0.87);
+  font-weight: 300;
+  padding-left: 2px;
+}
+
+.desc--ml {
+  margin-left: 2.25rem;
+}
+
+.desc__tagline {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.desc__line {
+  width: 1.25rem;
+  border-top: 2px solid hsl(var(--text) / 0.87);
+}
+/* END DESC */
 
 /* TILES */
 /* TODO: add box shadow */
@@ -311,6 +311,7 @@ body {
 }
 
 .hero__head {
+  padding-left: 1rem;
   width: 100%;
 }
 
@@ -364,7 +365,7 @@ body {
   margin-bottom: 0.5rem;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 700px) {
   .hero {
     padding-bottom: 2rem;
   }
