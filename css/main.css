@@ -457,24 +457,13 @@ body {
   border: 1px solid hsl(231, 82%, 44%);
 } */
 
-/* LEVEL */
-/* .level {
-  border: 1px solid hsl(231, 82%, 44%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+/* REFLECTIONS */
+.separator {
+  border: none;
+  border-bottom: 1px solid hsl(var(--text) / 0.12);
+  margin: 1.5rem 0;
 }
 
-.level__left,
-.level__right {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
-/* END LEVEL */
-
-/* REFLECTIONS */
 /* TODO: add box shadow to articles */
 .articles {
   border: 1px solid hsl(var(--text) / 0.12);
@@ -482,10 +471,6 @@ body {
   flex-direction: column;
   gap: 2rem; */
   padding: 1rem;
-}
-
-.media {
-  /* border-bottom: 1px solid hsl(var(--text) / 0.12); */
 }
 
 .media__title {
@@ -509,7 +494,7 @@ body {
 }
 
 .category__item {
-  color: hsl(var(--accent));
+  color: hsl(14 87% 70%);
   font-size: 0.75rem;
   font-weight: 300;
   text-transform: uppercase;
