@@ -481,6 +481,10 @@ body {
   margin-bottom: 0.5rem;
 }
 
+.media__title--link:hover {
+  color: hsl(var(--accent));
+}
+
 .media__subtitle {
   color: hsl(var(--text) / 0.6);
   line-height: 1.6;
