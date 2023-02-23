@@ -53,11 +53,6 @@ body {
 }
 /* END RESETS */
 
-/* BOUNDARY INSPECTOR */
-/* body * {
-  border: 1px solid hsl(231, 82%, 44%);
-} */
-
 /* LAYOUT */
 .main-container {
   display: flex;
@@ -472,3 +467,10 @@ body {
   stroke-dashoffset: 571;
 }
 /* END RINGS */
+
+/* BOUNDARY INSPECTOR */
+body * {
+  border: 1px solid hsl(231, 82%, 44%);
+}
+
+/* REFLECTIONS */
