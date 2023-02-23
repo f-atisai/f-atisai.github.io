@@ -497,6 +497,7 @@ body {
   margin: 0.5rem 0;
 }
 
+/* TODO: extract color variable to css var (accent-light) */
 .category__item {
   color: hsl(14 87% 70%);
   font-size: 0.75rem;
