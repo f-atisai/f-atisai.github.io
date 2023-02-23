@@ -48,6 +48,7 @@ li {
 
 body {
   background: hsl(var(--primary) / 0.93);
+  color: hsl(var(--text));
   margin: 0;
   padding: 0;
 }
