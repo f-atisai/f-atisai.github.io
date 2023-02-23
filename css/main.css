@@ -163,7 +163,7 @@ body {
 /* END NAVBAR */
 
 /* PROJECTS */
-.projects .container {
+.container {
   padding: 2rem 1rem;
   width: 100%;
   max-width: var(--mx-width);
@@ -285,7 +285,7 @@ body {
 /* END TILES */
 
 @media screen and (min-width: 768px) {
-  .projects .container {
+  .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
