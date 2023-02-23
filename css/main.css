@@ -503,3 +503,9 @@ body {
   font-weight: 300;
   text-transform: uppercase;
 }
+
+@media screen and (min-width: 768px) {
+  .articles {
+    width: 50%;
+  }
+}
