@@ -207,15 +207,16 @@ body {
 /* END DESC */
 
 /* BOUNDARY INSPECTOR */
-body * {
+/* body * {
   border: 1px solid hsl(231, 82%, 55%);
-}
+} */
 
 /* TILES */
 /* TODO: add box shadow (for lightmode), change width to max-width */
 .tiles {
   border: 1px solid hsl(var(--text) / 0.12);
   max-width: 24rem;
+  margin: auto;
 }
 
 .tile {
