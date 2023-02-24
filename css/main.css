@@ -108,11 +108,6 @@ body {
 }
 /* END FOOTER */
 
-/* BOUNDARY INSPECTOR */
-/* body * {
-  border: 1px solid hsl(231, 82%, 55%);
-} */
-
 /* NAVBAR */
 .navbar {
   color: hsl(var(--text) / 0.6);
@@ -211,11 +206,16 @@ body {
 }
 /* END DESC */
 
+/* BOUNDARY INSPECTOR */
+body * {
+  border: 1px solid hsl(231, 82%, 55%);
+}
+
 /* TILES */
-/* TODO: add box shadow, change width to max-width */
+/* TODO: add box shadow (for lightmode), change width to max-width */
 .tiles {
   border: 1px solid hsl(var(--text) / 0.12);
-  width: 24rem;
+  max-width: 24rem;
 }
 
 .tile {
