@@ -332,6 +332,7 @@ body {
 
 .list {
   color: hsl(var(--text) / 0.6);
+  cursor: none;
   font-weight: 300;
   list-style: none;
   padding-top: 5.25rem;
