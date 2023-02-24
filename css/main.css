@@ -85,7 +85,7 @@ body {
 
 /* HEADER */
 .header {
-  border-bottom: 1px solid hsl(var(--text) / 0.18);
+  border-bottom: 1px solid hsl(var(--text) / 0.08);
   display: flex;
   justify-content: center;
   align-items: center;
