@@ -337,6 +337,10 @@ body {
   padding-top: 5.25rem;
 }
 
+.list__item {
+  transition: all 0.3s;
+}
+
 .list__item:hover {
   color: hsl(var(--accent));
 }
