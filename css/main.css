@@ -243,6 +243,11 @@ body {
   align-items: end;
 }
 
+.tile__box:hover .tile__number {
+  color: hsl(var(--accent));
+  transition: all 0.25s;
+}
+
 .tile__child .desc {
   margin-bottom: 2rem;
 }
