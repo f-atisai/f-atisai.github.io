@@ -115,7 +115,6 @@
 .tiles {
   border: 1px solid hsl(var(--text) / 0.12);
   max-width: 24rem;
-  margin: auto;
 }
 
 .tile {
@@ -177,26 +176,33 @@
 .articles {
   border: 1px solid hsl(var(--text) / 0.12);
   padding: 1rem;
+
+  @media screen and (min-width: 768px) {
+    width: 55%;
+  }
 }
 
-.media__title {
-  color: hsl(var(--text) / 0.87);
-  display: block;
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
+.media {
+  &__title {
+    color: hsl(var(--text) / 0.87);
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  &__title--link:hover {
+    color: hsl(var(--accent));
+    transition: all 0.5s;
+  }
+
+  &__subtitle {
+    color: hsl(var(--text) / 0.6);
+    line-height: 1.6;
+  }
 }
 
-.media__title--link:hover {
-  color: hsl(var(--accent));
-}
-
-.media__subtitle {
-  color: hsl(var(--text) / 0.6);
-  line-height: 1.6;
-}
-
-.category {
+.tags {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -204,17 +210,11 @@
 }
 
 /* TODO: extract color variable to css var (accent-light) */
-.category__item {
+.tags {
   color: hsl(14 87% 70%);
   font-size: 0.75rem;
   font-weight: 300;
   text-transform: uppercase;
-}
-
-@media screen and (min-width: 768px) {
-  .articles {
-    width: 55%;
-  }
 }
 
 // Responsive
