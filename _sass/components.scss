@@ -16,6 +16,10 @@
 .desc__subtitle {
   color: hsl(var(--text) / 0.87);
   font-size: 0.875rem;
+
+  @media screen and (min-width: 768px) {
+    width: 11.25rem;
+  }
 }
 
 .desc__summary {

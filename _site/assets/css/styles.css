@@ -141,9 +141,6 @@ body {
 .hero__role {
   font-weight: 700;
 }
-.hero__summary {
-  width: 11.25rem;
-}
 @media screen and (min-width: 700px) {
   .hero {
     padding-bottom: 2rem;
@@ -283,6 +280,11 @@ body {
   color: hsl(var(--text)/0.87);
   font-size: 0.875rem;
 }
+@media screen and (min-width: 768px) {
+  .desc__subtitle {
+    width: 11.25rem;
+  }
+}
 
 .desc__summary {
   color: hsl(var(--text)/0.87);
@@ -391,7 +393,7 @@ body {
 
 .list {
   color: hsl(var(--text)/0.6);
-  cursor: none;
+  cursor: default;
   font-weight: 300;
   list-style: none;
   padding-top: 5.25rem;
