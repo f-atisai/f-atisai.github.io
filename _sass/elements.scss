@@ -1,0 +1,6 @@
+// Separator: horizontal line (hr)
+.separator {
+  border: none;
+  border-bottom: 1px solid hsl(var(--text) / 0.12);
+  margin: 1.5rem 0;
+}
