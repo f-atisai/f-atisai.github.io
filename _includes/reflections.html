@@ -1,0 +1,46 @@
+<section id="reflections" class="section reflections">
+  <!-- Container -->
+  <div class="container">
+    <!-- Desc -->
+    <div class="desc">
+      <p class="desc__title">Reflections.</p>
+
+      <div class="desc__summary">
+        <div class="desc__tagline">
+          <span class="desc__line"></span>
+          <p class="desc__subtitle">Snippets and workarounds.</p>
+        </div>
+
+        <p class="desc__subtitle desc--ml">
+          Common issues generally <br />
+          encountered.
+        </p>
+      </div>
+    </div>
+    <!-- End desc -->
+
+    <!-- Articles -->
+    <div class="articles">
+      {% for post in site.posts %}
+      <article class="media">
+        <a href="{{ post.url }}" class="media__title media__title--link">
+          {{ post.title }}
+        </a>
+        <p class="media__subtitle">{{ post.subtitle }}</p>
+        <div class="level">
+          <div class="level__left">
+            <div class="category">
+              <span class="category__item">Linux</span>
+              <span class="category__item">Dualboot</span>
+            </div>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+
+      <!-- <hr class="separator" /> -->
+    </div>
+    <!-- End Articles -->
+  </div>
+  <!-- End Container -->
+</section>

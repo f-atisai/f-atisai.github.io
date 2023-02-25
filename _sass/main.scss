@@ -11,9 +11,9 @@
 
 /* RESETS */
 html {
-  font-size: 16px;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 16px;
   min-height: 100vh;
   min-width: 300px;
   /* scrollbar-width: none; */
@@ -81,6 +81,12 @@ body {
   min-width: 100vw;
   scroll-snap-align: start;
 }
+
+.container {
+  padding: 2rem 1rem;
+  width: 100%;
+  max-width: var(--mx-width);
+}
 /* END LAYOUT */
 
 /* HEADER */
@@ -128,6 +134,10 @@ body {
   position: relative;
 }
 
+.navbar__item--current {
+  color: hsl(var(--accent));
+}
+
 .navbar__item:hover {
   color: hsl(var(--accent));
   font-weight: 700;
@@ -137,7 +147,7 @@ body {
 .navbar__item,
 .navbar__item::before,
 .navbar__item::after {
-  transition: all 0.5s;
+  transition: all 0.4s;
 }
 
 .navbar__item::after {
@@ -159,12 +169,6 @@ body {
 /* END NAVBAR */
 
 /* PROJECTS */
-.container {
-  padding: 2rem 1rem;
-  width: 100%;
-  max-width: var(--mx-width);
-}
-
 /* REUSABLE COMPONENTS/ELEMENTS */
 /* DESC */
 .desc {
@@ -205,11 +209,6 @@ body {
   border-top: 2px solid hsl(var(--text) / 0.87);
 }
 /* END DESC */
-
-/* BOUNDARY INSPECTOR */
-/* body * {
-  border: 1px solid hsl(231, 82%, 55%);
-} */
 
 /* TILES */
 /* TODO: add box shadow (for lightmode), change width to max-width */
@@ -519,5 +518,17 @@ body {
 @media screen and (min-width: 768px) {
   .articles {
     width: 55%;
+  }
+}
+
+/* BOUNDARY INSPECTOR */
+// body * {
+//   border: 1px solid hsl(231, 82%, 55%);
+// }
+
+// POST
+@media (max-width: 672px) {
+  :root {
+    font-size: 75%;
   }
 }

@@ -1,0 +1,111 @@
+---
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ page.title }}</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css"
+    />
+
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+
+    <style>
+      .is-paddingless-horizontal {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: [xl-start] 1fr 1.5em [md-start] minmax(0, 624px) [md-end] 1.5em 1fr [xl-end];
+      }
+
+      .grid * {
+        grid-column: md;
+      }
+      .grid-xl {
+        grid-column: xl;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Breadcrumb -->
+    <header class="header is-paddingless-horizontal">
+      <div class="container grid">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+          <ul>
+            <li><a href="/#reflections">Reflections</a></li>
+            <li class="is-active">
+              <a href="#" aria-current="page">{{ page.title }}</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <!-- /Breadcrumb -->
+
+    <!-- section -->
+    <section
+      class="section is-large is-paddingless-horizontal"
+      style="padding-top: 0"
+    >
+      <div class="container grid">
+        <article class="media center">
+          <div class="media-content">
+            <div class="content">
+              <h1 class="title is-size-2">How to build a beautiful blog</h1>
+              <h2 class="subtitle is-size-5 has-text-grey-light">
+                Learn from first principles
+              </h2>
+
+              <p>
+                <span class="has-text-grey">
+                  <time datetime="{{ page.date | date_to_string }}">
+                    {{ page.date | date_to_string }}
+                  </time>
+                  &#183; {{ page.length }} min read
+                </span>
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <div class="block"></div>
+
+        <!-- for story image -->
+        <figure class="grid-xl">
+          <img src="/assets/images/{{ page.image }}" alt="{{page.image}}" />
+        </figure>
+
+        <figcaption class="level">
+          <small class="level-item">{{ page.image-caption }}</small>
+        </figcaption>
+
+        <div class="content">{{ content }}</div>
+      </div>
+    </section>
+    <!-- /section -->
+
+    <!-- Footer -->
+    <footer class="footer">{% include navigation.html %}</footer>
+    <!-- End Footer -->
+  </body>
+</html>
