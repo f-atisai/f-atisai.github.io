@@ -54,28 +54,21 @@
     <!-- /Breadcrumb -->
 
     <!-- section -->
-    <section
-      class="section is-large is-paddingless-horizontal"
-      style="padding-top: 0"
-    >
+    <section class="section is-paddingless-horizontal" style="padding-top: 0">
       <div class="container grid">
-        <article class="media center">
-          <div class="media-content">
-            <div class="content">
-              <h1 class="title is-size-2">How to build a beautiful blog</h1>
-              <h2 class="subtitle is-size-5 has-text-grey-light">
-                Learn from first principles
-              </h2>
+        <article class="center">
+          <div class="content">
+            <h1 class="title is-size-2">How to build a beautiful blog</h1>
+            <h2 class="subtitle is-size-5">Learn from first principles</h2>
 
-              <p>
-                <span class="has-text-grey">
-                  <time datetime="{{ page.date | date_to_string }}">
-                    {{ page.date | date_to_string }}
-                  </time>
-                  &#183; {{ page.length }} min read
-                </span>
-              </p>
-            </div>
+            <p>
+              <span>
+                <time datetime="{{ page.date | date_to_string }}">
+                  {{ page.date | date_to_string }}
+                </time>
+                &#183; {{ page.length }} min read
+              </span>
+            </p>
           </div>
         </article>
 
