@@ -1,11 +1,12 @@
 ---
 ---
 
+// add bulma
+@import "mybulma";
+
+// import other sass files
 @import "global";
 @import "layouts";
 @import "components";
 @import "elements";
 @import "main";
-
-// add bulma
-@import "mybulma";
