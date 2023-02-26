@@ -49,16 +49,7 @@
   <body>
     <!-- Breadcrumb -->
     <header class="header is-paddingless-horizontal">
-      <div class="container grid">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-          <ul>
-            <li><a href="/#reflections">Reflections</a></li>
-            <li class="is-active">
-              <a href="#" aria-current="page">{{ page.title }}</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
+      <div class="container grid">{% include breadcrumb.html %}</div>
     </header>
     <!-- /Breadcrumb -->
 
