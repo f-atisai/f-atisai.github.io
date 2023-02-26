@@ -1,8 +1,14 @@
 // Separator: horizontal line (hr)
-.separator {
+.hr {
+  background: none;
   border: none;
   border-bottom: 1px solid hsl(var(--text) / 0.12);
   margin: 1.5rem 0;
+  height: 0;
+}
+
+.hr:last-child {
+  display: none;
 }
 
 .content {
