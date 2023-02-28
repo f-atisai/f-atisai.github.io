@@ -7,11 +7,11 @@ image: install-posrog-banner.jpg
 image-caption: Republic of Gamers - The Choice of Champions
 ---
 
-PhoenixOS for the Republic of gamers, POSROG, is an android operating system with x86 architecture modded from AOSP. It is lighter than a typical Emulator and focuses on device support, performance, and boosting for gaming applications.
+POSROG, or PhoenixOS for the Republic of Gamers, is an Android operating system with x86 architecture that has been modified from AOSP. It is a light Emulator that focuses on device support, performance, and boosting for gaming applications.
 
-At this time my potato+ mobile had worn out and could no longer meet the requirements for most mobile games so I needed a means to enjoy continue gaming. I opted to dualboot posrog alongside solus on my low-ended amd e2-9000. This was a relatively simple procedure but different because Solus uses systemd bootloader while posrog installations typically use grub.
+On my low-end AMD e2-9000, I chose to dualboot posrog and solus. This was a relatively simple procedure, but it was distinct because Solus employs the systemd bootloader, whereas posrog installations typically employ grub.
 
-I reflect here on my steps to accomplish this endeavour.
+Here, I reflect on the steps I took to complete this task.
 
 ### Creating The POSROG Partition
 
@@ -72,7 +72,7 @@ search set=root file /posrog/system.img
 - Save and exit nano. Navigate back to root directory.
 - Unmount the ESP using `sudo umount -R /boot`
 
-Displaying the Solus boot menu by default on boot
+### Displaying the Solus boot menu by default on boot
 
 The following command will set the timeout of the boot loader so that it appears by default.
 
