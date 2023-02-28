@@ -1,0 +1,21 @@
+name: Automated Validation
+
+on: [push]
+
+jobs:
+  Sample-Run-of-Jekyll-Deploy-Test-Action:
+    runs-on: ubuntu-latest
+    name: This job tests the functionality of the Jekyll Deploy Test Action.
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+    - name: Jekyll Deploy Test
+      uses: PaulRosenthal/Jekyll-Deploy-Test-Action@v2
+      with:
+        gemfile-location: '/'
+        site-directory: '/'
+    - name: Upload _site Directory From Test Build
+      uses: actions/upload-artifact@v3.1.0
+      with:
+        name: test_build
+        path: /_site
