@@ -3,12 +3,84 @@ layout: post
 title: Install POSROG V3U8 (PhoenixOS) alongside Solus
 subtitle: Systemd Solus Configuration
 length: 5
-image: posrog-install.jpg
-image-caption: Photo title goes here. (Optional) Include reference
+image: install-posrog-banner.jpg
+image-caption: Republic of Gamers - The Choice of Champions
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis ipsa iure aperiam, aut totam rem quam quibusdam nesciunt cum atque excepturi facilis ullam ratione illo sed.
+PhoenixOS for the Republic of gamers, POSROG, is an android operating system with x86 architecture modded from AOSP. It is lighter than a typical Emulator and focuses on device support, performance, and boosting for gaming applications.
 
-Ut corrupti, minus non cupiditate, accusantium enim inventore magni repudiandae nesciunt provident, soluta velit qui!
+At this time my potato+ mobile had worn out and could no longer meet the requirements for most mobile games so I needed a means to enjoy continue gaming. I opted to dualboot posrog alongside solus on my low-ended amd e2-9000. This was a relatively simple procedure but different because Solus uses systemd bootloader while posrog installations typically use grub.
 
-Autem repudiandae earum dignissimos quam laborum architecto soluta quia.
+I reflect here on my steps to accomplish this endeavour.
+
+### Creating The POSROG Partition
+
+- Boot into Solus and create an EXT4 partition using Gparted.
+
+```
+  Label: ANDROID
+  Size: 40GB.
+```
+
+Nb: Copy the UUID of the partition and save. (To be used later on).
+
+- Mount ANDROID and create directory structure:
+  `posrog/data/`
+
+- Download Official [POSROG V3U8 ](https://posrog.com.id/download). (Kernel and architecture chosen to match my computer). Extract.
+
+- Locate the ISO and extract it.
+
+- Copy the following files into posrog directory of ANDROID partition.
+
+  - `posrog`,
+  - `ramdisk.img`,
+  - `system.img`,
+
+NB: leave data directory empty. It will be used to create the android data files by POSROG during installation.
+
+### Adding Systemd Bootloader Entry for POSROG
+
+And now comes the fun part...
+
+To configure systemd to add an entry for POSROG; Since Solus unmounts the boot partition after booting, it will have to be mounted to edit the systemd configuration files.
+
+Launch a new terminal window and perform the following sequence of operations:
+
+- Mount the EFI System partition which contains the bootloader to `/boot`.
+
+  ```bash
+  `sudo mount /dev/sdX# /boot`
+
+  # Where sdX# is the EFI System Partition (ESP).
+  ```
+
+- Change directory to `/boot/EFI`. Create subdirectory `posrog`. Copy `initrd.img` and the kernel files from the iso to this folder.
+
+3. Change directory to `/boot/entries`. Add a new file `posrog.current.conf` to create configuration file for posrog. Open the file in nano as su.
+
+4. Add the following lines:
+
+```
+title POSROG V3U8 - Android x86
+linux /EFI/posrog/kernelxx
+initrd/EFI/posrog/initrd.img
+options root=PARTUUID=THE_UUID_WE_COPIED_BEFORE rw quiet androidboot.selinux=permissive buildvariant=userdebug acpi_sleep=s3_bios,s3_mode SRC=posrog/
+search set=root file /posrog/system.img
+```
+
+- Save and exit nano. Navigate back to root directory.
+- Unmount the ESP using `sudo umount -R /boot`
+
+Displaying the Solus boot menu by default on boot
+
+The following command will set the timeout of the boot loader so that it appears by default.
+
+`sudo clr-boot-manager set-timeout 5 && sudo clr-boot-manager update`
+
+### INSTALL POSROG
+
+This is the final step.
+
+Restart your pc and select the POSROG entry from **systemd menu**. Wait for it to boot and follow the GUI prompt to configure POSROG.
+When android boots, select Install without WiFi.
