@@ -14,8 +14,3 @@ jobs:
       with:
         gemfile-location: '/'
         site-directory: '/'
-    - name: Upload _site Directory From Test Build
-      uses: actions/upload-artifact@v3.1.0
-      with:
-        name: test_build
-        path: /github/workspace/_site
