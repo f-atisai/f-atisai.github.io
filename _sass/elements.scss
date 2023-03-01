@@ -22,6 +22,28 @@
     color: hsl(var(--text) / 0.38);
     font-size: 1.125rem;
   }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: hsl(var(--text) / 0.87);
+  }
+
+  pre {
+    background-color: hsl(var(--text) / 0.12);
+    color: hsl(var(--text) / 0.87);
+  }
+
+  code {
+    background: none;
+  }
+
+  strong {
+    color: inherit;
+  }
 }
 
 .figcaption {

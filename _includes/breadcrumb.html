@@ -1,8 +1,12 @@
 <nav class="breadcrumb" aria-label="breadcrumbs">
   <ul>
-    <li><a href="/#{{ page.class | downcase }}">{{ page.class }}</a></li>
+    <li>
+      <a href="/#{{ page.class | downcase }}" style="color: hsl(var(--accent))"
+        >{{ page.class }}</a
+      >
+    </li>
     <li class="is-active">
-      <a href="#" class="breadcrumb__current" aria-current="page"
+      <a href="#" style="color: hsl(var(--text) / 0.38)" aria-current="page"
         >{{ page.title }}</a
       >
     </li>
