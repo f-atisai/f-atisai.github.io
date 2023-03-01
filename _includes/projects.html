@@ -21,7 +21,25 @@
 
     <!-- Tiles -->
     <div class="tiles">
+      {% for project in site.projects %}
       <div class="tile">
+        <div class="tile__child">
+          <img
+            src="/assets/images/{{ project.image }}"
+            alt="{{ project.image }}"
+            class="tile__img"
+          />
+
+          <a href="{{ project.url }}" class="tile__box">
+            <div class="tile__info">
+              <p class="tile__title">{{ project.short_title }}</p>
+              <p class="tile__number">{{ forloop.index }}</p>
+            </div>
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+      <!-- <div class="tile">
         <div class="tile__child">
           <img
             src="/assets/images/project_sample_1.jpg"
@@ -74,7 +92,7 @@
             </div>
           </a>
         </div>
-      </div>
+      </div> -->
     </div>
     <!-- End Tiles -->
   </div>
