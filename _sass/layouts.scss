@@ -114,12 +114,14 @@
 }
 
 .tile {
-  &__child {
-    display: flex;
+  display: flex;
+
+  & > * {
+    flex-basis: 100%;
   }
 
-  &__child > * {
-    flex-basis: 100%;
+  &:nth-child(odd) {
+    flex-direction: row-reverse;
   }
 
   &__img {

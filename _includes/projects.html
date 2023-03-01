@@ -23,22 +23,21 @@
     <div class="tiles">
       {% for project in site.projects %}
       <div class="tile">
-        <div class="tile__child">
-          <img
-            src="/assets/images/{{ project.image }}"
-            alt="{{ project.image }}"
-            class="tile__img"
-          />
+        <img
+          src="/assets/images/{{ project.image }}"
+          alt="{{ project.image }}"
+          class="tile__img"
+        />
 
-          <a href="{{ project.url }}" class="tile__box">
-            <div class="tile__info">
-              <p class="tile__title">{{ project.short_title }}</p>
-              <p class="tile__number">{{ forloop.index }}</p>
-            </div>
-          </a>
-        </div>
+        <a href="{{ project.url }}" class="tile__box">
+          <div class="tile__info">
+            <p class="tile__title">{{ project.short_title }}</p>
+            <p class="tile__number">{{ forloop.index }}</p>
+          </div>
+        </a>
       </div>
       {% endfor %}
+
       <!-- <div class="tile">
         <div class="tile__child">
           <img
