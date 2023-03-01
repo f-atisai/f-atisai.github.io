@@ -211,6 +211,12 @@
   }
 }
 
+.post {
+  .container {
+    max-width: 64rem;
+  }
+}
+
 // Responsive
 @media (max-width: 672px) {
   :root {
