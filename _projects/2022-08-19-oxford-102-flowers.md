@@ -4,6 +4,7 @@ title: The Oxford 102 Flowers
 short_title: The Oxford 102 Flowers
 length: 15
 image: project-sample-1.jpg
+cover: project-sample-1.jpg
 class: Project
 ---
 
