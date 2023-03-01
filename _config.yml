@@ -1,6 +1,7 @@
 # Collections
 collections:
   projects:
+    output: true
 
 # Site settings
 title: F.O. Atisai
