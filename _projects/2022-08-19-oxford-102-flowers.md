@@ -4,6 +4,7 @@ title: The Oxford 102 Flowers
 short_title: The Oxford 102 Flowers
 length: 15
 image: project-sample-1.jpg
+class: Project
 ---
 
 Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore fugiat cumque ipsa sequi vitae optio, neque culpa itaque quos? Quos vel voluptates quaerat nesciunt non, mollitia temporibus repellendus voluptatum molestias.

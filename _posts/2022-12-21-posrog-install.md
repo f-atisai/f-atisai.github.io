@@ -2,10 +2,10 @@
 layout: post
 title: Install POSROG V3U8 (PhoenixOS) alongside Solus
 subtitle: Systemd Solus Configuration
-length: 5
+length: 2
 image: install-posrog-banner.jpg
 image-caption: Republic of Gamers - The Choice of Champions
-class: post
+class: Reflections
 ---
 
 POSROG, or PhoenixOS for the Republic of Gamers, is an Android operating system with x86 architecture that has been modified from AOSP. It is a light Emulator that focuses on device support, performance, and boosting for gaming applications.
