@@ -85,7 +85,7 @@ sudo clr-boot-manager set-timeout 5 && sudo clr-boot-manager update
 
 ### INSTALL POSROG
 
-This is the final step.
+Alas... showtime.
 
 Restart your pc and select the POSROG entry from **systemd menu**. Wait for it to boot and follow the GUI prompt to configure POSROG.
 When android boots, select Install without WiFi.
