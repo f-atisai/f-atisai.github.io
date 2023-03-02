@@ -18,7 +18,8 @@ Here, I reflect on the steps I took to complete this task.
 ### Creating The POSROG Partition
 
 - Boot into Solus and create an EXT4 partition using Gparted.
-  > Label: ANDROID. Size: 40GB.
+  > Label: ANDROID.  
+  > Size: 40GB.
 
 Nb: Copy the UUID of the partition and save. (To be used later on).
 
