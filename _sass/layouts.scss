@@ -51,7 +51,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  height: 5rem;
+  height: 6rem;
   padding-bottom: 1rem;
 
   .site-info {
@@ -64,7 +64,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: calc(100vh - 10rem); // 10rem is header + footer height
+  min-height: calc(100vh - 11rem); // 10rem is header + footer height
   min-width: 100vw;
   scroll-snap-align: start;
 }
