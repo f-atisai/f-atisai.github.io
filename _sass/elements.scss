@@ -32,6 +32,11 @@
     color: hsl(var(--text) / 0.87);
   }
 
+  blockquote {
+    background-color: hsl(var(--text) / 0.12);
+    color: hsl(var(--text) / 0.87);
+  }
+
   pre {
     background-color: hsl(var(--text) / 0.12);
     color: hsl(var(--text) / 0.87);
