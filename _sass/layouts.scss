@@ -49,15 +49,16 @@
 
 /* FOOTER */
 .footer {
-  border-top: 1px solid hsl(var(--text) / 0.08);
   display: flex;
   justify-content: center;
   align-items: flex-start;
   height: 7rem;
-  padding: 1rem;
 
   .site-info {
+    border-top: 1px solid hsl(var(--text) / 0.08);
     flex-direction: column;
+    padding: 1rem;
+    width: 100%;
   }
 }
 
