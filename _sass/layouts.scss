@@ -41,7 +41,7 @@
   width: 100%;
 }
 
-.header .github-link {
+.github-link {
   color: hsl(var(--text) / 0.87);
   font-size: 2.5rem;
 }
@@ -52,6 +52,11 @@
   justify-content: center;
   align-items: flex-start;
   height: 5rem;
+  padding-bottom: 1rem;
+
+  .site-info {
+    flex-direction: column;
+  }
 }
 
 // SECTION
