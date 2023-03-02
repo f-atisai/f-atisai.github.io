@@ -3,6 +3,7 @@ layout: post
 title: Finding Donors For CharityML
 short_title: CharityML
 length: 15
+image_path: charityml
 image: charityml-banner.jpg
 cover: charityml-cover.jpg
 class: Project

@@ -3,6 +3,7 @@ layout: post
 title: Identifying Customers Segments For Arvato
 short_title: Arvato Inc.
 length: 20
+image_path: arvato-inc
 image: project-sample-1.jpg
 cover: project-sample-1.jpg
 class: Project

@@ -2,8 +2,8 @@
 layout: post
 title: Install POSROG V3U8 (PhoenixOS) alongside Solus
 subtitle: Systemd Solus Configuration
-short_title: posrog-install
 length: 2
+image_path: posrog-install
 image: install-posrog-banner.jpg
 image-caption: Republic of Gamers - The Choice of Champions
 class: Reflections
