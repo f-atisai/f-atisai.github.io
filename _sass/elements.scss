@@ -50,6 +50,14 @@ hr,
   strong {
     color: inherit;
   }
+
+  a {
+    color: hsl(var(--accent));
+
+    &:hover {
+      color: hsl(var(--accent) / 0.6);
+    }
+  }
 }
 
 .figcaption {

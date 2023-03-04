@@ -1,5 +1,8 @@
 @charset "utf-8";
 
+// colors
+$link: hsl(14, 87%, 56%);
+
 // Import only needed styles from bulma
 @import "../node_modules/bulma/sass/utilities/_all.sass";
 @import "../node_modules/bulma/sass/base/generic.sass";
