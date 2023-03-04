@@ -52,7 +52,7 @@ hr,
   }
 
   a {
-    color: hsl(var(--accent));
+    color: hsl(var(--accent) / 0.87);
 
     &:hover {
       color: hsl(var(--accent) / 0.6);
