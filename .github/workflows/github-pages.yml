@@ -35,7 +35,6 @@ jobs:
           pre_build_commands: ''     # Installing additional dependencies (Arch Linux)
           
       # Remove unneccessary files
-      - uses: actions/checkout@v3
       - name: Removing unnecessary files
         run: |
           rm -r _post/* _projects/*
