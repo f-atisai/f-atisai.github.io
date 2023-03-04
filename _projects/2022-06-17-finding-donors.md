@@ -19,7 +19,7 @@ The dataset for this project originates from the [UCI Machine Learning Repositor
 
 A cursory investigation of the dataset determined how many individuals fit into either group, and revealed the percentage of individuals that makes more than \$50,000. Of the **45,222** individuals which make up the dataset, **11,208 (24.78%)** of the individuals makes more than \$50,000, while **34014** individuals makes at most \$50,000.
 
-![Dataset Preview](/assets/images/charityml/dataset_preview.png)
+![Dataset Preview](/assets/images/finding-donors/dataset_preview.png)
 
 **Table 1: Dataset Preview - First Five Rows**
 
@@ -49,13 +49,13 @@ Before data can be used as input for machine learning algorithms, it often must 
 
 A dataset may sometimes contain at least one feature whose values tend to lie near a single number, but will also have a non-trivial number of vastly larger or smaller values than that single number. Algorithms can be sensitive to such distributions of values and can underperform if the range is not properly normalized. With the census dataset two features fit this description: `'capital-gain'` and `'capital-loss'`.
 
-![Skewed Distributions of Continuous Census Data Features](/assets/images/charityml/skewed_dist_cont_features.png)
+![Skewed Distributions of Continuous Census Data Features](/assets/images/finding-donors/skewed_dist_cont_features.png)
 
 **Figure 1: Skewed Distributions of Continuous Census Data Features**
 
 For highly-skewed feature distributions such as `'capital-gain'` and `'capital-loss'`, it is common practice to apply a <a href="https://en.wikipedia.org/wiki/Data_transformation_(statistics)">logarithmic transformation</a> on the data so that the very large and very small values do not negatively affect the performance of a learning algorithm. Using a logarithmic transformation significantly reduces the range of values caused by outliers. Care is taken when applying this transformation however: The logarithm of `0` is undefined, so the values are translated by a small amount above `0` to apply the logarithm successfully.
 
-![Log-transformed Distributions of Continuous Census Data Features](/assets/images/charityml/log_transformed_dist_cont_feats.png)
+![Log-transformed Distributions of Continuous Census Data Features](/assets/images/finding-donors/log_transformed_dist_cont_feats.png)
 
 **Figure 2: Log-transformed Distributions of Continuous Census Data Features**
 
@@ -63,7 +63,7 @@ For highly-skewed feature distributions such as `'capital-gain'` and `'capital-l
 
 In addition to performing transformations on features that are highly skewed, numerical features are [normalized](<https://en.wikipedia.org/wiki/Normalization_(statistics)>) as it is often good practice to perform some type of scaling on numerical features. Applying a scaling to the data does not change the shape of each feature's distribution (such as `'capital-gain'` or `'capital-loss'` above); however, normalization ensures that each feature is treated equally when applying supervised learners.
 
-![Normalized Census Data](/assets/images/charityml/table_normalized_census_data.png)
+![Normalized Census Data](/assets/images/finding-donors/table_normalized_census_data.png)
 
 **Table 2: Normalized Census Data**
 
@@ -73,7 +73,7 @@ There are several features for each record that are non-numeric, as pointed out 
 
 One-hot encoding creates a _"dummy"_ variable for each possible category of each non-numeric feature. For example, assume `someFeature` has three possible entries: `A`, `B`, or `C`. This can be encoded into `someFeature_A`, `someFeature_B` and `someFeature_C`.
 
-![One-Hot Encoder Process](/assets/images/charityml/table_one_hot_encoder.png)
+![One-Hot Encoder Process](/assets/images/finding-donors/table_one_hot_encoder.png)
 
 **Table 3: One-Hot Encoder**
 
@@ -138,7 +138,7 @@ Ensemble methods such as Gradient Boost and Random Forests combine simple learne
 
 The three models - with their _default parameters_ - are trained on **1%, 10%, and 100%** of the training data.
 
-![Performance Metrics for Three Supervised Learning Models](/assets/images/charityml/performance_metrics_three_models.png)
+![Performance Metrics for Three Supervised Learning Models](/assets/images/finding-donors/performance_metrics_three_models.png)
 
 **Figure 3: Performance Metrics for Three Supervised Learning Models**
 
@@ -196,7 +196,7 @@ In **Exploring the Data**, it was shown there were thirteen available features f
 
 Looking at figure 4, `capital-loss` is the most important factor in predicting whether an individual makes at most or above \\$50,000, as presumed, and `hours-per-week` is also ranked low, as expected. However, `age`, appears to play a substantial role in the prediction, which was not previously considered as a factor in predicting an individual's income. In terms of `education-num` as a factor, it was assumed that `education` would be more appropriate in this situation. Excluding these differences, the features chosen by the machine learning model are relatively similar to what was considered to be the most important in determining whether an individual makes at most or above $50,000.
 
-![Normalized Weights for First Five Most Predictive Features](/assets/images/charityml/normalized_weight_first5_most_pred_features.png)
+![Normalized Weights for First Five Most Predictive Features](/assets/images/finding-donors/normalized_weight_first5_most_pred_features.png)
 
 **Figure 4: Normalized Weights for First Five Most Predictive Features**
 
