@@ -3,7 +3,7 @@ name: Build and Deploy to Github Pages
 on:
   push:
     branches:
-      - main  # Here source code branch is `master`. it could be other branch
+      - main  # Here source code branch is `main`, it could be other branch
 
 jobs:
   build_and_deploy:
@@ -33,3 +33,10 @@ jobs:
           cname: ''                  # Default is to not use a cname
           actor: ''                  # Default is the GITHUB_ACTOR
           pre_build_commands: ''     # Installing additional dependencies (Arch Linux)
+          
+      # Remove unneccessary files
+      - uses: actions/checkout@v3
+      - name: Removing unnecessary files
+        run: |
+          rm -r _post/* _projects/*
+          ls -la
