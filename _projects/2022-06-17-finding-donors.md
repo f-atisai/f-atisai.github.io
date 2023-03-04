@@ -21,7 +21,9 @@ A cursory investigation of the dataset determined how many individuals fit into 
 
 ![Dataset Preview](/assets/images/finding-donors/dataset_preview.png)
 
-**Table 1: Dataset Preview - First Five Rows**
+<figcaption class="level">
+    <small class="level-item figcaption">Table 1: Dataset Preview - First Five Rows</small>
+</figcaption>
 
 The following features are available in the dataset:
 
@@ -51,13 +53,17 @@ A dataset may sometimes contain at least one feature whose values tend to lie ne
 
 ![Skewed Distributions of Continuous Census Data Features](/assets/images/finding-donors/skewed_dist_cont_features.png)
 
-**Figure 1: Skewed Distributions of Continuous Census Data Features**
+<figcaption class="level">
+    <small class="level-item figcaption">Figure 1: Skewed Distributions of Continuous Census Data Features</small>
+</figcaption>
 
 For highly-skewed feature distributions such as `'capital-gain'` and `'capital-loss'`, it is common practice to apply a <a href="https://en.wikipedia.org/wiki/Data_transformation_(statistics)">logarithmic transformation</a> on the data so that the very large and very small values do not negatively affect the performance of a learning algorithm. Using a logarithmic transformation significantly reduces the range of values caused by outliers. Care is taken when applying this transformation however: The logarithm of `0` is undefined, so the values are translated by a small amount above `0` to apply the logarithm successfully.
 
 ![Log-transformed Distributions of Continuous Census Data Features](/assets/images/finding-donors/log_transformed_dist_cont_feats.png)
 
-**Figure 2: Log-transformed Distributions of Continuous Census Data Features**
+<figcaption class="level">
+    <small class="level-item figcaption">Figure 2: Log-transformed Distributions of Continuous Census Data Features</small>
+</figcaption>
 
 ### Normalizing Numerical Features
 
@@ -65,7 +71,9 @@ In addition to performing transformations on features that are highly skewed, nu
 
 ![Normalized Census Data](/assets/images/finding-donors/table_normalized_census_data.png)
 
-**Table 2: Normalized Census Data**
+<figcaption class="level">
+    <small class="level-item figcaption">Table 2: Normalized Census Data</small>
+</figcaption>
 
 ### Data Preprocessing
 
@@ -75,7 +83,9 @@ One-hot encoding creates a _"dummy"_ variable for each possible category of each
 
 ![One-Hot Encoder Process](/assets/images/finding-donors/table_one_hot_encoder.png)
 
-**Table 3: One-Hot Encoder**
+<figcaption class="level">
+    <small class="level-item figcaption">Table 3: One-Hot Encoder</small>
+</figcaption>
 
 Additionally, as with the non-numeric features, the non-numeric target label, `'income'` is converted to numerical values for the learning algorithm to work. Since there are only two possible categories for this label ("<=50K" and ">50K"), it is simply encoded as `0` and `1`, respectively.
 
@@ -140,7 +150,9 @@ The three models - with their _default parameters_ - are trained on **1%, 10%, a
 
 ![Performance Metrics for Three Supervised Learning Models](/assets/images/finding-donors/performance_metrics_three_models.png)
 
-**Figure 3: Performance Metrics for Three Supervised Learning Models**
+<figcaption class="level">
+    <small class="level-item figcaption">Figure 3: Performance Metrics for Three Supervised Learning Models</small>
+</figcaption>
 
 Figure 3 visualizes the performance of the three supervised learning models. Because the goal is to precisely identify the category with income greater than $50,000 and to recall a significant number of individuals in that category, the F score evaluation is given more attention since it best captures this situation. It is tuned to favor precision.
 
@@ -154,7 +166,7 @@ From the figure, `GradientBoostingClassifier` outperforms the other models when 
 
 It is possible and recommended to search a models' hyper-parameter space for optimal values in order to improve its predictive performance — this is typically known as **model tuning**. One popular way to tune a Gradient Boosting Classifier is by using **GridSearch**. GridSearch exhaustively generates candidates from a grid of hyper-parameter values, evaluates all possible combinations and retains the best one. It is performed on the untuned model over the entire training set in order to improve its F-score.
 
-Additionaly, **[Early Stopping](https://ai.stackexchange.com/questions/16/what-is-early-stopping-in-machine-learning)** support in Gradient Boosting enables building a model that generalizes well to unseen data using the least number of iterations. Using fewer iterations can siginificantly reduce a models training time. Combination of gridsearch and early stopping produces an optimized model to be used on the Census Data.
+Additionaly, [Early Stopping](https://ai.stackexchange.com/questions/16/what-is-early-stopping-in-machine-learning) support in Gradient Boosting enables building a model that generalizes well to unseen data using the least number of iterations. Using fewer iterations can siginificantly reduce a models training time. Combination of gridsearch and early stopping produces an optimized model to be used on the Census Data.
 
 ### Final Model Evaluation
 
@@ -166,7 +178,9 @@ Table 4 presents a side by side comparison of the performance metrics of the uno
 |    F-score     |      0.7395       |     0.7457      |
 |   Train Time   |       21.27       |      12.08      |
 
-**Table 4: Final Model Metrics**
+<figcaption class="level">
+    <small class="level-item figcaption">Table 4: Final Model Metrics</small>
+</figcaption>
 
 Furthermore, comparing with the Naive Predictor, it outperforms the naive predictor benchmarks by a wide margin. The accuracy increased by about 72%, with a 61% increase in F-score.
 
@@ -198,7 +212,9 @@ Looking at figure 4, `capital-loss` is the most important factor in predicting w
 
 ![Normalized Weights for First Five Most Predictive Features](/assets/images/finding-donors/normalized_weight_first5_most_pred_features.png)
 
-**Figure 4: Normalized Weights for First Five Most Predictive Features**
+<figcaption class="level">
+    <small class="level-item figcaption">Figure 4: Normalized Weights for First Five Most Predictive Features</small>
+</figcaption>
 
 ### Feature Selection
 
@@ -213,6 +229,8 @@ Table 5 presents the results of training the optimized model on the same trainin
 | Accuracy Score |    0.8677    |       0.8409        |
 |    F-score     |    0.7457    |       0.6937        |
 
-**Table 5: Metrics of Model Trained on Reduced Data**
+<figcaption class="level">
+    <small class="level-item figcaption">Table 5: Metrics of Model Trained on Reduced Data</small>
+</figcaption>
 
 Training on the reduced data yields lower scores than training on the full data. There is a 2.68% difference in accuracy but this is less significant compared to the 5.2% difference in F-score. Because F-score is biased towards the model's precision, the model trained on the reduced data would misidentify more people as belonging to the group making more than $50,000. But, however, considering only a subset of the features were used in training, it performs remarkably. This illustrates the importance of feature selection as well as its contribution to the model's overall predicting performance. If training time was a consideration, It would be beneficial to use the reduced data as the training set since the model's performance on training with the reduced data is significantly better than naive prediction, and nearly as good as the optimized model.
