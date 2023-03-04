@@ -37,5 +37,4 @@ jobs:
       # Remove unneccessary files
       - name: Removing unnecessary files
         run: |
-          rm -r _post/* _projects/*
           ls -la
