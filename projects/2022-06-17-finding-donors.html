@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Finding Donors For <em>CharityML</em></title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
+    />
+
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+    <script src="https://code.iconify.design/iconify-icon/1.0.5/iconify-icon.min.js"></script>
+  </head>
+  <body>
+    <!-- Breadcrumb -->
+    <header class="header is-paddingless-horizontal">
+      <div class="container grid"><nav class="breadcrumb" aria-label="breadcrumbs">
+  <ul>
+    <li>
+      <a href="/#project">Project</a>
+    </li>
+    <li class="is-active">
+      <a href="#" style="color: hsl(var(--text) / 0.38)" aria-current="page"
+        >Finding Donors For <em>CharityML</em></a
+      >
+    </li>
+  </ul>
+</nav>
+</div>
+    </header>
+    <!-- /Breadcrumb -->
+
+    <!-- section -->
+    <section
+      class="section post is-paddingless-horizontal"
+      style="padding-top: 0"
+    >
+      <div class="container grid">
+        <div class="block"></div>
+
+        <article>
+          <div class="content">
+            <h1 class="title">Finding Donors For <em>CharityML</em></h1>
+            <h2 class="subtitle"></h2>
+
+            <p>
+              <small>
+                <time datetime="17 Jun 2022">
+                  17 Jun 2022
+                </time>
+                &#183; 15 min read
+              </small>
+            </p>
+          </div>
+        </article>
+
+        <div class="block"></div>
+
+        <!-- for story image -->
+        <figure class="grid-xl">
+          <img
+            src="/assets/images/finding-donors/finding-donors-banner.jpg"
+            alt="finding-donors-banner.jpg"
+          />
+        </figure>
+
+        <figcaption class="level">
+          <small class="level-item figcaption"></small>
+        </figcaption>
+
+        <div class="content"><p>This project employs several supervised algorithms to accurately model individuals’ income using data collected from the 1994 U.S. Census. The best candidate algorithm is chosen from preliminary results and further optimized to best model the data. The goal of this implementation is to construct a model that accurately predicts whether an individual makes more than $50,000. This sort of task can arise in a non-profit setting, where organizations survive on donations. Understanding an individual’s income can help a non-profit better understand how large of a donation to request, or whether or not they should reach out to begin with. While it can be difficult to determine an individual’s general income bracket directly from public sources, this value can be inferred from other publically available features.</p>
+
+<p>The dataset for this project originates from the <a href="https://archive.ics.uci.edu/ml/datasets/Census+Income">UCI Machine Learning Repository</a>. The datset was donated by Ron Kohavi and Barry Becker, after being published in the article <em>“Scaling Up the Accuracy of Naive-Bayes Classifiers: A Decision-Tree Hybrid”</em>. The article by Ron Kohavi can be found <a href="https://www.aaai.org/Papers/KDD/1996/KDD96-033.pdf">online</a>. The data investigated here consists of small changes to the original dataset, such as removing the <code class="language-plaintext highlighter-rouge">'fnlwgt'</code> feature and records with missing or ill-formatted entries.</p>
+
+<hr />
+
+<h2 id="data-exploration">Data Exploration</h2>
+
+<p>A cursory investigation of the dataset determined how many individuals fit into either group, and revealed the percentage of individuals that makes more than $50,000. Of the <strong>45,222</strong> individuals which make up the dataset, <strong>11,208 (24.78%)</strong> of the individuals makes more than $50,000, while <strong>34014</strong> individuals makes at most $50,000.</p>
+
+<p><img src="/assets/images/finding-donors/dataset_preview.png" alt="Dataset Preview" /></p>
+
+<figcaption class="level">
+    <small class="level-item figcaption">Table 1: Dataset Preview - First Five Rows</small>
+</figcaption>
+
+<p>The following features are available in the dataset:</p>
+
+<ul>
+  <li><strong>age</strong>: continuous.</li>
+  <li><strong>workclass</strong>: Private, Self-emp-not-inc, Self-emp-inc, Federal-gov, Local-gov, State-gov, Without-pay, Never-worked.</li>
+  <li><strong>education</strong>: Bachelors, Some-college, 11th, HS-grad, Prof-school, Assoc-acdm, Assoc-voc, 9th, 7th-8th, 12th, Masters, 1st-4th, 10th, Doctorate, 5th-6th, Preschool.</li>
+  <li><strong>education-num</strong>: continuous.</li>
+  <li><strong>marital-status</strong>: Married-civ-spouse, Divorced, Never-married, Separated, Widowed, Married-spouse-absent, Married-AF-spouse.</li>
+  <li><strong>occupation</strong>: Tech-support, Craft-repair, Other-service, Sales, Exec-managerial, Prof-specialty, Handlers-cleaners, Machine-op-inspct, Adm-clerical, Farming-fishing, Transport-moving, Priv-house-serv, Protective-serv, Armed-Forces.</li>
+  <li><strong>relationship</strong>: Wife, Own-child, Husband, Not-in-family, Other-relative, Unmarried.</li>
+  <li><strong>race</strong>: Black, White, Asian-Pac-Islander, Amer-Indian-Eskimo, Other.</li>
+  <li><strong>sex</strong>: Female, Male.</li>
+  <li><strong>capital-gain</strong>: continuous.</li>
+  <li><strong>capital-loss</strong>: continuous.</li>
+  <li><strong>hours-per-week</strong>: continuous.</li>
+  <li><strong>native-country</strong>: United-States, Cambodia, England, Puerto-Rico, Canada, Germany, Outlying-US(Guam-USVI-etc), India, Japan, Greece, South, China, Cuba, Iran, Honduras, Philippines, Italy, Poland, Jamaica, Vietnam, Mexico, Portugal, Ireland, France, Dominican-Republic, Laos, Ecuador, Taiwan, Haiti, Columbia, Hungary, Guatemala, Nicaragua, Scotland, Thailand, Yugoslavia, El-Salvador, Trinadad&amp;Tobago, Peru, Hong, Holand-Netherlands.</li>
+</ul>
+
+<hr />
+
+<h2 id="data-preparation">Data Preparation</h2>
+
+<p>Before data can be used as input for machine learning algorithms, it often must be cleaned, formatted, and restructured — this is typically known as <strong>preprocessing</strong>. Fortunately, for this dataset, there are no invalid or missing entries. However, there are some qualities about certain features that need to be adjusted. Preprocessing can help tremendously with the outcome and predictive power of nearly all learning algorithms.</p>
+
+<h3 id="transforming-skewed-continuous-features">Transforming Skewed Continuous Features</h3>
+
+<p>A dataset may sometimes contain at least one feature whose values tend to lie near a single number, but will also have a non-trivial number of vastly larger or smaller values than that single number. Algorithms can be sensitive to such distributions of values and can underperform if the range is not properly normalized. With the census dataset two features fit this description: <code class="language-plaintext highlighter-rouge">'capital-gain'</code> and <code class="language-plaintext highlighter-rouge">'capital-loss'</code>.</p>
+
+<p><img src="/assets/images/finding-donors/skewed_dist_cont_features.png" alt="Skewed Distributions of Continuous Census Data Features" /></p>
+
+<figcaption class="level">
+    <small class="level-item figcaption">Figure 1: Skewed Distributions of Continuous Census Data Features</small>
+</figcaption>
+
+<p>For highly-skewed feature distributions such as <code class="language-plaintext highlighter-rouge">'capital-gain'</code> and <code class="language-plaintext highlighter-rouge">'capital-loss'</code>, it is common practice to apply a <a href="https://en.wikipedia.org/wiki/Data_transformation_(statistics)">logarithmic transformation</a> on the data so that the very large and very small values do not negatively affect the performance of a learning algorithm. Using a logarithmic transformation significantly reduces the range of values caused by outliers. Care is taken when applying this transformation however: The logarithm of <code class="language-plaintext highlighter-rouge">0</code> is undefined, so the values are translated by a small amount above <code class="language-plaintext highlighter-rouge">0</code> to apply the logarithm successfully.</p>
+
+<p><img src="/assets/images/finding-donors/log_transformed_dist_cont_feats.png" alt="Log-transformed Distributions of Continuous Census Data Features" /></p>
+
+<figcaption class="level">
+    <small class="level-item figcaption">Figure 2: Log-transformed Distributions of Continuous Census Data Features</small>
+</figcaption>
+
+<h3 id="normalizing-numerical-features">Normalizing Numerical Features</h3>
+
+<p>In addition to performing transformations on features that are highly skewed, numerical features are <a href="https://en.wikipedia.org/wiki/Normalization_(statistics)">normalized</a> as it is often good practice to perform some type of scaling on numerical features. Applying a scaling to the data does not change the shape of each feature’s distribution (such as <code class="language-plaintext highlighter-rouge">'capital-gain'</code> or <code class="language-plaintext highlighter-rouge">'capital-loss'</code> above); however, normalization ensures that each feature is treated equally when applying supervised learners.</p>
+
+<p><img src="/assets/images/finding-donors/table_normalized_census_data.png" alt="Normalized Census Data" /></p>
+
+<figcaption class="level">
+    <small class="level-item figcaption">Table 2: Normalized Census Data</small>
+</figcaption>
+
+<h3 id="data-preprocessing">Data Preprocessing</h3>
+
+<p>There are several features for each record that are non-numeric, as pointed out in <strong>Data Exploration</strong> above. Typically, learning algorithms expect input to be numeric, which requires that non-numeric features (called <em>categorical variables</em>) be converted. One popular way to convert categorical variables is by using the <strong>one-hot encoding</strong> scheme.</p>
+
+<p>One-hot encoding creates a <em>“dummy”</em> variable for each possible category of each non-numeric feature. For example, assume <code class="language-plaintext highlighter-rouge">someFeature</code> has three possible entries: <code class="language-plaintext highlighter-rouge">A</code>, <code class="language-plaintext highlighter-rouge">B</code>, or <code class="language-plaintext highlighter-rouge">C</code>. This can be encoded into <code class="language-plaintext highlighter-rouge">someFeature_A</code>, <code class="language-plaintext highlighter-rouge">someFeature_B</code> and <code class="language-plaintext highlighter-rouge">someFeature_C</code>.</p>
+
+<p><img src="/assets/images/finding-donors/table_one_hot_encoder.png" alt="One-Hot Encoder Process" /></p>
+
+<figcaption class="level">
+    <small class="level-item figcaption">Table 3: One-Hot Encoder</small>
+</figcaption>
+
+<p>Additionally, as with the non-numeric features, the non-numeric target label, <code class="language-plaintext highlighter-rouge">'income'</code> is converted to numerical values for the learning algorithm to work. Since there are only two possible categories for this label (“&lt;=50K” and “&gt;50K”), it is simply encoded as <code class="language-plaintext highlighter-rouge">0</code> and <code class="language-plaintext highlighter-rouge">1</code>, respectively.</p>
+
+<h3 id="data-shuffling-and-splitting">Data Shuffling and Splitting</h3>
+
+<p>After all categorical variables are converted into numerical features, and all numerical features normalized, the data - both features and their labels - are split into training and test sets. The splits are <strong>80%</strong> of the data for training and <strong>20%</strong> for testing.</p>
+
+<hr />
+
+<h2 id="evaluation-of-model-performance">Evaluation of Model Performance</h2>
+
+<p>Four different algorithms are investigated to determine the best at modeling the data. Three of these are supervised learners, and the fourth algorithm is a carefully selected <em>naive predictor</em>.</p>
+
+<h3 id="metrics-and-the-naive-predictor">Metrics and the Naive Predictor</h3>
+
+<p><em>CharityML</em>, equipped with their research, knows individuals that make more than $50,000 are most likely to donate to their charity. Because of this, <em>CharityML</em> is particularly interested in predicting who makes more than $50,000 accurately. It would seem that using <strong>accuracy</strong> as a metric for evaluating a particular model’s performace would be appropriate. Additionally, identifying someone that <em>does not</em> make more than $50,000 as someone who does would be detrimental to <em>CharityML</em>, since they are looking to find individuals who are willing to donate.</p>
+
+<h4 id="accuracy-precision-and-recall">Accuracy, Precision, and Recall</h4>
+
+<p>Accuracy measures how often the classifier makes the correct prediction. Precision measures what proportion of individuals classified as making more than $50,000, actually makes more than $50,000. While Recall measures what proportion of individuals that actually makes more than $50,000 is classified as making more than $50,000. Therefore, a model’s ability to precisely predict those that make more than $50,000 is <em>more important</em> than the model’s ability to recall those individuals.</p>
+
+<h4 id="f-beta-score">F-beta score</h4>
+
+<p>F-beta score is a metric that considers both precision and recall:</p>
+
+\[F\_{\beta} = (1 + \beta^2) \cdot \frac{precision \cdot recall}{\left( \beta^2 \cdot precision \right) + recall}\]
+
+<p>In particular, when $\beta = 0.5$, more emphasis is placed on precision. This is called the <strong>F$_{0.5}$ score</strong> (or F-score for simplicity).
+This score can range from 0 to 1, with 1 being the best possible score.</p>
+
+<p>Looking at the distribution of classes (those who make at most \$50,000, and those who make more), it is clear that most individuals do not make more than $50,000. This can greatly affect accuracy, since it could simply be said that “<em>this person does not make more than $50,000</em>” and generally be right, without ever looking at the data! Making such a statement would be called <strong>naive</strong>, since no information was considered to substantiate the claim. It is always important to consider the <em>naive prediction</em> for data, to help establish a benchmark for whether a model is performing well. That been said, using that prediction would be pointless: If the algorithm predicted all people makes less than $50,000, <em>CharityML</em> would identify no one as donors.</p>
+
+<p>The the purpose of generating a naive predictor is simply to show what a base model without any intelligence would look like. In the real world, ideally the base model would be either the result of a previous model or could be based on a research paper with room for improvement. Since there is no benchmark model set, getting a result better than random choice is a good start.</p>
+
+<h3 id="naive-predictor-performace">Naive Predictor Performace</h3>
+
+<p><em>If a model that always predicts an individual makes more than $50,000 is chosen, what would that model’s accuracy and F-score be on this dataset?</em></p>
+
+<p>It can simply be deduced that the naive predictor accuracy equals it’s precision. A model that always predicts <strong>‘1’</strong> - <strong>positive</strong> - (i.e. the individual makes more than 50k) will have no True Negatives (individuals that makes at most 50k classified as making at most 50k) or False Negatives (individuals that makes at most 50k classified as making more than 50k) as it is not making any <strong>‘0’</strong> - <strong>negative</strong> - predictions. Therefore its’ Accuracy in this case becomes the same as its’ Precision as every true prediction that should be false becomes a False Positive.</p>
+
+<p>The Naive Predictor applied on the census data has an <strong>Accuracy score of 0.2478</strong>, and a <strong>F-score of 0.2917</strong>.</p>
+
+<h3 id="supervised-learning-models">Supervised Learning Models</h3>
+
+<p>The following models are considered for this analysis: <strong>Logistic Regression</strong>, <strong>Support Vector Machines</strong>, and <strong>Ensemble Methods</strong>.</p>
+
+<h4 id="logistic-regresssion">Logistic Regresssion</h4>
+
+<p>The Logistic Regression model is a linear classifier that estimates the probability of an event (such as testing positive or negative) based on a linear combination of one or more independent variables. It is easy to set up, train, and interpret, and performs well when the classes are linearly separable. One limitation however, is that it is not flexible enough to capture complex relationships and performs poorly when there are multiple or non-linear decision boundaries. But because of its simplicity and interpretability, it is a good starting point for binary classification problems.</p>
+
+<h4 id="support-vector-machines-svm">Support Vector Machines (SVM)</h4>
+
+<p>Support Vector Machines are a group of supervised learning models that can be used for both classification and regression problems. They perform well in high-dimensional spaces and can scale to large number of samples. The workings of SVMs are not easily interpretable because of their algorithmic complexities, but their inherent two-class nature makes them suitable for problems involving binary classification.</p>
+
+<h4 id="ensemble-methods">Ensemble Methods</h4>
+
+<p>Ensemble methods such as Gradient Boost and Random Forests combine simple learners — <em>i.e., decision trees</em> — to create a more robust learner. They perform very well as decision trees can learn non-linear relationships but they take longer to train. They can also handle imbalances in datasets and the hierarchical structure of their trees makes them perform well in binary classification problems.</p>
+
+<h3 id="initial-model-evaluation">Initial Model Evaluation</h3>
+
+<p>The three models - with their <em>default parameters</em> - are trained on <strong>1%, 10%, and 100%</strong> of the training data.</p>
+
+<p><img src="/assets/images/finding-donors/performance_metrics_three_models.png" alt="Performance Metrics for Three Supervised Learning Models" /></p>
+
+<figcaption class="level">
+    <small class="level-item figcaption">Figure 3: Performance Metrics for Three Supervised Learning Models</small>
+</figcaption>
+
+<p>Figure 3 visualizes the performance of the three supervised learning models. Because the goal is to precisely identify the category with income greater than $50,000 and to recall a significant number of individuals in that category, the F score evaluation is given more attention since it best captures this situation. It is tuned to favor precision.</p>
+
+<p>From the figure, <code class="language-plaintext highlighter-rouge">GradientBoostingClassifier</code> outperforms the other models when all of the data is used for training. Although the model takes much longer to train, the prediction time is relatively short. The longer training time is due to the model’s individual decision trees being built sequentially. This sequential addition produces a robust predictor even when there is an imbalance of classes in the data. It performs well in this situation given that the number of features are relatively low.</p>
+
+<hr />
+
+<h2 id="improving-results">Improving Results</h2>
+
+<h3 id="model-tuning">Model Tuning</h3>
+
+<p>It is possible and recommended to search a models’ hyper-parameter space for optimal values in order to improve its predictive performance — this is typically known as <strong>model tuning</strong>. One popular way to tune a Gradient Boosting Classifier is by using <strong>GridSearch</strong>. GridSearch exhaustively generates candidates from a grid of hyper-parameter values, evaluates all possible combinations and retains the best one. It is performed on the untuned model over the entire training set in order to improve its F-score.</p>
+
+<p>Additionaly, <a href="https://ai.stackexchange.com/questions/16/what-is-early-stopping-in-machine-learning">Early Stopping</a> support in Gradient Boosting enables building a model that generalizes well to unseen data using the least number of iterations. Using fewer iterations can siginificantly reduce a models training time. Combination of gridsearch and early stopping produces an optimized model to be used on the Census Data.</p>
+
+<h3 id="final-model-evaluation">Final Model Evaluation</h3>
+
+<p>Table 4 presents a side by side comparison of the performance metrics of the unoptimized and optimized model. The optimized <code class="language-plaintext highlighter-rouge">GradientBoostingClassifier</code> achieves an accuracy of 86.77% and an F-score of 74.57%, both of which are slightly higher than the scores of the unoptimized model. Applying early stopping reduced the overall training time from <strong>21.27 seconds to 12.08 seconds</strong>. Considering this, the scores of the optimized model are better than the unoptimized model.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Metric</th>
+      <th style="text-align: center">Unoptimized Model</th>
+      <th style="text-align: center">Optimized Model</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Accuracy Score</td>
+      <td style="text-align: center">0.8630</td>
+      <td style="text-align: center">0.8677</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">F-score</td>
+      <td style="text-align: center">0.7395</td>
+      <td style="text-align: center">0.7457</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Train Time</td>
+      <td style="text-align: center">21.27</td>
+      <td style="text-align: center">12.08</td>
+    </tr>
+  </tbody>
+</table>
+
+<figcaption class="level">
+    <small class="level-item figcaption">Table 4: Final Model Metrics</small>
+</figcaption>
+
+<p>Furthermore, comparing with the Naive Predictor, it outperforms the naive predictor benchmarks by a wide margin. The accuracy increased by about 72%, with a 61% increase in F-score.</p>
+
+<hr />
+
+<h2 id="feature-importance">Feature Importance</h2>
+
+<p>An important task when performing supervised learning on a dataset like the census data is determining which features provide the most predictive power. By focusing on the relationship between only a few crucial features and the target label, understanding of the phenomenon can be simplified, which is almost always a useful thing to do. In the case of this project, that means to identify a small number of features that most strongly predicts whether an individual makes at most or more than $50,000.</p>
+
+<h3 id="feature-relevance-observation">Feature Relevance Observation</h3>
+
+<p>Knowing the importance of features as indicated by machine learning models can be beneficial. By gaining a better understanding of the models’ logic, the correctness of its results can be verified . The key features can also be used in variable selection and the model can be improved by focusing only on the key variables. As a result, the interpretability of the model’s decision becomes easier.</p>
+
+<p>In <strong>Exploring the Data</strong>, it was shown there were thirteen available features for each individual on record in the census data. Of these thirteen records, the following five features are considered - by observation - to be most important for prediction, and are ranked in the order listed with reasons discussed.</p>
+
+<p><strong>Capital-loss</strong>: This is likely the most important factor in predicting if an individual makes at most or above $50,000 considering that net income is greatly affected by losses. Whether an individual has a fixed salary or earns commissions on product sales, their overall income is determined by how much money they lose.</p>
+
+<p><strong>Captal-gain</strong>: For similar reasons as above, capital gain is ranked second.</p>
+
+<p><strong>Occupation</strong>: Because a person’s income is based on the skills required for a particular profession, I believe occupation is the third most essential feature in determining a person’s income. Positions requiring more technical and organizational skills typically pay more than jobs requiring less.</p>
+
+<p><strong>Education</strong>: Education is placed fourth because, while school broadens one’s knowledge base, most occupations require skills that can be acquired through skill acquisition programs or trainings that are not part of a traditional education.</p>
+
+<p><strong>Hours-per-week</strong>: Lastly, while hours are a significant aspect, it is not the most deciding criterion among the five outlined, because working longer hours does not always imply making more money.</p>
+
+<h3 id="extracting-feature-importance">Extracting Feature Importance</h3>
+
+<p>Looking at figure 4, <code class="language-plaintext highlighter-rouge">capital-loss</code> is the most important factor in predicting whether an individual makes at most or above \$50,000, as presumed, and <code class="language-plaintext highlighter-rouge">hours-per-week</code> is also ranked low, as expected. However, <code class="language-plaintext highlighter-rouge">age</code>, appears to play a substantial role in the prediction, which was not previously considered as a factor in predicting an individual’s income. In terms of <code class="language-plaintext highlighter-rouge">education-num</code> as a factor, it was assumed that <code class="language-plaintext highlighter-rouge">education</code> would be more appropriate in this situation. Excluding these differences, the features chosen by the machine learning model are relatively similar to what was considered to be the most important in determining whether an individual makes at most or above $50,000.</p>
+
+<p><img src="/assets/images/finding-donors/normalized_weight_first5_most_pred_features.png" alt="Normalized Weights for First Five Most Predictive Features" /></p>
+
+<figcaption class="level">
+    <small class="level-item figcaption">Figure 4: Normalized Weights for First Five Most Predictive Features</small>
+</figcaption>
+
+<h3 id="feature-selection">Feature Selection</h3>
+
+<p><em>How does a model perform if we only use a subset of all the available features in the data?</em></p>
+
+<p>With less features required to train, the expectation is that training and prediction time will be much lower — at the cost of the performance metrics. From the visualization above, the top five most important features contribute more than half of the importance of <strong>all</strong> features present in the data. This hints that an attempt can be made to <em>reduce the feature space</em> and simplify the information required for the model to learn.</p>
+
+<p>Table 5 presents the results of training the optimized model on the same training set with only the <strong>top five important features</strong>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Metric</th>
+      <th style="text-align: center">All Features</th>
+      <th style="text-align: center">Top 5 Features Only</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Accuracy Score</td>
+      <td style="text-align: center">0.8677</td>
+      <td style="text-align: center">0.8409</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">F-score</td>
+      <td style="text-align: center">0.7457</td>
+      <td style="text-align: center">0.6937</td>
+    </tr>
+  </tbody>
+</table>
+
+<figcaption class="level">
+    <small class="level-item figcaption">Table 5: Metrics of Model Trained on Reduced Data</small>
+</figcaption>
+
+<p>Training on the reduced data yields lower scores than training on the full data. There is a 2.68% difference in accuracy but this is less significant compared to the 5.2% difference in F-score. Because F-score is biased towards the model’s precision, the model trained on the reduced data would misidentify more people as belonging to the group making more than $50,000. But, however, considering only a subset of the features were used in training, it performs remarkably. This illustrates the importance of feature selection as well as its contribution to the model’s overall predicting performance. If training time was a consideration, It would be beneficial to use the reduced data as the training set since the model’s performance on training with the reduced data is significantly better than naive prediction, and nearly as good as the optimized model.</p>
+</div>
+      </div>
+    </section>
+    <!-- /section -->
+
+    <!-- Footer -->
+    <footer class="site-info center">
+  <a href="https://github.com/f-atisai/" class="github-link">
+    <iconify-icon icon="mdi:github"></iconify-icon>
+  </a>
+
+  <p>
+    <small
+      >&copy; F.A.O's Reflections. Powered by
+      <a
+        title="Jekyll is a simple, blog-aware, static site generator."
+        href="http://jekyllrb.com/"
+      >
+        Jekyll
+      </a>
+    </small>
+  </p>
+</footer>
+
+    <!-- End Footer -->
+  </body>
+</html>

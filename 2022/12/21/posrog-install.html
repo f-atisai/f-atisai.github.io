@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Install POSROG V3U8 (PhoenixOS) alongside Solus</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
+    />
+
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+    <script src="https://code.iconify.design/iconify-icon/1.0.5/iconify-icon.min.js"></script>
+  </head>
+  <body>
+    <!-- Breadcrumb -->
+    <header class="header is-paddingless-horizontal">
+      <div class="container grid"><nav class="breadcrumb" aria-label="breadcrumbs">
+  <ul>
+    <li>
+      <a href="/#reflections">Reflections</a>
+    </li>
+    <li class="is-active">
+      <a href="#" style="color: hsl(var(--text) / 0.38)" aria-current="page"
+        >Install POSROG V3U8 (PhoenixOS) alongside Solus</a
+      >
+    </li>
+  </ul>
+</nav>
+</div>
+    </header>
+    <!-- /Breadcrumb -->
+
+    <!-- section -->
+    <section
+      class="section post is-paddingless-horizontal"
+      style="padding-top: 0"
+    >
+      <div class="container grid">
+        <div class="block"></div>
+
+        <article>
+          <div class="content">
+            <h1 class="title">Install POSROG V3U8 (PhoenixOS) alongside Solus</h1>
+            <h2 class="subtitle">Systemd Solus Configuration</h2>
+
+            <p>
+              <small>
+                <time datetime="21 Dec 2022">
+                  21 Dec 2022
+                </time>
+                &#183; 3 min read
+              </small>
+            </p>
+          </div>
+        </article>
+
+        <div class="block"></div>
+
+        <!-- for story image -->
+        <figure class="grid-xl">
+          <img
+            src="/assets/images/posrog-install/install-posrog-banner.jpg"
+            alt="install-posrog-banner.jpg"
+          />
+        </figure>
+
+        <figcaption class="level">
+          <small class="level-item figcaption">Republic of Gamers - The Choice of Champions</small>
+        </figcaption>
+
+        <div class="content"><p>POSROG, or PhoenixOS for the Republic of Gamers, is an Android operating system with x86 architecture that has been modified from AOSP. It is a lightweight emulator that focuses on device support, performance, and boosting for gaming applications.</p>
+
+<p>On my low-end AMD e2-9000, I’ve chosen to dualboot POSROG and Solus. This is a relatively simple procedure, however, it is distinct because Solus employs the systemd bootloader, whereas posrog installations uses grub.</p>
+
+<p>Here, I reflect on the steps taken to complete this setup.</p>
+
+<h3 id="creating-the-posrog-partition">Creating The POSROG Partition</h3>
+
+<ul>
+  <li>Boot into Solus and create an EXT4 partition using Gparted.
+    <blockquote>
+      <p>Label: ANDROID.<br />
+Size: 40GB.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<p>Nb: Copy the UUID of the partition and save it. (To be used later).</p>
+
+<ul>
+  <li>
+    <p>Mount ANDROID and create directory structure:
+<code class="language-plaintext highlighter-rouge">/posrog/data/</code></p>
+  </li>
+  <li>
+    <p>Download Official <a href="https://posrog.com.id/download">POSROG V3U8 </a> (choose Kernel and architecture chosen to match host machine). Extract the downloaded file.</p>
+  </li>
+  <li>
+    <p>Locate the ISO and extract it.</p>
+  </li>
+  <li>
+    <p>Copy the following files into posrog directory of ANDROID partition.</p>
+    <ul>
+      <li>posrog,</li>
+      <li>ramdisk.img,</li>
+      <li>system.img,</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Nb: Leave data directory empty. It will be used to create the android data files by POSROG during installation.</p>
+
+<h3 id="adding-systemd-bootloader-entry-for-posrog">Adding Systemd Bootloader Entry for POSROG</h3>
+
+<p>And now comes the fun part…</p>
+
+<p>Since Solus unmounts the boot partition after booting, it will have to be mounted to edit the systemd configuration files.</p>
+
+<p>Launch a new terminal window and perform the following sequence of operations:</p>
+
+<ul>
+  <li>
+    <p>Mount the EFI System partition which contains the bootloader to <code class="language-plaintext highlighter-rouge">/boot</code>.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo mount /dev/sdX# /boot
+</code></pre></div>    </div>
+
+    <p>Where sdX# is the EFI System Partition (ESP).</p>
+  </li>
+  <li>
+    <p>Change directory to <code class="language-plaintext highlighter-rouge">/boot/EFI/</code> and create subdirectory <code class="language-plaintext highlighter-rouge">posrog</code>. Copy <code class="language-plaintext highlighter-rouge">initrd.img</code> and the kernel files from the iso to this folder.</p>
+  </li>
+</ul>
+
+<ol>
+  <li>
+    <p>Change directory to <code class="language-plaintext highlighter-rouge">/boot/entries/</code> and add a new file <code class="language-plaintext highlighter-rouge">posrog.current.conf</code> to create configuration file for posrog.</p>
+  </li>
+  <li>
+    <p>Open the file in nano as su and add the following lines:</p>
+  </li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>title POSROG V3U8 - Android x86
+linux /EFI/posrog/kernelxx
+initrd/EFI/posrog/initrd.img
+options root=PARTUUID=THE_UUID_WE_COPIED_BEFORE rw quiet androidboot.selinux=permissive buildvariant=userdebug acpi_sleep=s3_bios,s3_mode SRC=posrog/
+search set=root file /posrog/system.img
+</code></pre></div></div>
+
+<p>Nb: <code class="language-plaintext highlighter-rouge">kernelxx</code> is the kernel file to load. POSROG comes with multiple kernels. Try all to see which gives best performance.</p>
+
+<ul>
+  <li>Save and exit nano. Navigate back to root directory.</li>
+  <li>Unmount the ESP using
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo umount -R /boot
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="displaying-the-solus-boot-menu-by-default-on-boot">Displaying the Solus boot menu by default on boot</h3>
+
+<p>The following command will set the timeout of the boot loader so that it appears by default.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo clr-boot-manager set-timeout 5 &amp;&amp; sudo clr-boot-manager update
+</code></pre></div></div>
+
+<h3 id="installing-posrog">Installing POSROG</h3>
+
+<p>Alas… showtime.</p>
+
+<p>Restart pc and select POSROG option from <strong>systemd menu</strong>. Wait for it to boot and follow the prompt to configure POSROG.
+When android boots, select Install. (Complete installation without WiFi).</p>
+</div>
+      </div>
+    </section>
+    <!-- /section -->
+
+    <!-- Footer -->
+    <footer class="site-info center">
+  <a href="https://github.com/f-atisai/" class="github-link">
+    <iconify-icon icon="mdi:github"></iconify-icon>
+  </a>
+
+  <p>
+    <small
+      >&copy; F.A.O's Reflections. Powered by
+      <a
+        title="Jekyll is a simple, blog-aware, static site generator."
+        href="http://jekyllrb.com/"
+      >
+        Jekyll
+      </a>
+    </small>
+  </p>
+</footer>
+
+    <!-- End Footer -->
+  </body>
+</html>
