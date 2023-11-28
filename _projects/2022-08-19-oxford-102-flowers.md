@@ -26,7 +26,7 @@ The dataset for this project is the [Oxford 102 Category Flower Dataset](http://
 
 The Dataset comprises of 102 flower categories commonly occurring in the United Kingdom. Each category contains between 40 and 258 images with different variations - _large scale, pose and light_. A few of the images with thier labels are shown below.
 
-<img src='assets/images/oxford-102-flowers/flowers.png' width=500px>
+<img src='/assets/images/oxford-102-flowers/flowers.png' width=500px>
 
 <p style="text-align: center;"><strong>Figure 1: Dataset preview</strong></p>
 
@@ -37,7 +37,7 @@ The train and validation sets each contain 1020 images each (10 images per class
 
 The figure below shows the shape of 3 images in the dataset with one of the images displayed. As can be seen, the raw images have a variety of sizes with three color channels each. Each pixel value in the images are in the range \[0, 255\].
 
-<img alt='dataset preview' src='assets/images/oxford-102-flowers/dataset_preview.png' />
+<img alt='dataset preview' src='/assets/images/oxford-102-flowers/dataset_preview.png' />
 
 <p style="text-align: center;"><strong>Figure 2: Image Shape</strong></p>
 
@@ -65,7 +65,7 @@ Convolutional Neural Networks are best for image classification. However, Modern
 
 MobileNet pre-trained network is used for extracting the features from the images. A new untrained feed-forward classifier is added to the MobileNet pre-trained network and the classifier is trained for 10 epochs using 'Adam' optimization. The plot below shows the loss and accuracy values achieved during training for the `train` and `validation` set.
 
-<img alt='plot of accuracy and loss during training' src='assets/images/oxford-102-flowers/loss_accuracy_train_val.png' />
+<img alt='plot of accuracy and loss during training' src='/assets/images/oxford-102-flowers/loss_accuracy_train_val.png' />
 
 <p style="text-align: center;"><strong>Figure 3: Training Accuracy and Loss Plot</strong></p>
 
@@ -75,7 +75,7 @@ It is good practice to test the trained network on test data, images the network
 
 It's always good to check the predictions made by the model to make sure they are correct. To check the predictions, the model is tested with 4 random images. The plot shows one input image alongside the probabilities for the top 5 classes predicted by the model as a bar graph.
 
-<img src='assets/images/oxford-102-flowers/inference_example.png' width=600px>
+<img src='/assets/images/oxford-102-flowers/inference_example.png' width=600px>
 
 <p style="text-align: center;"><strong>Figure 4: Top 5 predicted classes of image</strong></p>
 
