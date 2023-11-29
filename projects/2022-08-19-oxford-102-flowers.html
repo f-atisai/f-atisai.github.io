@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Oxford 102 Flowers</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
+    />
+
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+    <script src="https://code.iconify.design/iconify-icon/1.0.5/iconify-icon.min.js"></script>
+  </head>
+  <body>
+    <!-- Breadcrumb -->
+    <header class="header is-paddingless-horizontal">
+      <div class="container grid"><nav class="breadcrumb" aria-label="breadcrumbs">
+  <ul>
+    <li>
+      <a href="/#project">Project</a>
+    </li>
+    <li class="is-active">
+      <a href="#" style="color: hsl(var(--text) / 0.38)" aria-current="page"
+        >The Oxford 102 Flowers</a
+      >
+    </li>
+  </ul>
+</nav>
+</div>
+    </header>
+    <!-- /Breadcrumb -->
+
+    <!-- section -->
+    <section
+      class="section post is-paddingless-horizontal"
+      style="padding-top: 0"
+    >
+      <div class="container grid">
+        <div class="block"></div>
+
+        <article>
+          <div class="content">
+            <h1 class="title">The Oxford 102 Flowers</h1>
+            <h2 class="subtitle"></h2>
+
+            <p>
+              <small>
+                <time datetime="19 Aug 2022">
+                  19 Aug 2022
+                </time>
+                &#183; 3 min read
+              </small>
+            </p>
+          </div>
+        </article>
+
+        <div class="block"></div>
+
+        <!-- for story image -->
+        <figure class="grid-xl">
+          <img
+            src="/assets/images/oxford-102-flowers/oxford-102-flowers-banner.jpg"
+            alt="oxford-102-flowers-banner.jpg"
+          />
+        </figure>
+
+        <figcaption class="level">
+          <small class="level-item figcaption"></small>
+        </figcaption>
+
+        <div class="content"><h1 id="the-oxford-102-flowers">The Oxford 102 Flowers</h1>
+
+<p>Going forward, AI algorithms will be incorporated into more and more everyday applications. A large part of software development in the future will use deep learning models trained on hundreds of thousands of images as part of their overall application architecture. This project trains an image classifier to recognize different species of flowers. An example application might be a phone app that tells the name of the flower a camera is looking at.</p>
+
+<p>This project has two parts:</p>
+
+<ul>
+  <li>Part A: Building and training a classifier on the dataset</li>
+  <li>Part B: Building a command-line application that uses the trained model to perform inference on flower images</li>
+</ul>
+
+<p>The dataset for this project is the <a href="http://www.robots.ox.ac.uk/~vgg/data/flowers/102/index.html">Oxford 102 Category Flower Dataset</a> compiled by Maria-Elena Nilsback and Andrew Zisserman, and published in their article “<em>Automated Flower Classification Over a Large Number of Classes</em>”. The article can be found <a href="https://www.robots.ox.ac.uk/~vgg/publications/2008/Nilsback08/">here</a>.</p>
+
+<hr />
+
+<h2 id="exploring-the-data">Exploring The Data</h2>
+
+<p>The Dataset comprises of 102 flower categories commonly occurring in the United Kingdom. Each category contains between 40 and 258 images with different variations - <em>large scale, pose and light</em>. A few of the images with thier labels are shown below.</p>
+
+<p><img src="/assets/images/oxford-102-flowers/flowers.png" alt="The Oxford Flowers" /></p>
+
+<figcaption class="level">
+    <small class="level-item figcaption">Figure 1: Dataset preview</small>
+</figcaption>
+
+<p>The dataset has 3 splits: <code class="language-plaintext highlighter-rouge">'train'</code>, <code class="language-plaintext highlighter-rouge">'test'</code>, and <code class="language-plaintext highlighter-rouge">'validation'</code>. The train set is used to train the model while the validation and test sets are used to measure the model’s performance on data it hasn’t seen yet.
+The train and validation sets each contain 1020 images each (10 images per class), and the test set contains 6149 images (minimum 20 per class), making a total of 8189 images in the dataset.</p>
+
+<h3 id="examining-image-shape">Examining Image Shape</h3>
+
+<p>The figure below shows the shape of 3 images in the dataset with one of the images displayed. As can be seen, the raw images have a variety of sizes with three color channels each. Each pixel value in the images are in the range [0, 255].</p>
+
+<p><img src="/assets/images/oxford-102-flowers/dataset_preview.png" alt="Dataset Preview" /></p>
+
+<figcaption class="level">
+    <small class="level-item figcaption">Figure 2: Image Shape</small>
+</figcaption>
+
+<hr />
+
+<h2 id="preparing-the-data">Preparing The Data</h2>
+
+<p>Deep neural networks process data in batches. The batch size is the number of images that the neural network receives in one iteration. This neural network expects the images in the batch to be consistent in their shapes and sizes. It was shown previously that the images in the dataset are of different shapes. These images need to be standardized to a fixed size. In addition, the network expects the pixel values of the images to be in the range <code class="language-plaintext highlighter-rouge">[-1, 1]</code>, but the images in the dataset are in the range <code class="language-plaintext highlighter-rouge">[0, 255]</code>. These will have to be normalized.</p>
+
+<h3 id="creating-the-pipeline">Creating The Pipeline</h3>
+
+<p>A pipeline is a set of transformations that is applied to the data so that it can be fed efficiently to the network. Achieving peak performance requires an input pipeline that delivers the batch for the next iteration before current iteration completes.</p>
+
+<p>A pipeline is created to cache and prefetch the batches, optimizing their loading speeds. It loads the images in batch sizes of 32, standardizes the images to the shape <code class="language-plaintext highlighter-rouge">(224x224)</code>, and normalizes the pixel values in the range <code class="language-plaintext highlighter-rouge">[-1, 1]</code>.</p>
+
+<hr />
+
+<h2 id="building-and-training-the-classifier">Building and Training The Classifier</h2>
+
+<h3 id="transfer-learning">Transfer Learning</h3>
+
+<p>Convolutional Neural Networks are best for image classification. However, Modern CNNs have millions of parameters. Training them from scratch will require a ton of computing power (hundreds of gpu hours or more). Because such resources are unavailable and the goal is to spend less time building the classifier, a pre-trained neural network is leveraged and adapted to the new dataset - this is known as <strong>transfer learning</strong>. Transfer learning often includes additional training and or fine tuning depending on both the size of the new dataset, and, the similarity of the new dataset to the original dataset.</p>
+
+<h3 id="mobilenet">MobileNet</h3>
+
+<p>MobileNet pre-trained network is used for extracting the features from the images. A new untrained feed-forward classifier is added to the MobileNet pre-trained network and the classifier is trained for 10 epochs using ‘Adam’ optimization. The plot below shows the loss and accuracy values achieved during training for the <code class="language-plaintext highlighter-rouge">train</code> and <code class="language-plaintext highlighter-rouge">validation</code> set.</p>
+
+<p><img src="/assets/images/oxford-102-flowers/loss_accuracy_train_val.png" alt="Training Accuracy and Loss Plot" /></p>
+
+<figcaption class="level">
+    <small class="level-item figcaption">Figure 3: Training Accuracy and Loss Plot</small>
+</figcaption>
+
+<h2 id="testing-the-network">Testing The Network</h2>
+
+<p>It is good practice to test the trained network on test data, images the network has never seen either in training or validation. This will provide a good estimate for the model’s performance on completely new images. If the model has been trained well, it should be able to reach around 70% accuracy on the test set. The trained model achieved a 77.38% accuracy on the test set with a loss of 0.98.</p>
+
+<p>It’s always good to check the predictions made by the model to make sure they are correct. To check the predictions, the model is tested with 4 random images. The plot shows one input image alongside the probabilities for the top 5 classes predicted by the model as a bar graph.</p>
+
+<p><img src="/assets/images/oxford-102-flowers/inference_example.png" alt="Top 5 predicted classes of image" /></p>
+
+<figcaption class="level">
+    <small class="level-item figcaption">Figure 4: Top 5 predicted classes of image</small>
+</figcaption>
+
+<p>This fufilled the requirement.Thus, the model is saved for use in the command-line application.</p>
+</div>
+      </div>
+    </section>
+    <!-- /section -->
+
+    <!-- Footer -->
+    <footer class="site-info center">
+  <a href="https://github.com/f-atisai/" class="github-link">
+    <iconify-icon icon="mdi:github"></iconify-icon>
+  </a>
+
+  <p>
+    <small
+      >&copy; F.A.O's Reflections. Powered by
+      <a
+        title="Jekyll is a simple, blog-aware, static site generator."
+        href="http://jekyllrb.com/"
+      >
+        Jekyll
+      </a>
+    </small>
+  </p>
+</footer>
+
+    <!-- End Footer -->
+  </body>
+</html>
