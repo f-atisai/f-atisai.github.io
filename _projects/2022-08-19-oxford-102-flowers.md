@@ -63,7 +63,7 @@ A pipeline is created to cache and prefetch the batches, optimizing their loadin
 
 ### Transfer Learning
 
-Convolutional Neural Networks are best for image classification. However, Modern CNNS have millions of parameters. Training them from scratch will require a ton of computing power (hundreds of gpu hours or more). Because such resources are unavailable and the goal is to spend less time building the classifier, a pre-trained neural network is leveraged and adapted to the new dataset - this is known as **transfer learning**. Transfer learning often includes additional training and or fine tuning depending on both the size of the new dataset, and, the similarity of the new dataset to the original dataset.
+Convolutional Neural Networks are best for image classification. However, Modern CNNs have millions of parameters. Training them from scratch will require a ton of computing power (hundreds of gpu hours or more). Because such resources are unavailable and the goal is to spend less time building the classifier, a pre-trained neural network is leveraged and adapted to the new dataset - this is known as **transfer learning**. Transfer learning often includes additional training and or fine tuning depending on both the size of the new dataset, and, the similarity of the new dataset to the original dataset.
 
 ### MobileNet
 
