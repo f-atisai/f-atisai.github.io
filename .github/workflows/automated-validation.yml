@@ -1,16 +1,23 @@
 name: Automated Validation
 
-on: [push]
+on:
+  push:
+  pull_request:
 
 jobs:
-  Sample-Run-of-Jekyll-Deploy-Test-Action:
+  validate:
+    name: Build Jekyll Site
     runs-on: ubuntu-latest
-    name: This job tests the functionality of the Jekyll Deploy Test Action.
+
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v3
-    - name: Jekyll Deploy Test
-      uses: PaulRosenthal/Jekyll-Deploy-Test-Action@v2
-      with:
-        gemfile-location: '/'
-        site-directory: '/'
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.0"
+          bundler-cache: true
+
+      - name: Build Jekyll site
+        run: bundle exec jekyll build --trace
