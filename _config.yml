@@ -1,10 +1,7 @@
 # Collections
-collections:
-  projects:
-    output: true
 
 # Site settings
-title: F.O. Atisai
+title: Frederick Atisai
 github_username: f-atisai
 
 # Build settings
@@ -15,6 +12,3 @@ plugins:
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
 # the internal "default list".
-
-exclude:
-  - mybulma/
