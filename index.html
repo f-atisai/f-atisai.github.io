@@ -1,19 +1,293 @@
 ---
-layout: default
-title: F.O. Atisai
+title: f-atisai.github.io
 ---
 
-<!-- Main container (scrollable horizontal) -->
-<div class="main-container">
-  <!-- Projects -->
-  {% include projects.html %}
-  <!-- End Projects -->
+<!DOCTYPE html>
+<html lang="en">
 
-  <!-- Home -->
-  {% include home.html %}
-  <!-- End Home -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Reflections -->
-  {% include reflections.html %}
-  <!-- End Reflections -->
-</div>
+  <title>{{ page.title }}</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/css/shared.css">
+  <link rel="stylesheet" href="/assets/css/pages/home.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://assets.codepen.io/16327/ScrollSmoother.min.js"></script>
+
+  <script src="/assets/js/home-animations.js" defer></script>
+  {% feed_meta %}
+</head>
+
+<body>
+  {% include header.html %}
+
+  <div id="smooth-wrapper">
+    <div id="smooth-content">
+
+      <main class="">
+        <section class="signal-hero" id="top">
+          <div class="signal-hero__grid" aria-hidden="true">
+            <span class="signal-hero__grid-line signal-hero__grid-line--v1"></span>
+            <span class="signal-hero__grid-line signal-hero__grid-line--v2"></span>
+            <span class="signal-hero__grid-line signal-hero__grid-line--v3"></span>
+            <span class="signal-hero__grid-line signal-hero__grid-line--h1"></span>
+            <span class="signal-hero__grid-line signal-hero__grid-line--h2"></span>
+          </div>
+
+          <div class="signal-hero__top">
+            <p class="signal-hero__index"></p>
+
+            <p class="signal-hero__status" style="margin-top: 2rem;">
+              <!-- <span class="signal-hero__status-dot"></span> -->
+              <!-- <span>System online</span> -->
+            </p>
+          </div>
+
+          <div class="signal-hero__main">
+            <div class="signal-hero__intro">
+              <p class="signal-hero__eyebrow">
+                Built by Frederick Atisai
+              </p>
+
+              <h1 class="signal-hero__title">
+                <span class="signal-hero__line">
+                  <span>Complexity</span>
+                </span>
+
+                <span class="signal-hero__line signal-hero__line--offset">
+                  <span>made</span>
+                </span>
+
+                <span class="signal-hero__line signal-hero__line--outline">
+                  <span>operational.</span>
+                </span>
+              </h1>
+            </div>
+
+            <div class="signal-hero__side">
+              <p class="signal-hero__statement">
+                I combine analytics, engineering, and system design to deliver outputs that
+                drive real decisions.
+              </p>
+
+              <div class="signal-hero__coordinate">
+                <span>FIELD / 01</span>
+                <span>PRECISION → EXECUTION</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="signal-hero__visual" aria-hidden="true">
+            <div class="signal-node signal-node--one">
+              <span>01</span>
+              <strong>INPUT</strong>
+            </div>
+
+            <div class="signal-node signal-node--two">
+              <span>02</span>
+              <strong>LOGIC</strong>
+            </div>
+
+            <div class="signal-node signal-node--three">
+              <span>03</span>
+              <strong>OUTPUT</strong>
+            </div>
+
+            <span class="signal-path signal-path--one"></span>
+            <span class="signal-path signal-path--two"></span>
+          </div>
+
+          <div class="signal-hero__bottom">
+            <a href="#about" class="signal-hero__scroll">
+              <span>Scroll to explore</span>
+
+              <span class="signal-hero__scroll-icon">↓</span>
+            </a>
+          </div>
+        </section>
+
+        <!-- about -->
+        <section class="home-about" id="about">
+          <p class="home-about__kicker">About / Operating Layer</p>
+          <!-- <p class="home-about__kicker">About me</p> -->
+
+          <h2 class="home-about__statement">
+            <span class="line-mask"><span>Building </span></span>
+            <span class="line-mask"><span>systems, tools,</span></span>
+            <span class="line-mask"><span>and interfaces</span></span>
+            <span class="line-mask"><span>that make data</span></span>
+            <span class="line-mask"><span>reliable, usable,</span></span>
+            <span class="line-mask"><span>and actionable.</span></span>
+            <span class="line-mask"><span>From raw data</span></span>
+            <span class="line-mask"><span>to real-world </span></span>
+            <span class="line-mask"><span>impact.</span></span>
+          </h2>
+
+          <div class="home-about__copy">
+            <p>
+              I transform complex clinical and operational data into clear, decision-ready insights.
+            </p>
+
+            <a href="about.html" class="text-link">About me <span>→</span></a>
+          </div>
+        </section>
+
+        <!-- featured work -->
+        <section class="home-work">
+          <div class="home-work__header">
+            <p>My Work</p>
+            <p>(02)</p>
+          </div>
+
+          <section class="work-preview">
+            <div class="work-preview__top">
+              <p class="work-preview__eyebrow">
+                01 / EDC / Documentation
+              </p>
+            </div>
+
+            <div class="work-preview__header">
+              <h2 class="work-preview__title js-char-reveal">
+                ECD Gen
+              </h2>
+            </div>
+
+            <div class="work-preview__hero">
+              <figure class="work-preview__image">
+                <img src="/assets/images/ecd-gen/ecd-gen-cover.jpg" alt="ecd gen">
+              </figure>
+            </div>
+
+            <div class="work-preview__description">
+              <article>
+                <h3>
+                  EDIT CHECKS AND DERIVATIONS DOCUMENT GENERATOR
+                </h3>
+
+                <p>
+                  Automated peer review / validation test script generation for Medidata Rave
+                  Architect builds.
+                </p>
+
+                <a href="/2025/05/18/ecd-gen.html" class="work-preview__link">
+                  View project <span>→</span>
+                </a>
+              </article>
+            </div>
+          </section>
+
+          <section class="work-preview">
+            <div class="work-preview__top">
+              <p class="work-preview__eyebrow">
+                02 / Reporting / Logging
+              </p>
+            </div>
+
+            <div class="work-preview__header">
+              <h2 class="work-preview__title js-char-reveal">
+                TRACE
+              </h2>
+
+            </div>
+
+            <div class="work-preview__hero">
+              <figure class="work-preview__image">
+                <img src="/assets/images/trace/trace-cover-large.jpg" alt="trace">
+              </figure>
+            </div>
+
+            <div class="work-preview__description">
+              <article>
+                <h3>
+                  Transparent Reporting and Auditable Code Execution
+                </h3>
+
+                <p>
+                  A Logging Standard for Python-Based Statistical Programming for TLFs and reports in Clinical Research.
+                </p>
+
+                <a href="/2025/06/13/trace.html" class="work-preview__link">
+                  View project <span>→</span>
+                </a>
+              </article>
+            </div>
+          </section>
+        </section>
+
+        <!-- services -->
+        <section class="home-services">
+          <p class="home-services__kicker">Services</p>
+          <h2 class="home-services__title">
+            <span class="line-mask"><span>Clinical reporting,</span></span>
+            <span class="line-mask"><span>data engineering,</span></span>
+            <span class="line-mask"><span>and</span></span>
+            <span class="line-mask"><span>validation-minded</span></span>
+            <span class="line-mask"><span>automation.</span></span>
+          </h2>
+
+          <div class="home-services__grid">
+            <div class="home-services__item">
+              <span>01</span>
+              <p>Clinical data listings, reporting workflows, and SDTM-aware data tooling.</p>
+            </div>
+
+            <div class="home-services__item">
+              <span>02</span>
+              <p>Data interfaces and systems that turn complexity into usable products.</p>
+            </div>
+
+            <div class="home-services__item">
+              <span>03</span>
+              <p>End-to-end automation pipelines, validation documentation, and operational data
+                architecture.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <footer class="site-footer">
+          <div class="site-footer__inner">
+            <div class="site-footer__statement">
+              <h2>
+                <span class="line-mask"><span>Let's Build</span></span>
+                <span class="line-mask"><span>Something</span></span>
+                <span class="line-mask"><span>With Weight.</span></span>
+              </h2>
+
+              <div>
+                <p>
+                  I’m interested in clinical systems, data products, automation workflows, and tools
+                  that make complex
+                  work easier to execute.
+                </p>
+
+                <!-- <a href="mailto:your-email@example.com">Start a conversation <span>→</span></a> -->
+              </div>
+            </div>
+
+            <nav class="site-footer__nav" aria-label="Footer navigation">
+              <a href="#top" class="site-footer__link">Back to top</a>
+              <a href="mailto:your-email@example.com" class="site-footer__link">Get in touch</a>
+            </nav>
+
+            <div class="site-footer__bottom">
+              <p>&copy; 2026 f-atisai.github.io</p>
+              <p>Portfolio / Data / Insights</p>
+            </div>
+          </div>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+</body>
+
+</html>
