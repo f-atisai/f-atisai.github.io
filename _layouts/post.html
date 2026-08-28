@@ -3,72 +3,99 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ page.title }}</title>
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
-    />
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }}</title>
 
-    <link rel="stylesheet" href="/assets/css/styles.css" />
-    <script src="https://code.iconify.design/iconify-icon/1.0.5/iconify-icon.min.js"></script>
-  </head>
-  <body>
-    <!-- Breadcrumb -->
-    <header class="header is-paddingless-horizontal">
-      <div class="container grid">{% include breadcrumb.html %}</div>
-    </header>
-    <!-- /Breadcrumb -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/shared.css">
+  <link rel="stylesheet" href="/assets/css/pages/post.css">
 
-    <!-- section -->
-    <section
-      class="section post is-paddingless-horizontal"
-      style="padding-top: 0"
-    >
-      <div class="container grid">
-        <div class="block"></div>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://assets.codepen.io/16327/ScrollSmoother.min.js"></script>
 
-        <article>
-          <div class="content">
-            <h1 class="title">{{ page.title }}</h1>
-            <h2 class="subtitle">{{ page.subtitle }}</h2>
+  <script src="/assets/js/smooth-scroll.js" defer></script>
+  <script src="/assets/js/dynamic.js" defer></script>
+</head>
 
-            <p>
-              <small>
-                <time datetime="{{ page.date | date_to_string }}">
-                  {{ page.date | date_to_string }}
-                </time>
-                &#183; {{ page.length }} min read
-              </small>
+<body>
+  <div id="smooth-wrapper">
+    <div id="smooth-content">
+      <main class="post-page">
+        <!-- Post info -->
+        <section class="post-hero">
+          <div class="post-hero__meta">
+            <a class="post-hero__back" href="/work.html" aria-label="Back to scribbles">
+              <i class="fa-solid fa-arrow-left-long"></i>
+              <span>Back</span>
+            </a>
+
+            <p class="post-hero__date dynamic-datetime">
+              <time class="datetime" datetime="{{ 'now' | date: '%Y-%m-%d %H:%M' }}">
+                {{ "now" | date: "%Y-%m-%d — %H:%M" }}
+              </time>
+            </p>
+            <!-- <p class="post-hero__date dynamic-datetime">
+              26 • 08 • 2020 — 13:33
+            </p> -->
+
+            <p class="post-hero__location">
+              Copenhagen • 9&deg;C
             </p>
           </div>
-        </article>
 
-        <div class="block"></div>
+          <div class="post-hero__content">
+            <p class="post-hero__kicker">{{ page.subtitle }}</p>
 
-        <!-- for story image -->
-        <figure class="grid-xl">
-          <img
-            src="/assets/images/{{ page.image_path }}/{{ page.image }}"
-            alt="{{page.image}}"
-          />
-        </figure>
+            <h1 class="post-hero__title">
+              {{ page.title }}
+            </h1>
 
-        <figcaption class="level">
-          <small class="level-item figcaption">{{ page.image-caption }}</small>
-        </figcaption>
+            <div class="post-hero__summary">
+              <p class="post-aside__label">Reading</p>
+              <p class="post-aside__value">{{ page.length }} min</p>
 
-        <div class="content">{{ content }}</div>
-      </div>
-    </section>
-    <!-- /section -->
+              <p class="post-aside__label">Filed under</p>
+              <p class="post-aside__value">{{ page.tag }}</p>
+            </div>
+          </div>
+        </section>
+        <!-- /Post info -->
 
-    <!-- Footer -->
-    {% include footer.html %}
-    <!-- End Footer -->
-  </body>
+        <!-- Post content -->
+        <section class="post-layout">
+          <article class="post-article">
+            <p class="post-article__lead">
+              {{ page.lead }}
+            </p>
+
+            <div class="post-article__content">
+              {{ content }}
+            </div>
+          </article>
+        </section>
+        <!-- Post content -->
+
+        <!-- CTA: Next post -->
+        <nav class="post-next">
+          <a href="{{ page.next_post_slug }}">
+            <span>Next read</span>
+            <strong>{{ page.next_post_title }}</strong>
+          </a>
+        </nav>
+        <!-- CTA: Next post -->
+      </main>
+    </div>
+  </div>
+</body>
+
 </html>
