@@ -418,18 +418,24 @@ a {
    Responsive
 ======================================== */
 
-@media (max-width: 900px) {
+@media (min-width: 601px) and (max-width: 900px) {
     .signal-hero__main {
         grid-template-columns: 1fr;
     }
 
     .signal-hero__title {
-        font-size: clamp(4rem, 17vw, 9rem);
+        font-size: var(--fluid-6);
     }
 
     .signal-hero__side {
-        max-width: 36rem;
-        margin-left: auto;
+        width: 100%;
+        max-width: none;
+        margin-left: 0;
+
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: var(--space-m);
+        align-items: end;
     }
 
     .signal-hero__visual {
@@ -446,8 +452,13 @@ a {
         padding-top: var(--space-xs);
     }
 
+    .signal-hero__main {
+        grid-template-columns: 1fr;
+    }
+
     .signal-hero__title {
-        font-size: clamp(4rem, 20vw, 7rem);
+        /* font-size: clamp(4rem, 20vw, 7rem); */
+        font-size: var(--fluid-5);
         line-height: 0.78;
     }
 
@@ -471,6 +482,7 @@ a {
     .signal-hero__scroll > span:first-child {
         display: none;
     }
+
 }
 
 /* ================================
@@ -736,7 +748,13 @@ Work Preview
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
+    .home-about__statement {
+        font-size: var(--fluid-4);
+        line-height: 0.95;
+        letter-spacing: -0.065em;
+    }
+
     .work-preview__hero {
         justify-content: center;
     }
@@ -795,6 +813,12 @@ Work Preview
     font-size: var(--fluid-1);
     line-height: 1.05;
     letter-spacing: -0.04em;
+}
+
+@media (max-width: 600px) {
+    .home-about {
+        grid-template-columns: 1fr;
+    }
 }
 
 
@@ -867,6 +891,13 @@ Work Preview
 .site-footer__statement a:hover span {
     transform: translateX(0.35rem);
 }
+
+@media (max-width: 600px) {
+    .site-footer__statement {
+        grid-template-columns: 1fr;
+    }
+}
+
 
 /* GSAP ANIMATION CLASSES */
 .line-mask {

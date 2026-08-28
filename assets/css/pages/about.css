@@ -283,7 +283,6 @@ body {
 .capability-card h3 {
     max-width: 8ch;
 
-    /* font-size: var(--fluid-2); */
     font-size: clamp(2rem, 3.2vw, 4.5rem);
     line-height: 0.9;
     letter-spacing: -0.06em;
@@ -379,7 +378,7 @@ body {
 }
 
 /* Responsive */
-@media (max-width: 900px) {
+@media (min-width: 601px) and (max-width: 900px) {
 
     .about-intro,
     .about-principles,
@@ -408,11 +407,27 @@ body {
         font-size: var(--fluid-6);
     }
 
+    .about-profile {
+        grid-template-columns: 1fr;
+    }
+
     .about-capabilities__list {
         grid-template-columns: 1fr;
     }
 
     .capability-card {
         border-right: none;
+    }
+
+    .capability-card h3 {
+        font-size: var(--fluid-4);
+    }
+
+    .about-principles {
+        grid-template-columns: 1fr;
+    }
+
+    .about-cta {
+        grid-template-columns: 1fr;
     }
 }

@@ -167,6 +167,13 @@
     --theme-inverse-accent: var(--color-accent-orange);
 }
 
+/* Center page shells on wide screens while preserving full-width content below 1800px. */
+.layout-wrapper {
+    width: 100%;
+    max-width: 1800px;
+    margin-inline: auto;
+}
+
 
 html {
   scroll-behavior: smooth;
@@ -272,7 +279,7 @@ html {
 }
 
 /* Mobile */
-@media (max-width: 700px) {
+@media (max-width: 600px) {
     .site-header {
         align-items: flex-start;
     }
@@ -383,13 +390,13 @@ html {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     .site-footer__inner {
         min-height: 60vh;
     }
 
-    .site-footer__nav,
+    /* .site-footer__nav,
     .site-footer__bottom {
         flex-direction: column;
-    }
+    } */
 }
