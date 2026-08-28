@@ -1,0 +1,114 @@
+---
+title: f-atisai.github.io - Selected Work
+subtitle: / Work
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }}</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/shared.css">
+    <link rel="stylesheet" href="/assets/css/pages/work.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://assets.codepen.io/16327/ScrollSmoother.min.js"></script>
+
+    <script src="/assets/js/smooth-scroll.js" defer></script>
+</head>
+
+<body>
+    {% include header.html %}
+
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
+            <main class="work-page">
+                <!-- Hero -->
+                <section class="work-hero" id="top">
+                    <p class="work-hero__eyebrow">Selected projects, workflows, and infrastructure built for
+                        precision.</p>
+                    <div class="work-hero__content">
+                        <h1 class="work-hero__title">
+                            Where Data Meets Scalable Engineering
+                        </h1>
+                    </div>
+                </section>
+
+                <!-- Posts -->
+                <section class="work">
+                    <div class="work__header">
+                        <p class="work__label">Projects</p>
+                        <p class="work__count">({{ site.posts.size | prepend: '0' | slice: -2, 2 }})</p>
+                    </div>
+
+                    <div class="work__list">
+                        {% for post in site.posts %}
+                        <article class="work-card">
+                            <a href="{{ post.url }}" class="work-card__link">
+                                <span class="work-card__index">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+
+                                <div class="work-card__meta">
+                                    <p class="work-card__category">{{ post.tag }}</p>
+                                    <h2 class="work-card__title">{{ post.title }}
+                                    </h2>
+                                    <p class="work-card__date">{{ post.date | date: "%B %d, %Y" }}</p>
+                                </div>
+
+                                <figure class="work-card__image">
+                                    <img src="/assets/images/{{ post.image }}" alt="{{ post.title }}" loading="lazy">
+                                </figure>
+                            </a>
+                        </article>
+                        {% endfor %}
+                    </div>
+                </section>
+                <!-- ./Posts -->
+
+                <section class="work-statement">
+                    <div class="work-statement__inner">
+                        <p class="work-statement__kicker">The work</p>
+
+                        <h2 class="work-statement__title">
+                            Built for environments where mistakes are expensive.
+                        </h2>
+
+                        <p class="work-statement__body">
+                            My work sits at the intersection of automation, validation, and product thinking —
+                            designing tools and workflows that make regulated data easier to trust, inspect, and act on.
+                        </p>
+                    </div>
+                </section>
+            </main>
+
+            <footer class="site-footer">
+                <div class="site-footer__marquee" aria-hidden="true">
+                    <span>Engineering Systems That Drive Decisions.</span>
+                </div>
+
+                <div class="site-footer__inner">
+                    <div class="site-footer__statement">
+                        <p>Engineering Systems <br>That Drive Decisions.</p>
+                    </div>
+
+                    <nav class="site-footer__nav" aria-label="Footer navigation">
+                        <a href="#top" class="site-footer__link">Back to top</a>
+                        <a href="mailto:your-email@example.com" class="site-footer__link">Get in touch</a>
+                    </nav>
+
+                    <div class="site-footer__bottom">
+                        <p>&copy; 2026 f-atisai.github.io</p>
+                        <p>Portfolio / Data / Insights</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+
+</html>

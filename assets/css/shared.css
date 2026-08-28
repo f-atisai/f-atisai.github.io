@@ -1,0 +1,395 @@
+/* CSS Resets - minireset */
+/*! minireset.css v0.0.6 | MIT License | github.com/jgthms/minireset.css */html,body,p,ol,ul,li,dl,dt,dd,blockquote,figure,fieldset,legend,textarea,pre,iframe,hr,h1,h2,h3,h4,h5,h6{margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}ul{list-style:none}button,input,select{margin:0}html{box-sizing:border-box}*,*::before,*::after{box-sizing:inherit}img,video{height:auto;max-width:100%}iframe{border:0}table{border-collapse:collapse;border-spacing:0}td,th{padding:0}
+
+/* Fluid Typography */
+/* @link https://utopia.fyi/type/calculator?c=320,16,1.25,1500,27,1.333,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+
+:root {
+  --fluid--2: clamp(0.64rem, 0.556rem + 0.4199vw, 0.9497rem);
+  --fluid--1: clamp(0.8rem, 0.6736rem + 0.6318vw, 1.2659rem);
+  --fluid-0: clamp(1rem, 0.8136rem + 0.9322vw, 1.6875rem);
+  --fluid-1: clamp(1.25rem, 0.979rem + 1.3552vw, 2.2494rem);
+  --fluid-2: clamp(1.5625rem, 1.1731rem + 1.9471vw, 2.9985rem);
+  --fluid-3: clamp(1.9531rem, 1.3989rem + 2.7714vw, 3.997rem);
+  --fluid-4: clamp(2.4414rem, 1.6586rem + 3.914vw, 5.328rem);
+  --fluid-5: clamp(3.0518rem, 1.9533rem + 5.4922vw, 7.1022rem);
+  --fluid-6: clamp(3.8147rem, 2.2818rem + 7.6645vw, 9.4673rem);
+}
+
+/* Fluid Spacing */
+/* @link https://utopia.fyi/space/calculator?c=320,16,1.2,1500,28,1.25,5,2,&s=0.75|0.5|0.25|0.125,1.5|2|3|4|6|8|14,s-l&g=s,l,xl,12 */
+
+:root {
+  --space-4xs: clamp(0.125rem, 0.0911rem + 0.1695vw, 0.25rem);
+  --space-3xs: clamp(0.25rem, 0.1992rem + 0.2542vw, 0.4375rem);
+  --space-2xs: clamp(0.5rem, 0.3983rem + 0.5085vw, 0.875rem);
+  --space-xs: clamp(0.75rem, 0.5975rem + 0.7627vw, 1.3125rem);
+  --space-s: clamp(1rem, 0.7966rem + 1.0169vw, 1.75rem);
+  --space-m: clamp(1.5rem, 1.1949rem + 1.5254vw, 2.625rem);
+  --space-l: clamp(2rem, 1.5932rem + 2.0339vw, 3.5rem);
+  --space-xl: clamp(3rem, 2.3898rem + 3.0508vw, 5.25rem);
+  --space-2xl: clamp(4rem, 3.1864rem + 4.0678vw, 7rem);
+  --space-3xl: clamp(6rem, 4.7797rem + 6.1017vw, 10.5rem);
+  --space-4xl: clamp(8rem, 6.3729rem + 8.1356vw, 14rem);
+  --space-5xl: clamp(14rem, 11.1525rem + 14.2373vw, 24.5rem);
+
+  /* One-up pairs */
+  --space-3xs-2xs: clamp(0.25rem, 0.0805rem + 0.8475vw, 0.875rem);
+  --space-2xs-xs: clamp(0.5rem, 0.2797rem + 1.1017vw, 1.3125rem);
+  --space-xs-s: clamp(0.75rem, 0.4788rem + 1.3559vw, 1.75rem);
+  --space-s-m: clamp(1rem, 0.5593rem + 2.2034vw, 2.625rem);
+  --space-m-l: clamp(1.5rem, 0.9576rem + 2.7119vw, 3.5rem);
+  --space-l-xl: clamp(2rem, 1.1186rem + 4.4068vw, 5.25rem);
+  --space-xl-2xl: clamp(3rem, 1.9153rem + 5.4237vw, 7rem);
+  --space-2xl-3xl: clamp(4rem, 2.2373rem + 8.8136vw, 10.5rem);
+
+  /* Custom pairs */
+  --space-s-3xl: clamp(1rem, -1.4746rem + 12.3729vw, 10.125rem);
+  --space-l-xs: clamp(1.25rem, 2.2034rem + -1.0169vw, 2rem);
+  --space-l-l: clamp(2rem, 1.6271rem + 1.8644vw, 3.375rem);
+  --space-l-3xl: clamp(2rem, -0.2034rem + 11.0169vw, 10.125rem);
+  --space-4xl-4xl: clamp(8rem, 6.5085rem + 7.4576vw, 13.5rem);
+
+  /* Layout spacing (not part of utopia fluid) */
+  --layout-max-width: 108rem;
+  --base-height: 12.5vh;
+  --base-width: 8.33vw;
+
+  --content-width: 45rem;
+  --meta-width: 72vw;
+}
+
+/* Shared variables for site-wide usage (non-fluid) */
+:root {
+    /* --font-main: Arial, Helvetica, sans-serif; */
+    --font-main: "Inter", sans-serif;
+    --page-x: clamp(1rem, 4vw, 3rem);
+    --nav-height: 72px;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-slow: 900ms var(--ease);
+    --transition-med: 700ms var(--ease);
+}
+
+/* Color design system */
+:root {
+    /* Primitive neutrals */
+    --color-black: #000000;
+    --color-ink: #111111;
+    --color-ink-soft: #171717;
+
+    --color-white: #ffffff;
+    --color-white-soft: #f4f8f6;
+    --color-white-strong: #fafcfb;
+
+    /* Stronger mint-tinted paper system */
+    --color-paper: #edf7f2;
+    --color-paper-soft: #c9e5d7;
+    --color-muted-stone: #5d7167;
+    --color-muted-olive: #536b5f;
+    --color-border-muted: #829e90;
+
+    /* Brand / signal accents */
+    --color-accent-orange: #ff4d1c;
+    --color-accent-mint: rgba(135, 245, 196, 0.82);
+    --color-accent-blue: hsl(210, 100%, 50%);
+
+    /* Alpha neutrals */
+    --color-ink-75: rgba(17, 17, 17, 0.75);
+    --color-ink-05: rgba(0, 0, 0, 0.05);
+    --color-ink-045: rgba(0, 0, 0, 0.045);
+
+    --color-white-035: rgba(255, 255, 255, 0.035);
+    --color-white-05: rgba(255, 255, 255, 0.05);
+    --color-white-06: rgba(255, 255, 255, 0.06);
+    --color-white-08: rgba(255, 255, 255, 0.08);
+    --color-white-09: rgba(255, 255, 255, 0.09);
+    --color-white-10: rgba(255, 255, 255, 0.1);
+    --color-white-15: rgba(255, 255, 255, 0.15);
+    --color-white-18: rgba(255, 255, 255, 0.18);
+    --color-white-25: rgba(255, 255, 255, 0.25);
+
+    /* Mint-paper alpha family */
+    --color-paper-35: rgba(201, 229, 215, 0.35);
+    --color-paper-60: rgba(201, 229, 215, 0.6);
+    --color-paper-65: rgba(201, 229, 215, 0.65);
+    --color-paper-70: rgba(201, 229, 215, 0.7);
+
+    --color-text-inverse-70: rgba(244, 248, 246, 0.7);
+    --color-text-inverse-55: rgba(244, 248, 246, 0.55);
+
+    /* Semantic colors */
+    --color-bg-dark: var(--color-ink);
+    --color-bg-dark-soft: var(--color-ink-soft);
+    --color-bg-light: var(--color-white-soft);
+    --color-bg-menu: rgb(20, 20, 20);
+
+    --color-text-dark: var(--color-ink);
+    --color-text-light: var(--color-white-soft);
+    --color-text-light-strong: var(--color-white-strong);
+
+    --color-muted-dark: var(--color-text-inverse-55);
+    --color-muted-light: var(--color-muted-stone);
+
+    --color-border: var(--color-ink);
+    --color-border-inverse: var(--color-paper);
+    --color-border-inverse-soft: var(--color-paper-35);
+
+    /* Stronger mint grid */
+    --color-grid-line: rgba(108, 220, 168, 0.32);
+    --color-grid-light: rgba(108, 220, 168, 0.32);
+    --color-grid-dark: rgba(66, 148, 108, 0.18);
+
+    --overlay-dark-75: var(--color-ink-75);
+
+    --color-beige: var(--color-paper-soft);
+}
+
+/* Theme aliases */
+:root {
+    --theme-dark-bg: var(--color-bg-dark);
+    --theme-dark-bg-soft: var(--color-bg-dark-soft);
+    --theme-dark-text: var(--color-text-light);
+    --theme-dark-muted: var(--color-muted-dark);
+    --theme-dark-accent: var(--color-accent-mint);
+    --theme-dark-grid: var(--color-grid-light);
+
+    --theme-light-bg: var(--color-bg-light);
+    --theme-light-text: var(--color-text-dark);
+    --theme-light-muted: var(--color-muted-olive);
+    --theme-light-border: var(--color-border);
+    --theme-light-accent: var(--color-accent-orange);
+    --theme-light-grid: var(--color-grid-dark);
+
+    --theme-inverse-bg: var(--color-bg-dark);
+    --theme-inverse-text: var(--color-paper);
+    --theme-inverse-muted: var(--color-paper-65);
+    --theme-inverse-border: var(--color-paper-35);
+    --theme-inverse-accent: var(--color-accent-orange);
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Shared Navigation */
+
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+
+    width: 100%;
+    padding: var(--space-xs) var(--space-s-m);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-m);
+
+    color: var(--theme-light-text);
+    mix-blend-mode: difference;
+}
+
+.site-header__brand,
+.site-header__nav a {
+    color: var(--color-white);
+    text-decoration: none;
+    text-transform: uppercase;
+
+    font-size: var(--fluid--2);
+    /* font-size: 0.7rem; */
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+.site-header__brand {
+    position: relative;
+}
+
+.site-header__brand span {
+    content: ".github.io";
+    color: var(--color-white);
+    opacity: 0.45;
+}
+
+.site-header__page {
+    font-weight: 400;
+}
+
+.site-header__nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-s);
+}
+
+.site-header__nav a {
+    position: relative;
+    opacity: 0.65;
+
+    transition:
+        opacity 250ms var(--ease),
+        color 250ms var(--ease);
+}
+
+.site-header__nav a:hover {
+    opacity: 1;
+}
+
+.site-header__nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.35rem;
+
+    width: 100%;
+    height: 1px;
+
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+
+    transition: transform 300ms var(--ease);
+}
+
+.site-header__nav a:hover::after,
+.site-header__nav a[aria-current="page"]::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.site-header__nav a[aria-current="page"] {
+    opacity: 1;
+}
+
+/* Optional: dark panel fallback if mix-blend-mode feels too aggressive */
+.site-header--solid {
+    mix-blend-mode: normal;
+    background: rgba(17, 17, 17, 0.72);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-white-08);
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+    .site-header {
+        align-items: flex-start;
+    }
+
+    .site-header__brand::after {
+        display: none;
+    }
+
+    .site-header__nav {
+        flex-direction: column;
+        align-items: flex-end;
+        gap: var(--space-3xs);
+    }
+}
+
+/* Site footer */
+.site-footer {
+    position: relative;
+    overflow: hidden;
+
+    background: var(--theme-inverse-bg);
+    color: var(--theme-inverse-text);
+    border-top: 1px solid var(--theme-inverse-bg);
+}
+
+.site-footer__marquee {
+    display: flex;
+    width: max-content;
+
+    font-size: clamp(4rem, 15vw, 16rem);
+    line-height: 0.8;
+    letter-spacing: -0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+
+    color: transparent;
+    -webkit-text-stroke: 1px var(--theme-inverse-border);
+
+    animation: footer-marquee 24s linear infinite;
+}
+
+.site-footer__marquee span {
+    padding-right: 0.2em;
+}
+
+.site-footer__inner {
+    position: relative;
+    z-index: 1;
+
+    min-height: 70vh;
+    padding: var(--space-m-l);
+
+    display: grid;
+    grid-template-rows: 1fr auto auto;
+    gap: var(--space-xl);
+}
+
+.site-footer__statement {
+    align-self: center;
+    max-width: 13ch;
+
+    font-size: clamp(3rem, 10vw, 11rem);
+    line-height: 0.82;
+    letter-spacing: -0.08em;
+    text-transform: uppercase;
+}
+
+.site-footer__nav {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-s);
+
+    padding-block: var(--space-s);
+    border-top: 1px solid var(--theme-inverse-border);
+    border-bottom: 1px solid var(--theme-inverse-border);
+}
+
+.site-footer__link {
+    color: inherit;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: clamp(1rem, 2vw, 2rem);
+    letter-spacing: -0.03em;
+}
+
+.site-footer__link:hover {
+    color: var(--theme-inverse-accent);
+}
+
+.site-footer__bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-s);
+
+    color: var(--theme-inverse-muted);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+}
+
+@keyframes footer-marquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+@media (max-width: 768px) {
+    .site-footer__inner {
+        min-height: 60vh;
+    }
+
+    .site-footer__nav,
+    .site-footer__bottom {
+        flex-direction: column;
+    }
+}
