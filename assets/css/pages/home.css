@@ -166,7 +166,6 @@ a {
 }
 
 .signal-hero__title {
-    /* font-size: clamp(4.5rem, 10.5vw, 12rem); */
     font-size: var(--fluid-6);
     line-height: 0.73;
     letter-spacing: -0.085em;
@@ -423,10 +422,6 @@ a {
         grid-template-columns: 1fr;
     }
 
-    .signal-hero__title {
-        font-size: var(--fluid-6);
-    }
-
     .signal-hero__side {
         width: 100%;
         max-width: none;
@@ -457,7 +452,6 @@ a {
     }
 
     .signal-hero__title {
-        /* font-size: clamp(4rem, 20vw, 7rem); */
         font-size: var(--fluid-5);
         line-height: 0.78;
     }
@@ -528,7 +522,6 @@ a {
     align-self: end;
     max-width: 32rem;
     color: var(--theme-light-muted);
-    /* font-size: var(--fluid--2); */
     font-size: clamp(1rem, 1.2vw, 1.25rem);
     line-height: 1.45;
 }
@@ -580,8 +573,6 @@ Work Preview
     overflow: hidden;
 
     padding-block: var(--space-2xl-3xl);
-
-    /* border-bottom: 1px solid var(--theme-light-border); */
 
     background: var(--theme-light-bg);
     color: var(--theme-light-text);
@@ -643,7 +634,6 @@ Work Preview
     display: flex;
     justify-content: flex-end;
 
-    /* margin-bottom: var(--space-l-xl); */
     margin-bottom: var(--space-m-l);
 }
 
@@ -858,7 +848,6 @@ Work Preview
 .site-footer__statement h2 {
     max-width: 10ch;
 
-    /* font-size: var(--fluid-6); */
     font-size: clamp(4rem, 12vw, 14rem);
     line-height: 0.78;
     letter-spacing: -0.09em;
@@ -867,8 +856,6 @@ Work Preview
 
 .site-footer__statement p {
     max-width: 32rem;
-    /* margin-bottom: 2rem; */
-
     color: var(--color-paper-70);
     font-size: var(--fluid--1);
     line-height: 1.45;

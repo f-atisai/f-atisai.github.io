@@ -53,7 +53,6 @@ body {
 }
 
 .work-hero__title {
-    /* font-size: var(--fluid-6); */
     font-size: clamp(4rem, 14vw, 16rem);
     line-height: 0.78;
     letter-spacing: -0.09em;
@@ -328,7 +327,7 @@ body {
     line-height: 1.5;
 }
 
-@media screen and (min-width: 601px) and (max-width: 900px), screen and (max-width: 600px) {
+@media screen and (max-width: 900px) {
     .work-statement__title {
         max-width: 100%;
     }

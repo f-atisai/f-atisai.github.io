@@ -33,7 +33,6 @@ body {
     grid-template-rows: auto 1fr auto;
     gap: var(--space-xl);
     border-bottom: 1px solid var(--theme-light-border);
-    border-bottom: 1px solid var(--theme-light-border);
 }
 
 .about-hero__kicker {
@@ -47,7 +46,6 @@ body {
     align-self: center;
     max-width: 10ch;
 
-    /* font-size: var(--fluid-6); */
     font-size: clamp(4rem, 14vw, 16rem);
     line-height: 0.78;
     letter-spacing: -0.09em;
@@ -202,7 +200,6 @@ body {
     display: flex;
     width: max-content;
 
-    /* font-size: var(--fluid-6); */
     font-size: clamp(4rem, 14vw, 16rem);
     line-height: 0.82;
     letter-spacing: -0.08em;
@@ -342,7 +339,6 @@ body {
 .about-cta h2 {
     max-width: 10ch;
 
-    /* font-size: var(--fluid-6); */
     font-size: clamp(4rem, 12vw, 14rem);
     line-height: 0.78;
     letter-spacing: -0.09em;
@@ -354,7 +350,6 @@ body {
     margin-bottom: 2rem;
 
     color: var(--color-paper-70);
-    /* font-size: var(--fluid--1); */
     font-size: var(--fluid--1);
     line-height: 1.45;
 }

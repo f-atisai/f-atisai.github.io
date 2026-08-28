@@ -86,7 +86,6 @@ body {
     align-self: end;
 
     display: grid;
-    /* grid-template-columns: 1.4fr 0.7fr; */
     grid-template-columns: 1.5fr 0.6fr;
     gap: var(--space-l-xl);
     align-items: end;
@@ -103,11 +102,8 @@ body {
 }
 
 .post-hero__title {
-    /* max-width: 10ch; */
     max-width: 20ch;
 
-    /* font-size: clamp(4rem, 10vw, 14rem); */
-    /* line-height: 0.78; */
     font-size: var(--fluid-5);
     line-height: 0.88;
     letter-spacing: -0.08em;
@@ -585,7 +581,7 @@ body {
    Responsive
 ======================================== */
 
-@media screen and (min-width: 601px) and (max-width: 900px), screen and (max-width: 600px) {
+@media screen and (max-width: 900px) {
     .post-hero {
         min-height: 85vh;
     }

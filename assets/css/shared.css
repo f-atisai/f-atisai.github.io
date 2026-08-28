@@ -51,7 +51,7 @@
   --space-4xl-4xl: clamp(8rem, 6.5085rem + 7.4576vw, 13.5rem);
 
   /* Layout spacing (not part of utopia fluid) */
-  --layout-max-width: 108rem;
+    --layout-max-width: 1800px;
   --base-height: 12.5vh;
   --base-width: 8.33vw;
 
@@ -170,7 +170,7 @@
 /* Center page shells on wide screens while preserving full-width content below 1800px. */
 .layout-wrapper {
     width: 100%;
-    max-width: 1800px;
+    max-width: var(--layout-max-width);
     margin-inline: auto;
 }
 
@@ -206,7 +206,6 @@ html {
     text-transform: uppercase;
 
     font-size: var(--fluid--2);
-    /* font-size: 0.7rem; */
     font-weight: 700;
     letter-spacing: 0.12em;
 }
@@ -394,9 +393,4 @@ html {
     .site-footer__inner {
         min-height: 60vh;
     }
-
-    /* .site-footer__nav,
-    .site-footer__bottom {
-        flex-direction: column;
-    } */
 }
