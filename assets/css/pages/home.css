@@ -723,6 +723,10 @@ Work Preview
 
 /* Responsive */
 @media (max-width: 900px) {
+    .home-about {
+        min-height: 70vh;
+    }
+    
     .home-about__statement {
         font-size: var(--fluid-4);
         line-height: 0.95;
