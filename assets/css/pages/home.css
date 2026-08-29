@@ -209,6 +209,7 @@ a {
 
 .signal-hero__statement {
     max-width: 21ch;
+    padding-left: var(--space-xs-s);
 
     font-size: var(--fluid--2);
     line-height: 1.35;
@@ -239,7 +240,7 @@ a {
     z-index: 1;
 
     top: 13%;
-    right: 2%;
+    right: 0;
 
     width: min(34vw, 32rem);
 
