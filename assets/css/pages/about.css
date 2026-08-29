@@ -389,6 +389,10 @@ body {
         min-height: 45vh;
         border-bottom: 1px solid var(--theme-light-border);
     }
+
+    .capability-card h3 {
+        font-size: var(--fluid-3);
+    }
 }
 
 @media (max-width: 600px) {
