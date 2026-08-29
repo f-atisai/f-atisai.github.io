@@ -305,7 +305,28 @@ if (!reduceMotion) {
     const imageImg = card.querySelector(".work-preview__image img");
     const description = card.querySelector(".work-preview__description");
     const title = card.querySelector(".work-preview__title");
-    const arrow = card.querySelector(".work-preview__link span");
+
+    ScrollTrigger.create({
+      trigger: card,
+      start: "top top",
+      end: "bottom top",
+
+      onEnter: () => {
+        card.classList.add("is-active");
+      },
+
+      onLeave: () => {
+        card.classList.remove("is-active");
+      },
+
+      onEnterBack: () => {
+        card.classList.add("is-active");
+      },
+
+      onLeaveBack: () => {
+        card.classList.remove("is-active");
+      },
+    });
 
     scrollyReveal({
       trigger: card,
@@ -399,14 +420,6 @@ if (!reduceMotion) {
           ease,
         });
       }
-
-      if (arrow) {
-        gsap.to(arrow, {
-          x: 8,
-          duration: 0.35,
-          ease,
-        });
-      }
     });
 
     card.addEventListener("mouseleave", () => {
@@ -422,14 +435,6 @@ if (!reduceMotion) {
         gsap.to(imageImg, {
           scale: 1,
           duration: 0.7,
-          ease,
-        });
-      }
-
-      if (arrow) {
-        gsap.to(arrow, {
-          x: 0,
-          duration: 0.35,
           ease,
         });
       }
