@@ -54,7 +54,7 @@ a {
     position: absolute;
     display: block;
 
-    background: var(--theme-dark-grid);
+    background: var(--color-grid-dark);
 }
 
 .signal-hero__grid-line--v1,
@@ -231,89 +231,109 @@ a {
 }
 
 /* ========================================
-   Signal diagram
+   Signal Diagram
 ======================================== */
 
 .signal-hero__visual {
     position: absolute;
     z-index: 1;
 
-    top: 18%;
-    right: 3%;
+    top: 13%;
+    right: 2%;
 
-    width: min(30vw, 28rem);
-    height: 32vh;
+    width: min(34vw, 32rem);
 
     pointer-events: none;
 }
 
-.signal-node {
-    position: absolute;
+.signal-diagram {
+    display: block;
 
-    width: clamp(4rem, 6vw, 6rem);
-    aspect-ratio: 1;
+    width: 100%;
+    height: auto;
 
-    border: 1px solid var(--theme-dark-grid);
+    overflow: visible;
 
-    background: var(--color-paper-35);
+    animation: signal-diagram-float 7s ease-in-out infinite alternate;
+}
+
+/* Connecting paths */
+.signal-diagram__path {
+    fill: none;
+
+    stroke: var(--color-accent-mint);
+    stroke-width: 1;
+
+    vector-effect: non-scaling-stroke;
+
+    opacity: 0.65;
+
+    animation: signal-pulse 2.8s ease-in-out infinite alternate;
+}
+
+/* Nodes */
+.signal-diagram__box {
+    fill: var(--color-paper-35);
+
+    stroke: var(--theme-dark-grid);
+    stroke-width: 1;
+
+    vector-effect: non-scaling-stroke;
+
     backdrop-filter: blur(8px);
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    padding: var(--space-2xs);
-
-    font-size: var(--fluid--2);
 }
 
-.signal-node span {
-    color: var(--color-accent-orange);
+/* Node number */
+.signal-diagram__number {
+    fill: var(--color-accent-orange);
+
+    font-family: var(--font-main);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
 }
 
-.signal-node strong {
-    font-size: var(--fluid--2);
+/* Node label */
+.signal-diagram__label {
+    fill: var(--theme-dark-text);
+
+    font-family: var(--font-main);
+    font-size: 22px;
+    font-weight: 700;
     letter-spacing: 0.08em;
+
+    text-anchor: middle;
 }
 
-.signal-node--one {
-    left: 0;
-    bottom: 0;
+/* Floating nodes */
+.signal-diagram__node {
+    transform: none;
+    animation: none;
 }
 
-.signal-node--two {
-    left: 42%;
-    top: 0;
+@keyframes signal-diagram-float {
+    from {
+        transform: translateY(-3px);
+    }
+
+    to {
+        transform: translateY(4px);
+    }
 }
 
-.signal-node--three {
-    right: 0;
-    bottom: 14%;
-}
-
+/* Ambient interaction */
 .signal-path {
-    position: absolute;
-
-    height: 1px;
-
-    background: var(--color-accent-mint);
-    transform-origin: left center;
+    animation: signal-pulse 2.8s ease-in-out infinite alternate;
 }
 
-.signal-path--one {
-    width: 47%;
-    left: 16%;
-    bottom: 27%;
+@keyframes signal-pulse {
+    from {
+        opacity: 0.25;
+    }
 
-    transform: rotate(-31deg);
-}
-
-.signal-path--two {
-    width: 43%;
-    left: 52%;
-    top: 35%;
-
-    transform: rotate(31deg);
+    to {
+        opacity: 1;
+    }
 }
 
 /* ========================================
@@ -374,46 +394,6 @@ a {
 }
 
 /* ========================================
-   Ambient interaction
-======================================== */
-
-.signal-node {
-    animation: signal-float 6s ease-in-out infinite alternate;
-}
-
-.signal-node--two {
-    animation-delay: -2s;
-}
-
-.signal-node--three {
-    animation-delay: -4s;
-}
-
-.signal-path {
-    animation: signal-pulse 2.8s ease-in-out infinite alternate;
-}
-
-@keyframes signal-float {
-    from {
-        transform: translateY(-0.25rem);
-    }
-
-    to {
-        transform: translateY(0.35rem);
-    }
-}
-
-@keyframes signal-pulse {
-    from {
-        opacity: 0.25;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-/* ========================================
    Responsive
 ======================================== */
 
@@ -434,11 +414,12 @@ a {
     }
 
     .signal-hero__visual {
-        opacity: 0.45;
+        width: min(46vw, 28rem);
 
-        width: 42vw;
-        right: -8%;
-        top: 14%;
+        top: 10%;
+        right: -5%;
+
+        opacity: 0.5;
     }
 }
 
@@ -462,15 +443,18 @@ a {
     }
 
     .signal-hero__visual {
-        display: none;
+        display: block;
+
+        width: 70vw;
+
+        top: 9%;
+        right: -28%;
+
+        opacity: 0.22;
     }
 
     .signal-hero__bottom {
         align-items: center;
-    }
-
-    .signal-hero__bottom > p {
-        max-width: 18ch;
     }
 
     .signal-hero__scroll > span:first-child {

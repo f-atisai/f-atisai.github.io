@@ -85,24 +85,54 @@ title: f-atisai.github.io
             </div>
           </div>
 
+          <!-- Responsive signal visual -->
           <div class="signal-hero__visual" aria-hidden="true">
-            <div class="signal-node signal-node--one">
-              <span>01</span>
-              <strong>INPUT</strong>
-            </div>
+            <svg class="signal-diagram" viewBox="0 0 1000 650" xmlns="http://www.w3.org/2000/svg"
+              preserveAspectRatio="xMidYMid meet">
+              <!-- Connectors -->
+              <line class="signal-diagram__path" x1="200" y1="500" x2="500" y2="180" />
 
-            <div class="signal-node signal-node--two">
-              <span>02</span>
-              <strong>LOGIC</strong>
-            </div>
+              <line class="signal-diagram__path" x1="500" y1="180" x2="800" y2="500" />
 
-            <div class="signal-node signal-node--three">
-              <span>03</span>
-              <strong>OUTPUT</strong>
-            </div>
+              <!-- INPUT -->
+              <g class="signal-diagram__node signal-diagram__node--input">
+                <rect class="signal-diagram__box" x="130" y="500" width="140" height="120" />
 
-            <span class="signal-path signal-path--one"></span>
-            <span class="signal-path signal-path--two"></span>
+                <text class="signal-diagram__number" x="150" y="525">
+                  01
+                </text>
+
+                <text class="signal-diagram__label" x="200" y="575">
+                  INPUT
+                </text>
+              </g>
+
+              <!-- LOGIC -->
+              <g class="signal-diagram__node signal-diagram__node--logic">
+                <rect class="signal-diagram__box" x="430" y="60" width="140" height="120" />
+
+                <text class="signal-diagram__number" x="450" y="85">
+                  02
+                </text>
+
+                <text class="signal-diagram__label" x="500" y="135">
+                  LOGIC
+                </text>
+              </g>
+
+              <!-- OUTPUT -->
+              <g class="signal-diagram__node signal-diagram__node--output">
+                <rect class="signal-diagram__box" x="730" y="500" width="140" height="120" />
+
+                <text class="signal-diagram__number" x="750" y="525">
+                  03
+                </text>
+
+                <text class="signal-diagram__label" x="800" y="575">
+                  OUTPUT
+                </text>
+              </g>
+            </svg>
           </div>
 
           <div class="signal-hero__bottom">
