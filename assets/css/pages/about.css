@@ -44,9 +44,9 @@ body {
 
 .about-hero__title {
     align-self: center;
-    max-width: 10ch;
+    max-width: 14ch;
 
-    font-size: clamp(4rem, 14vw, 16rem);
+    font-size: clamp(4rem, 10vw, 16rem);
     line-height: 0.78;
     letter-spacing: -0.09em;
     text-transform: uppercase;
