@@ -74,9 +74,11 @@
         <!-- Post content -->
         <section class="post-layout">
           <article class="post-article">
+            {% if page.lead and page.lead != empty %}
             <p class="post-article__lead">
               {{ page.lead }}
             </p>
+            {% endif %}
 
             <div class="post-article__content">
               {{ content }}
@@ -85,14 +87,27 @@
         </section>
         <!-- Post content -->
 
+        {% assign next_post = nil %}
+        {% assign found_current_post = false %}
+        {% for post in site.posts %}
+        {% if found_current_post and next_post == nil %}
+        {% assign next_post = post %}
+        {% endif %}
+        {% if post.url == page.url %}
+        {% assign found_current_post = true %}
+        {% endif %}
+        {% endfor %}
+
+        {% if next_post %}
         <!-- CTA: Next post -->
         <nav class="post-next">
-          <a href="{{ page.next_post_slug }}">
+          <a href="{{ next_post.url }}">
             <span>Next read</span>
-            <strong>{{ page.next_post_title }}</strong>
+            <strong>{{ next_post.title }}</strong>
           </a>
         </nav>
         <!-- CTA: Next post -->
+        {% endif %}
       </main>
     </div>
   </div>
