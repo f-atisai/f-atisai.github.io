@@ -91,6 +91,17 @@ body {
     color: var(--theme-light-accent);
 }
 
+.work__archive-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 250ms ease;
+}
+
+.work__archive-link:hover,
+.work__archive-link:focus-visible {
+    color: var(--theme-light-accent);
+}
+
 .work__list {
     width: 100%;
 }

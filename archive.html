@@ -1,0 +1,218 @@
+---
+title: f-atisai.github.io - Archive
+subtitle: / archive
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }}</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/shared.css">
+    <link rel="stylesheet" href="/assets/css/pages/archive.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://assets.codepen.io/16327/ScrollSmoother.min.js"></script>
+
+    <script src="/assets/js/smooth-scroll.js" defer></script>
+</head>
+
+<body>
+    {% include header.html %}
+
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
+            <main class="archive-page">
+
+                <!-- ========================================
+       Archive Hero
+  ========================================= -->
+
+                <section class="archive-hero">
+                    <div class="archive-hero__meta">
+                    </div>
+
+                    <div class="archive-hero__content">
+                        <p class="archive-hero__kicker">
+                            Since 2022
+                        </p>
+
+                        <h1 class="archive-hero__title">
+                            <span>Every</span>
+                            <span>record.</span>
+                        </h1>
+
+                        <div class="archive-hero__aside">
+                            <p>
+                                A running index of technical writing, experiments,
+                                implementation notes, and longer-form ideas.
+                            </p>
+
+                            <span class="archive-hero__count">
+                                {{ site.posts.size | prepend: '00' | slice: -3, 3 }} Entries
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="archive-hero__bottom">
+                        <p>Scroll through the index</p>
+                        <span>↓</span>
+                    </div>
+                </section>
+
+
+                <!-- ========================================
+       Archive Index
+  ========================================= -->
+
+                <section class="archive-index">
+
+                    <div class="archive-index__header">
+                        <span>Year</span>
+                        <span>Article</span>
+                        <span>Category</span>
+                        <span>Date</span>
+                    </div>
+
+
+                    {% assign archive_groups = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+                    {% assign archive_index = 0 %}
+                    {% for group in archive_groups %}
+                    <section class="archive-group">
+                        <div class="archive-group__year">
+                            <span>{{ group.name }}</span>
+                            <span>{{ group.items.size | prepend: '0' | slice: -2, 2 }}</span>
+                        </div>
+
+                        <div class="archive-group__entries">
+                            {% for post in group.items %}
+                            {% assign archive_index = archive_index | plus: 1 %}
+                            <a href="{{ post.url }}" class="archive-entry">
+                                <span
+                                    class="archive-entry__index">{{ archive_index | prepend: '0' | slice: -2, 2 }}</span>
+
+                                <div class="archive-entry__title">
+                                    <h2>{{ post.title }}</h2>
+                                    <span class="archive-entry__arrow">↗</span>
+                                </div>
+
+                                <span class="archive-entry__category">
+                                    {{ post.tag | default: post.category }}
+                                </span>
+
+                                <time datetime="{{ post.date | date_to_xmlschema }}">
+                                    {{ post.date | date: "%d.%m" }}
+                                </time>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </section>
+                    {% endfor %}
+
+                </section>
+
+            </main>
+
+            <footer class="site-footer">
+                <div class="site-footer__marquee" aria-hidden="true">
+                    <span>Engineering Systems That Drive Decisions.</span>
+                </div>
+
+                <div class="site-footer__inner">
+                    <div class="site-footer__statement">
+                        <p>Engineering Systems <br>That Drive Decisions.</p>
+                    </div>
+
+                    <nav class="site-footer__nav" aria-label="Footer navigation">
+                        <a href="#top" class="site-footer__link">Back to top</a>
+                        <a href="mailto:code.ipsum@gmail.com" class="site-footer__link">Get in touch</a>
+                    </nav>
+
+                    <div class="site-footer__bottom">
+                        <p>&copy; 2026 f-atisai.github.io</p>
+                        <p>Portfolio / Data / Insights</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        /*
+================================
+Archive
+================================
+*/
+
+        if (document.querySelector(".archive-page")) {
+
+            gsap.from(".archive-hero__meta > *", {
+                y: 20,
+                opacity: 0,
+                duration: 0.8,
+                stagger: 0.08,
+                ease,
+            });
+
+            gsap.from(".archive-hero__title span", {
+                yPercent: 110,
+                opacity: 0,
+                duration: 1.2,
+                stagger: 0.08,
+                ease,
+            });
+
+            gsap.from(".archive-hero__aside > *", {
+                y: 40,
+                opacity: 0,
+                duration: 1,
+                stagger: 0.1,
+                ease,
+                delay: 0.3,
+            });
+
+
+            gsap.utils.toArray(".archive-group").forEach((group) => {
+
+                const year = group.querySelector(".archive-group__year");
+                const entries = group.querySelectorAll(".archive-entry");
+
+                gsap.from(year, {
+                    y: 40,
+                    opacity: 0,
+
+                    scrollTrigger: {
+                        trigger: group,
+                        start: "top 80%",
+                        end: "top 55%",
+                        scrub: 1,
+                    },
+                });
+
+                gsap.from(entries, {
+                    y: 40,
+                    opacity: 0,
+                    stagger: 0.08,
+
+                    scrollTrigger: {
+                        trigger: group,
+                        start: "top 75%",
+                        end: "top 35%",
+                        scrub: 1,
+                    },
+                });
+
+            });
+
+        }
+    </script>
+</body>
+
+</html>
