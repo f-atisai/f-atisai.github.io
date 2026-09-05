@@ -1,12 +1,12 @@
 ---
 layout: post
-title: Finding Donors For <em>CharityML</em>
-short_title: Finding Donors
+title: Finding Donors for CharityML
+category: Data Analytics
+tag: Machine Learning
 length: 15
-image_path: finding-donors
-image: finding-donors-banner.jpg
-cover: finding-donors-cover.jpg
-class: Project
+image: finding-donors/finding-donors-cover.jpg
+next_post_title: "The Oxford 102 Flowers"
+next_post_slug: 2022-08-19-oxford-102-flowers
 ---
 
 This project employs several supervised algorithms to accurately model individuals' income using data collected from the 1994 U.S. Census. The best candidate algorithm is chosen from preliminary results and further optimized to best model the data. The goal of this implementation is to construct a model that accurately predicts whether an individual makes more than $50,000. This sort of task can arise in a non-profit setting, where organizations survive on donations. Understanding an individual's income can help a non-profit better understand how large of a donation to request, or whether or not they should reach out to begin with. While it can be difficult to determine an individual's general income bracket directly from public sources, this value can be inferred from other publically available features.

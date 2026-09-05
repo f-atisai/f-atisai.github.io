@@ -1,15 +1,13 @@
 ---
 layout: post
 title: The Oxford 102 Flowers
-short_title: The Oxford 102 Flowers
+category: Data Analytics
+tag: Deep Learning
 length: 3
-image_path: oxford-102-flowers
-image: oxford-102-flowers-banner.jpg
-cover: oxford-102-flowers-cover.jpg
-class: Project
+image: oxford-102-flowers/oxford-102-flowers-cover.jpg
+next_post_title: "The Oxford 102 Flowers"
+next_post_slug: 2021-01-03-oxford-102-flowers
 ---
-
-# The Oxford 102 Flowers
 
 Going forward, AI algorithms will be incorporated into more and more everyday applications. A large part of software development in the future will use deep learning models trained on hundreds of thousands of images as part of their overall application architecture. This project trains an image classifier to recognize different species of flowers. An example application might be a phone app that tells the name of the flower a camera is looking at.
 
