@@ -1,6 +1,6 @@
-- name: Projects
-  link: /#projects
-- name: Home
-  link: /#home
-- name: Reflections
-  link: /#reflections
+- name: Work
+  link: /work.html
+- name: About
+  link: /about.html
+- name: Contact
+  link: mailto:code.ipsum@gmail.com

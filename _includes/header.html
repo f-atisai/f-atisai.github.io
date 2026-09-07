@@ -5,8 +5,8 @@
     </a>
 
     <nav class="site-header__nav" aria-label="Primary navigation">
-        <a href="work.html">Work</a>
-        <a href="about.html">About</a>
-        <a href="mailto:code.ipsum@gmail.com">Contact</a>
+        {% for item in site.data.navigation %}
+        <a href="{{ item.link }}"{% if page.url == item.link %} aria-current="page"{% endif %}>{{ item.name }}</a>
+        {% endfor %}
     </nav>
 </header>
