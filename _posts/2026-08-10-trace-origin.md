@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Transparent Reporting and Auditable Code Execution
-subtitle: Reporting / Python
-tag: Clinical Programming
+category: Clinical Programming
+tag: Python
 length: 5
 image: trace/trace-cover.jpg
 lead: A statistical program shouldn't only produce the right output. It should leave behind a clear record of how it got there.

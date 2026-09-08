@@ -5,6 +5,7 @@ category: Data Analytics
 tag: Machine Learning
 length: 15
 image: finding-donors/finding-donors-cover.jpg
+github_repo: https://github.com/f-atisai/data-scientist-nanodegree/tree/main/finding_donors
 next_post_title: "The Oxford 102 Flowers"
 next_post_slug: 2022-08-19-oxford-102-flowers
 ---

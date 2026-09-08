@@ -5,6 +5,7 @@ category: Data Analytics
 tag: Deep Learning
 length: 3
 image: oxford-102-flowers/oxford-102-flowers-cover.jpg
+github_repo: https://github.com/f-atisai/data-scientist-nanodegree/tree/main/imc_submission
 next_post_title: "The Oxford 102 Flowers"
 next_post_slug: 2021-01-03-oxford-102-flowers
 ---
