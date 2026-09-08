@@ -64,8 +64,12 @@
               <p class="post-aside__label">Reading</p>
               <p class="post-aside__value">{{ page.length }} min</p>
 
-              <p class="post-aside__label">Filed under</p>
-              <p class="post-aside__value">{{ page.tag }}</p>
+              {% if page.github_repo and page.github_repo != empty %}
+              <p class="post-aside__label">View repo on</p>
+              <p class="post-aside__value">
+                <a href="{{ page.github_repo }}" target="_blank" rel="noopener noreferrer">GitHub</a>
+              </p>
+              {% endif %}
             </div>
           </div>
         </section>

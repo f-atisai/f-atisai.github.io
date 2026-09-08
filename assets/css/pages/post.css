@@ -128,6 +128,36 @@ body {
     font-weight: 700;
 }
 
+.post-aside__value a {
+    position: relative;
+
+    color: inherit;
+    text-decoration: none;
+    text-underline-offset: 0.25em;
+}
+
+.post-aside__value a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.35rem;
+
+    width: 100%;
+    height: 1px;
+
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+
+    transition: transform 300ms var(--ease);
+}
+
+.post-aside__value a:hover::after,
+.post-aside__value a:focus-visible::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
 /* ========================================
    Article Layout
 ======================================== */
