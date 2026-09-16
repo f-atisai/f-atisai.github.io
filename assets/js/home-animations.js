@@ -334,65 +334,38 @@ if (!reduceMotion) {
   const heroTl = gsap.timeline({
     defaults: {
       ease,
-      duration: 3,
+      duration: 1.1,
     },
   });
 
   heroTl
-    // .from(".site-header__brand", {
-    //   y: -16,
-    //   opacity: 0,
-    // })
-    // .from(
-    //   ".site-header__nav a",
-    //   {
-    //     y: -16,
-    //     opacity: 0,
-    //     stagger: 0.06,
-    //   },
-    //   "-=0.7",
-    // )
+    .from(".hero__guides", { opacity: 0, duration: 1.8 })
     .from(
-      ".grid-cell",
-      {
-        opacity: 0,
-        scale: 0.94,
-        filter: "blur(10px)",
-        stagger: {
-          amount: 0.8,
-          from: "random",
-        },
-      },
-      "-=0.3",
+      ".hero__eyebrow > span",
+      { y: 14, opacity: 0, stagger: 0.08 },
+      "-=1.45",
     )
     .from(
-      ".hero-meta",
+      ".hero__word",
       {
-        y: 24,
-        opacity: 0,
+        yPercent: 115,
+        rotate: 2,
+        transformOrigin: "left bottom",
+        duration: 1.45,
         stagger: 0.1,
       },
-      "-=0.5",
+      "-=1.1",
+    )
+    .from(".hero__summary", { y: 20, opacity: 0, duration: 0.9 }, "-=0.75")
+    .from(
+      ".hero__footer > *",
+      { y: 12, opacity: 0, duration: 0.8, stagger: 0.08 },
+      "-=0.65",
     );
 
-  pinnedTypingReveal({
-    trigger: ".hero",
-    chars: ".hero-title .char",
-    end: "+=140%",
-    stagger: 0.035,
-  });
-
-  gsap.to(".noise-overlay", {
-    opacity: 0.075,
-    backgroundPosition: "24px 18px, -18px 12px",
-    duration: 6,
-    ease: "sine.inOut",
-    repeat: -1,
-    yoyo: true,
-  });
-
-  gsap.to(".grid-layer", {
-    yPercent: -8,
+  gsap.to(".hero__content", {
+    yPercent: -5,
+    opacity: 0.45,
     ease: "none",
     scrollTrigger: {
       trigger: ".hero",

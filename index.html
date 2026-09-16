@@ -34,6 +34,8 @@ title: f-atisai.github.io
 
       <main class="layout-wrapper">
         <section class="hero" id="hero">
+          <div class="hero__guides" aria-hidden="true"></div>
+
           <svg class="hero__reveal" aria-hidden="true">
             <defs>
               <filter id="hero-blob-wobble" x="-35%" y="-35%" width="170%" height="170%">
@@ -84,22 +86,36 @@ title: f-atisai.github.io
             <image href="/assets/images/hero-bg.jpg" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"
               mask="url(#hero-blob-mask)" />
             <!-- The masked black overlay subtly tones down the revealed image. -->
-            <rect class="hero__reveal-overlay" width="100%" height="100%" fill="black"
-              mask="url(#hero-blob-mask)" />
+            <rect class="hero__reveal-overlay" width="100%" height="100%" fill="black" mask="url(#hero-blob-mask)" />
           </svg>
 
-          <h1 class="hero__heading">
-            <span class="hero__word">Data</span>
-            <span class="hero__word hero__word--offset1">That</span>
-            <span class="hero__word hero__word--offset2">Drives</span>
-          </h1>
+          <div class="hero__content">
+            <p class="hero__eyebrow">
+              <span>Independent portfolio</span>
+              <span>Data systems / Clinical technology</span>
+            </p>
+
+            <h1 class="hero__heading">
+              <span class="hero__line-mask hero__line-mask--data">
+                <span class="hero__word">Data</span>
+              </span>
+              <span class="hero__line-mask hero__line-mask--that">
+                <span class="hero__word">That</span>
+              </span>
+              <span class="hero__line-mask hero__line-mask--drives">
+                <span class="hero__word">Drives</span>
+              </span>
+            </h1>
+
+            <p class="hero__summary">
+              Turning complex, regulated data into clarity you can trust.
+            </p>
+          </div>
 
           <div class="hero__footer">
-            <p>&copy; 2026 CI</p>
-            <div>
-              <p>@codeIpsum</p>
-              <p>code.ipsum@gmail.com</p>
-            </div>
+            <p>Portfolio / 2026</p>
+            <p class="hero__hint"><span aria-hidden="true"></span> Move to reveal</p>
+            <p>Engineering <span>/</span> Interface</p>
           </div>
         </section>
 
