@@ -188,10 +188,153 @@ if (!reduceMotion) {
   ================================
   */
 
+  const hero = document.querySelector(".hero");
+  const heroReveal = hero ? hero.querySelector(".hero__reveal") : null;
+  const heroRevealMask = hero ? hero.querySelector(".hero__reveal-mask") : null;
+  const heroSmokeMask = hero ? hero.querySelector(".hero__smoke-mask") : null;
+
+  if (
+    hero &&
+    heroReveal &&
+    heroRevealMask &&
+    heroSmokeMask &&
+    window.matchMedia("(hover: hover) and (pointer: fine)").matches
+  ) {
+    // Resting size: minimum 85px, maximum 160px, otherwise 11% of the viewport width.
+    const blobRadius = () =>
+      Math.max(85, Math.min(160, window.innerWidth * 0.11));
+    // Movement growth: 1.3 makes the blob 30% larger (use 1.1 for 10%).
+    const movingBlobRadius = () => blobRadius() * 1.3;
+    // Initial growth: 2 makes the centered blob grow to twice its resting size.
+    const initialBlobScale = 2;
+    let blobX = 0;
+    let blobY = 0;
+    let targetX = 0;
+    let targetY = 0;
+    let isPointerMoving = false;
+    let idleTimer;
+    let initialBlobTimeline;
+
+    const setBlobRadius = (radius, duration, ease) => {
+      gsap.to([heroRevealMask, heroSmokeMask], {
+        attr: { r: radius },
+        duration,
+        ease,
+        overwrite: true,
+      });
+    };
+
+    gsap.ticker.add(() => {
+      // Cursor-follow smoothing: lower values trail more; higher values follow more tightly.
+      blobX += (targetX - blobX) * 0.16;
+      blobY += (targetY - blobY) * 0.16;
+      heroRevealMask.setAttribute("cx", blobX);
+      heroRevealMask.setAttribute("cy", blobY);
+      heroSmokeMask.setAttribute("cx", blobX);
+      heroSmokeMask.setAttribute("cy", blobY);
+    });
+
+    const cancelInitialBlobAnimation = () => {
+      if (!initialBlobTimeline) return;
+
+      initialBlobTimeline.kill();
+      initialBlobTimeline = null;
+    };
+
+    const showCenteredBlob = () => {
+      const bounds = hero.getBoundingClientRect();
+
+      blobX = targetX = bounds.width / 2;
+      blobY = targetY = bounds.height / 2;
+      heroRevealMask.setAttribute("cx", blobX);
+      heroRevealMask.setAttribute("cy", blobY);
+      heroSmokeMask.setAttribute("cx", blobX);
+      heroSmokeMask.setAttribute("cy", blobY);
+      heroReveal.classList.add("is-visible");
+
+      initialBlobTimeline = gsap
+        .timeline({
+          onComplete: () => {
+            initialBlobTimeline = null;
+          },
+        })
+        // Initial growth duration in seconds. Higher values make expansion slower.
+        .to([heroRevealMask, heroSmokeMask], {
+          attr: { r: blobRadius() * initialBlobScale },
+          duration: 1.4,
+          ease: "power3.out",
+        })
+        // Initial return duration in seconds. Higher values make settling slower.
+        .to([heroRevealMask, heroSmokeMask], {
+          attr: { r: blobRadius() },
+          duration: 1.1,
+          ease: "power2.inOut",
+        });
+    };
+
+    // Begin with the reveal centered; pointer interaction takes over on first movement.
+    showCenteredBlob();
+
+    const placeBlob = (event) => {
+      cancelInitialBlobAnimation();
+
+      const bounds = hero.getBoundingClientRect();
+
+      targetX = event.clientX - bounds.left;
+      targetY = event.clientY - bounds.top;
+
+      if (!isPointerMoving) {
+        isPointerMoving = true;
+        // Growth duration in seconds: higher values make movement growth slower.
+        setBlobRadius(movingBlobRadius(), 1.8, "power2.out");
+      }
+
+      window.clearTimeout(idleTimer);
+      idleTimer = window.setTimeout(() => {
+        isPointerMoving = false;
+        // Return duration in seconds: higher values return to resting size more slowly.
+        setBlobRadius(blobRadius(), 1.5, "power2.out");
+        // Stationary delay in milliseconds before the return animation begins.
+      }, 240);
+    };
+
+    hero.addEventListener("pointerenter", (event) => {
+      cancelInitialBlobAnimation();
+
+      const bounds = hero.getBoundingClientRect();
+
+      blobX = targetX = event.clientX - bounds.left;
+      blobY = targetY = event.clientY - bounds.top;
+      heroRevealMask.setAttribute("cx", blobX);
+      heroRevealMask.setAttribute("cy", blobY);
+      heroSmokeMask.setAttribute("cx", blobX);
+      heroSmokeMask.setAttribute("cy", blobY);
+      heroReveal.classList.add("is-visible");
+      setBlobRadius(blobRadius(), 0.8, "elastic.out(1, 0.55)");
+    });
+
+    hero.addEventListener("pointermove", placeBlob);
+
+    hero.addEventListener("pointerleave", () => {
+      window.clearTimeout(idleTimer);
+      isPointerMoving = false;
+      heroReveal.classList.remove("is-visible");
+      setBlobRadius(0, 0.45, "power3.in");
+    });
+
+    window.addEventListener("resize", () => {
+      if (heroReveal.classList.contains("is-visible")) {
+        gsap.set([heroRevealMask, heroSmokeMask], {
+          attr: { r: isPointerMoving ? movingBlobRadius() : blobRadius() },
+        });
+      }
+    });
+  }
+
   const heroTl = gsap.timeline({
     defaults: {
       ease,
-      duration: 1,
+      duration: 3,
     },
   });
 

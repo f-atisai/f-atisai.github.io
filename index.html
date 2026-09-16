@@ -33,114 +33,73 @@ title: f-atisai.github.io
     <div id="smooth-content">
 
       <main class="layout-wrapper">
-        <section class="signal-hero" id="top">
-          <div class="signal-hero__grid" aria-hidden="true">
-            <span class="signal-hero__grid-line signal-hero__grid-line--v1"></span>
-            <span class="signal-hero__grid-line signal-hero__grid-line--v2"></span>
-            <span class="signal-hero__grid-line signal-hero__grid-line--v3"></span>
-            <span class="signal-hero__grid-line signal-hero__grid-line--h1"></span>
-            <span class="signal-hero__grid-line signal-hero__grid-line--h2"></span>
-          </div>
+        <section class="hero" id="hero">
+          <svg class="hero__reveal" aria-hidden="true">
+            <defs>
+              <filter id="hero-blob-wobble" x="-35%" y="-35%" width="170%" height="170%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.012 0.018" numOctaves="2" seed="7" result="noise">
+                  <!-- Primary edge speed: raise dur for slower waviness; lower it for faster waviness. -->
+                  <animate attributeName="baseFrequency" dur="36s"
+                    values="0.012 0.018; 0.018 0.011; 0.009 0.022; 0.012 0.018" repeatCount="indefinite" />
+                </feTurbulence>
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="34" xChannelSelector="R" yChannelSelector="B">
+                  <!-- Shape-change speed: raise dur for slower morphing; edit values for more/less distortion. -->
+                  <animate attributeName="scale" dur="33s" values="24;42;30;24" repeatCount="indefinite" />
+                </feDisplacementMap>
+              </filter>
 
-          <div class="signal-hero__top">
-            <p class="signal-hero__index"></p>
+              <filter id="hero-smoke-wobble" x="-60%" y="-60%" width="220%" height="220%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.009 0.015" numOctaves="3" seed="13"
+                  result="smoke-noise">
+                  <!-- Smoke motion speed: raise dur for slower movement; lower it for faster movement. -->
+                  <animate attributeName="baseFrequency" dur="22s"
+                    values="0.009 0.015; 0.014 0.008; 0.007 0.018; 0.009 0.015" repeatCount="indefinite" />
+                </feTurbulence>
+                <!-- Smoke roughness: increase scale/values for wider distortion; decrease for a tighter edge. -->
+                <feDisplacementMap in="SourceGraphic" in2="smoke-noise" scale="16" xChannelSelector="R"
+                  yChannelSelector="G" result="displaced-smoke">
+                  <animate attributeName="scale" dur="18s" values="12;20;15;12" repeatCount="indefinite" />
+                </feDisplacementMap>
+                <!-- Smoke softness: increase deviation for more blur; decrease for a sharper edge. -->
+                <feGaussianBlur in="displaced-smoke" stdDeviation="4">
+                  <animate attributeName="stdDeviation" dur="14s" values="3;5;4;3" repeatCount="indefinite" />
+                </feGaussianBlur>
+              </filter>
 
-            <p class="signal-hero__status" style="margin-top: 2rem;">
-              <!-- <span class="signal-hero__status-dot"></span> -->
-              <!-- <span>System online</span> -->
-            </p>
-          </div>
+              <mask id="hero-blob-mask" maskUnits="userSpaceOnUse">
+                <rect width="100%" height="100%" fill="black" />
+                <circle class="hero__reveal-mask" cx="0" cy="0" r="0" fill="white" filter="url(#hero-blob-wobble)" />
+              </mask>
 
-          <div class="signal-hero__main">
-            <div class="signal-hero__intro">
-              <p class="signal-hero__eyebrow">
-                Built by Frederick Atisai
-              </p>
+              <mask id="hero-smoke-mask" maskUnits="userSpaceOnUse">
+                <rect width="100%" height="100%" fill="black" />
+                <circle class="hero__smoke-mask" cx="0" cy="0" r="0" fill="none" stroke="white"
+                  filter="url(#hero-smoke-wobble)" />
+              </mask>
+            </defs>
 
-              <h1 class="signal-hero__title">
-                <span class="signal-hero__line">
-                  <span>Complexity</span>
-                </span>
+            <!-- Smoke color: replace this fill value with any CSS color. -->
+            <rect class="hero__reveal-smoke" width="100%" height="100%" fill="hsl(0, 0%, 29%)"
+              mask="url(#hero-smoke-mask)" />
+            <image href="/assets/images/hero-bg.jpg" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"
+              mask="url(#hero-blob-mask)" />
+            <!-- The masked black overlay subtly tones down the revealed image. -->
+            <rect class="hero__reveal-overlay" width="100%" height="100%" fill="black"
+              mask="url(#hero-blob-mask)" />
+          </svg>
 
-                <span class="signal-hero__line signal-hero__line--offset">
-                  <span>made</span>
-                </span>
+          <h1 class="hero__heading">
+            <span class="hero__word">Data</span>
+            <span class="hero__word hero__word--offset1">That</span>
+            <span class="hero__word hero__word--offset2">Drives</span>
+          </h1>
 
-                <span class="signal-hero__line signal-hero__line--outline">
-                  <span>operational.</span>
-                </span>
-              </h1>
+          <div class="hero__footer">
+            <p>&copy; 2026 CI</p>
+            <div>
+              <p>@codeIpsum</p>
+              <p>code.ipsum@gmail.com</p>
             </div>
-
-            <div class="signal-hero__side">
-              <p class="signal-hero__statement">
-                I combine analytics, engineering, and system design to deliver outputs that
-                drive real decisions.
-              </p>
-
-              <div class="signal-hero__coordinate">
-                <span>FIELD / 01</span>
-                <span>PRECISION → EXECUTION</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Responsive signal visual -->
-          <div class="signal-hero__visual" aria-hidden="true">
-            <svg class="signal-diagram" viewBox="0 0 1000 650" xmlns="http://www.w3.org/2000/svg"
-              preserveAspectRatio="xMidYMid meet">
-              <!-- Connectors -->
-              <line class="signal-diagram__path" x1="200" y1="500" x2="500" y2="180" />
-
-              <line class="signal-diagram__path" x1="500" y1="180" x2="800" y2="500" />
-
-              <!-- INPUT -->
-              <g class="signal-diagram__node signal-diagram__node--input">
-                <rect class="signal-diagram__box" x="130" y="500" width="140" height="120" />
-
-                <text class="signal-diagram__number" x="150" y="525">
-                  01
-                </text>
-
-                <text class="signal-diagram__label" x="200" y="575">
-                  INPUT
-                </text>
-              </g>
-
-              <!-- LOGIC -->
-              <g class="signal-diagram__node signal-diagram__node--logic">
-                <rect class="signal-diagram__box" x="430" y="60" width="140" height="120" />
-
-                <text class="signal-diagram__number" x="450" y="85">
-                  02
-                </text>
-
-                <text class="signal-diagram__label" x="500" y="135">
-                  LOGIC
-                </text>
-              </g>
-
-              <!-- OUTPUT -->
-              <g class="signal-diagram__node signal-diagram__node--output">
-                <rect class="signal-diagram__box" x="730" y="500" width="140" height="120" />
-
-                <text class="signal-diagram__number" x="750" y="525">
-                  03
-                </text>
-
-                <text class="signal-diagram__label" x="800" y="575">
-                  OUTPUT
-                </text>
-              </g>
-            </svg>
-          </div>
-
-          <div class="signal-hero__bottom">
-            <a href="#about" class="signal-hero__scroll">
-              <span>Scroll to explore</span>
-
-              <span class="signal-hero__scroll-icon">↓</span>
-            </a>
           </div>
         </section>
 

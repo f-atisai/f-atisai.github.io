@@ -14,455 +14,117 @@ a {
   color: inherit;
   text-decoration: none;
 }
-/* ========================================
-   Signal Hero
-======================================== */
 
-.signal-hero {
-    position: relative;
+/* Hero */
+.hero {
+  /* Smoke thickness: lower values make the ring thinner; higher values make it thicker. */
+  --hero-smoke-width: 16px;
 
-    min-height: 100svh;
-    padding:
-        var(--space-s)
-        var(--space-s-m)
-        var(--space-s-m);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
 
-    overflow: hidden;
+  background: #000000;
+  color: var(--theme-dark-text);
 
-    display: grid;
-    grid-template-rows: auto 1fr auto;
+  border-bottom: 1px solid var(--theme-inverse-border);
+  min-height: 100vh;
 
-    background: var(--theme-dark-bg);
-    color: var(--theme-dark-text);
-
-    border-bottom: 1px solid var(--theme-inverse-border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-/* ========================================
-   Background grid
-======================================== */
+.hero__reveal {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
 
-.signal-hero__grid {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
+  width: 100%;
+  height: 100%;
 
-    pointer-events: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 450ms var(--ease);
 }
 
-.signal-hero__grid-line {
-    position: absolute;
-    display: block;
-
-    background: var(--color-grid-dark);
+.hero__reveal.is-visible {
+  opacity: 1;
 }
 
-.signal-hero__grid-line--v1,
-.signal-hero__grid-line--v2,
-.signal-hero__grid-line--v3 {
-    top: 0;
-    bottom: 0;
-
-    width: 1px;
+.hero__reveal-smoke {
+  /* Smoke strength: 0 is invisible and 1 is fully opaque. */
+  opacity: 0.18;
 }
 
-.signal-hero__grid-line--v1 {
-    left: 18%;
+.hero__reveal-overlay {
+  /* Image darkening: raise for a darker reveal; lower for a brighter reveal. */
+  opacity: 0.45;
 }
 
-.signal-hero__grid-line--v2 {
-    left: 58%;
+.hero__smoke-mask {
+  stroke-width: var(--hero-smoke-width);
 }
 
-.signal-hero__grid-line--v3 {
-    left: 83%;
+.hero__heading {
+  position: relative;
+  z-index: 1;
+
+  width: 100vw;
+  margin: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: calc(var(--space-2xl) * -1);
+  margin-left: calc(var(--space-2xs) * -1);
+
+  font-size: clamp(2rem, 11vw, 12rem);
+  font-weight: 900;
+  line-height: 0.85;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-align: center;
 }
 
-.signal-hero__grid-line--h1,
-.signal-hero__grid-line--h2 {
-    left: 0;
-    right: 0;
-
-    height: 1px;
+.hero__word {
+  display: inline-block;
 }
 
-.signal-hero__grid-line--h1 {
-    top: 23%;
+.hero__word--offset1 {
+  transform: translate(0.02em, 0.35em);
 }
 
-.signal-hero__grid-line--h2 {
-    top: 72%;
+.hero__word--offset2 {
+  transform: translate(0.03em, 0.75em);
 }
 
-/* ========================================
-   Top metadata
-======================================== */
+.hero__footer {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  width: 100vw;
 
-.signal-hero__top,
-.signal-hero__main,
-.signal-hero__bottom {
-    position: relative;
-    z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: var(--space-xs);
+  padding-inline: var(--space-s);
 }
 
-.signal-hero__top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: var(--space-s);
-
-    text-transform: uppercase;
-    font-size: var(--fluid--2);
-    letter-spacing: 0.12em;
-    font-weight: 700;
+.hero__footer > div > p + p {
+  margin-top: var(--space-4xs);
 }
 
-.signal-hero__index {
-    color: var(--theme-dark-muted);
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .hero__reveal {
+    display: none;
+  }
 }
-
-.signal-hero__status {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-3xs);
-}
-
-.signal-hero__status-dot {
-    width: 0.5rem;
-    aspect-ratio: 1;
-
-    border-radius: 50%;
-
-    background: var(--color-accent-orange);
-    box-shadow:
-        0 0 0 0.25rem rgba(255, 77, 28, 0.1);
-}
-
-/* ========================================
-   Main composition
-======================================== */
-
-.signal-hero__main {
-    align-self: center;
-
-    display: grid;
-    grid-template-columns: minmax(0, 1.8fr) minmax(15rem, 0.55fr);
-    gap: var(--space-l-xl);
-    align-items: end;
-}
-
-.signal-hero__intro {
-    min-width: 0;
-}
-
-.signal-hero__eyebrow {
-    margin-bottom: var(--space-s);
-
-    color: var(--theme-dark-muted);
-
-    text-transform: uppercase;
-    font-size: var(--fluid--2);
-    letter-spacing: 0.12em;
-}
-
-.signal-hero__title {
-    font-size: var(--fluid-6);
-    line-height: 0.73;
-    letter-spacing: -0.085em;
-
-    text-transform: uppercase;
-    font-weight: 800;
-}
-
-.signal-hero__line {
-    display: block;
-    overflow: hidden;
-}
-
-.signal-hero__line > span {
-    display: block;
-}
-
-.signal-hero__line--offset {
-    padding-left: 0.45em;
-}
-
-.signal-hero__line--outline {
-    padding-left: 0.12em;
-
-    color: transparent;
-    -webkit-text-stroke: 1px var(--theme-dark-text);
-}
-
-/* ========================================
-   Side copy
-======================================== */
-
-.signal-hero__side {
-    padding-bottom: var(--space-xs);
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: var(--space-l);
-}
-
-.signal-hero__statement {
-    max-width: 21ch;
-    padding-left: var(--space-xs-s);
-
-    font-size: var(--fluid--2);
-    line-height: 1.35;
-    color: var(--theme-dark-muted);
-}
-
-.signal-hero__coordinate {
-    display: flex;
-    justify-content: space-between;
-    gap: var(--space-s);
-
-    padding-top: var(--space-xs);
-
-    border-top: 1px solid var(--theme-inverse-border);
-
-    text-transform: uppercase;
-    font-size: var(--fluid--2);
-    letter-spacing: 0.08em;
-    font-weight: 700;
-}
-
-/* ========================================
-   Signal Diagram
-======================================== */
-
-.signal-hero__visual {
-    position: absolute;
-    z-index: 1;
-
-    top: 13%;
-    right: 0;
-
-    width: min(34vw, 32rem);
-
-    pointer-events: none;
-}
-
-.signal-diagram {
-    display: block;
-
-    width: 100%;
-    height: auto;
-
-    overflow: visible;
-
-    animation: signal-diagram-float 7s ease-in-out infinite alternate;
-}
-
-/* Connecting paths */
-.signal-diagram__path {
-    fill: none;
-
-    stroke: var(--color-accent-mint);
-    stroke-width: 1;
-
-    vector-effect: non-scaling-stroke;
-
-    opacity: 0.65;
-
-    animation: signal-pulse 2.8s ease-in-out infinite alternate;
-}
-
-/* Nodes */
-.signal-diagram__box {
-    fill: var(--color-paper-35);
-
-    stroke: var(--theme-dark-grid);
-    stroke-width: 1;
-
-    vector-effect: non-scaling-stroke;
-
-    backdrop-filter: blur(8px);
-}
-
-/* Node number */
-.signal-diagram__number {
-    fill: var(--color-accent-orange);
-
-    font-family: var(--font-main);
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-}
-
-/* Node label */
-.signal-diagram__label {
-    fill: var(--theme-dark-text);
-
-    font-family: var(--font-main);
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-
-    text-anchor: middle;
-}
-
-/* Floating nodes */
-.signal-diagram__node {
-    transform: none;
-    animation: none;
-}
-
-@keyframes signal-diagram-float {
-    from {
-        transform: translateY(-3px);
-    }
-
-    to {
-        transform: translateY(4px);
-    }
-}
-
-/* Ambient interaction */
-.signal-path {
-    animation: signal-pulse 2.8s ease-in-out infinite alternate;
-}
-
-@keyframes signal-pulse {
-    from {
-        opacity: 0.25;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-/* ========================================
-   Bottom
-======================================== */
-
-.signal-hero__bottom {
-    display: flex;
-    /* justify-content: space-between; */
-    justify-content: center;
-    align-items: flex-end;
-    gap: var(--space-s);
-
-    padding-top: var(--space-s);
-
-    border-top: 1px solid var(--theme-inverse-border);
-
-    color: var(--theme-dark-muted);
-
-    text-transform: uppercase;
-    font-size: var(--fluid--2);
-    letter-spacing: 0.1em;
-}
-
-.signal-hero__scroll {
-    position: relative;
-
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-xs);
-
-    color: var(--theme-dark-text);
-    text-decoration: none;
-    font-weight: 700;
-}
-
-.signal-hero__scroll-icon {
-    display: grid;
-    place-items: center;
-
-    width: 2.8rem;
-    aspect-ratio: 1;
-
-    border: 1px solid var(--theme-inverse-border);
-    border-radius: 50%;
-
-    transition:
-        background-color 300ms var(--ease),
-        color 300ms var(--ease),
-        transform 300ms var(--ease);
-}
-
-.signal-hero__scroll:hover .signal-hero__scroll-icon {
-    background: var(--theme-dark-text);
-    color: var(--theme-dark-bg);
-
-    transform: translateY(0.25rem);
-}
-
 /* ========================================
    Responsive
 ======================================== */
-
-@media (min-width: 601px) and (max-width: 900px) {
-    .signal-hero__main {
-        grid-template-columns: 1fr;
-    }
-
-    .signal-hero__side {
-        width: 100%;
-        max-width: none;
-        margin-left: 0;
-
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-        gap: var(--space-m);
-        align-items: end;
-    }
-
-    .signal-hero__visual {
-        width: min(46vw, 28rem);
-
-        top: 10%;
-        right: -5%;
-
-        opacity: 0.5;
-    }
-}
-
-@media (max-width: 600px) {
-    .signal-hero {
-        padding-top: var(--space-xs);
-    }
-
-    .signal-hero__main {
-        grid-template-columns: 1fr;
-    }
-
-    .signal-hero__title {
-        font-size: var(--fluid-5);
-        line-height: 0.78;
-    }
-
-    .signal-hero__line--offset,
-    .signal-hero__line--outline {
-        padding-left: 0;
-    }
-
-    .signal-hero__visual {
-        display: block;
-
-        width: 70vw;
-
-        top: 9%;
-        right: -28%;
-
-        opacity: 0.22;
-    }
-
-    .signal-hero__bottom {
-        align-items: center;
-    }
-
-    .signal-hero__scroll > span:first-child {
-        display: none;
-    }
-
-}
 
 /* ================================
    Home: Awwwards-style sections
