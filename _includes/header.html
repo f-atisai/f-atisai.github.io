@@ -1,12 +1,12 @@
 <header class="site-header">
     <a class="site-header__brand" href="index.html">
-        f-atisai<span>.github.io</span>
+        Code<span> Ipsum</span>
         <span class="site-header__page">{{ page.subtitle }}</span>
     </a>
 
     <nav class="site-header__nav" aria-label="Primary navigation">
         {% for item in site.data.navigation %}
-        <a href="{{ item.link }}"{% if page.url == item.link %} aria-current="page"{% endif %}>{{ item.name }}</a>
+        <a href="{{ item.link }}" {% if page.url == item.link %} aria-current="page" {% endif %}>{{ item.name }}</a>
         {% endfor %}
     </nav>
 </header>
