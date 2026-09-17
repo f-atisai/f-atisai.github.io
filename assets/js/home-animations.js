@@ -199,7 +199,7 @@ if (!reduceMotion) {
   if (hero && heroReveal && heroRevealMask && heroSmokeMask) {
     // Resting size: minimum 85px, maximum 160px, otherwise 11% of the viewport width.
     const blobRadius = () =>
-      Math.max(85, Math.min(160, window.innerWidth * 0.11));
+      Math.max(130, Math.min(160, window.innerWidth * 0.11));
     // Movement growth: 1.3 makes the blob 30% larger (use 1.1 for 10%).
     const movingBlobRadius = () => blobRadius() * 1.3;
     // Initial growth: 2 makes the centered blob grow to twice its resting size.
@@ -266,7 +266,7 @@ if (!reduceMotion) {
         x: direction.x * ambientTravel,
         y: direction.y * ambientTravel,
         // Resting drift duration in seconds. Increase both values for slower movement.
-        duration: gsap.utils.random(3.8, 5.6),
+        duration: gsap.utils.random(2.0, 3.8),
         ease: "sine.inOut",
         overwrite: true,
         onComplete: startAmbientDrift,
