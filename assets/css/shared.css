@@ -176,7 +176,12 @@
 
 
 html {
+  background: var(--color-ink);
   scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-ink);
 }
 
 /* Shared Navigation */
