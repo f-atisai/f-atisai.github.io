@@ -24,7 +24,8 @@ a {
   isolation: isolate;
   overflow: hidden;
 
-  background: #000000;
+  /* background: #000000; */
+  background: var(--theme-light-text);
   color: var(--theme-dark-text);
 
   border-bottom: 1px solid var(--theme-inverse-border);
