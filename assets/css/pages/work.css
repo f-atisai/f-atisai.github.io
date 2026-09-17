@@ -102,6 +102,33 @@ body {
     color: var(--theme-light-accent);
 }
 
+.work__archive {
+    padding: var(--space-s) var(--page-x);
+    border-bottom: 1px solid var(--theme-light-border);
+}
+
+.work__archive-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-s);
+
+    text-transform: uppercase;
+    font-size: clamp(1rem, 1.5vw, 1.35rem);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.work__archive-link [aria-hidden="true"] {
+    font-size: 1.35em;
+    transition: transform 300ms var(--ease);
+}
+
+.work__archive-link:hover [aria-hidden="true"],
+.work__archive-link:focus-visible [aria-hidden="true"] {
+    transform: translate(0.2rem, -0.2rem);
+}
+
 .work__list {
     width: 100%;
 }
