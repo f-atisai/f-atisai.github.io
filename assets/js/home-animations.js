@@ -192,14 +192,11 @@ if (!reduceMotion) {
   const heroReveal = hero ? hero.querySelector(".hero__reveal") : null;
   const heroRevealMask = hero ? hero.querySelector(".hero__reveal-mask") : null;
   const heroSmokeMask = hero ? hero.querySelector(".hero__smoke-mask") : null;
+  const hasHoverPointer = window.matchMedia(
+    "(hover: hover) and (pointer: fine)",
+  ).matches;
 
-  if (
-    hero &&
-    heroReveal &&
-    heroRevealMask &&
-    heroSmokeMask &&
-    window.matchMedia("(hover: hover) and (pointer: fine)").matches
-  ) {
+  if (hero && heroReveal && heroRevealMask && heroSmokeMask) {
     // Resting size: minimum 85px, maximum 160px, otherwise 11% of the viewport width.
     const blobRadius = () =>
       Math.max(85, Math.min(160, window.innerWidth * 0.11));
@@ -318,8 +315,14 @@ if (!reduceMotion) {
     hero.addEventListener("pointerleave", () => {
       window.clearTimeout(idleTimer);
       isPointerMoving = false;
-      heroReveal.classList.remove("is-visible");
-      setBlobRadius(0, 0.45, "power3.in");
+
+      if (hasHoverPointer) {
+        heroReveal.classList.remove("is-visible");
+        setBlobRadius(0, 0.45, "power3.in");
+      } else {
+        // Touch pointers have no persistent hover, so keep the reveal visible after release.
+        setBlobRadius(blobRadius(), 1.5, "power2.out");
+      }
     });
 
     window.addEventListener("resize", () => {

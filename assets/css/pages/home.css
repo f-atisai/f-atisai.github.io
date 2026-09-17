@@ -281,7 +281,7 @@ a {
   }
 }
 
-@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce) {
   .hero__reveal {
     display: none;
   }
