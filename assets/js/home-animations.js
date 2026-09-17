@@ -211,6 +211,22 @@ if (!reduceMotion) {
     let isPointerMoving = false;
     let idleTimer;
     let initialBlobTimeline;
+    let ambientTween;
+    let lastAmbientDirection = -1;
+
+    // Resting drift distance in pixels. Increase for wider ambient movement.
+    const ambientTravel = 18;
+    const ambientOffset = { x: 0, y: 0 };
+    const ambientDirections = [
+      { x: -1, y: 0 },
+      { x: 1, y: 0 },
+      { x: 0, y: -1 },
+      { x: 0, y: 1 },
+      { x: -0.72, y: -0.72 },
+      { x: 0.72, y: -0.72 },
+      { x: -0.72, y: 0.72 },
+      { x: 0.72, y: 0.72 },
+    ];
 
     const setBlobRadius = (radius, duration, ease) => {
       gsap.to([heroRevealMask, heroSmokeMask], {
@@ -221,14 +237,50 @@ if (!reduceMotion) {
       });
     };
 
+    const stopAmbientDrift = () => {
+      if (ambientTween) ambientTween.kill();
+
+      ambientTween = gsap.to(ambientOffset, {
+        x: 0,
+        y: 0,
+        duration: 0.45,
+        ease: "power2.out",
+        overwrite: true,
+      });
+    };
+
+    const startAmbientDrift = () => {
+      if (isPointerMoving) return;
+      if (ambientTween) ambientTween.kill();
+
+      let directionIndex = Math.floor(Math.random() * ambientDirections.length);
+
+      if (directionIndex === lastAmbientDirection) {
+        directionIndex = (directionIndex + 1) % ambientDirections.length;
+      }
+
+      lastAmbientDirection = directionIndex;
+      const direction = ambientDirections[directionIndex];
+
+      ambientTween = gsap.to(ambientOffset, {
+        x: direction.x * ambientTravel,
+        y: direction.y * ambientTravel,
+        // Resting drift duration in seconds. Increase both values for slower movement.
+        duration: gsap.utils.random(3.8, 5.6),
+        ease: "sine.inOut",
+        overwrite: true,
+        onComplete: startAmbientDrift,
+      });
+    };
+
     gsap.ticker.add(() => {
       // Cursor-follow smoothing: lower values trail more; higher values follow more tightly.
       blobX += (targetX - blobX) * 0.16;
       blobY += (targetY - blobY) * 0.16;
-      heroRevealMask.setAttribute("cx", blobX);
-      heroRevealMask.setAttribute("cy", blobY);
-      heroSmokeMask.setAttribute("cx", blobX);
-      heroSmokeMask.setAttribute("cy", blobY);
+      heroRevealMask.setAttribute("cx", blobX + ambientOffset.x);
+      heroRevealMask.setAttribute("cy", blobY + ambientOffset.y);
+      heroSmokeMask.setAttribute("cx", blobX + ambientOffset.x);
+      heroSmokeMask.setAttribute("cy", blobY + ambientOffset.y);
     });
 
     const cancelInitialBlobAnimation = () => {
@@ -253,6 +305,7 @@ if (!reduceMotion) {
         .timeline({
           onComplete: () => {
             initialBlobTimeline = null;
+            startAmbientDrift();
           },
         })
         // Initial growth duration in seconds. Higher values make expansion slower.
@@ -274,6 +327,7 @@ if (!reduceMotion) {
 
     const placeBlob = (event) => {
       cancelInitialBlobAnimation();
+      stopAmbientDrift();
 
       const bounds = hero.getBoundingClientRect();
 
@@ -291,12 +345,14 @@ if (!reduceMotion) {
         isPointerMoving = false;
         // Return duration in seconds: higher values return to resting size more slowly.
         setBlobRadius(blobRadius(), 1.5, "power2.out");
+        startAmbientDrift();
         // Stationary delay in milliseconds before the return animation begins.
       }, 240);
     };
 
     hero.addEventListener("pointerenter", (event) => {
       cancelInitialBlobAnimation();
+      stopAmbientDrift();
 
       const bounds = hero.getBoundingClientRect();
 
@@ -310,6 +366,10 @@ if (!reduceMotion) {
       setBlobRadius(blobRadius(), 0.8, "elastic.out(1, 0.55)");
     });
 
+    hero.addEventListener("pointerdown", (event) => {
+      if (!hasHoverPointer) placeBlob(event);
+    });
+
     hero.addEventListener("pointermove", placeBlob);
 
     hero.addEventListener("pointerleave", () => {
@@ -317,11 +377,13 @@ if (!reduceMotion) {
       isPointerMoving = false;
 
       if (hasHoverPointer) {
+        if (ambientTween) ambientTween.kill();
         heroReveal.classList.remove("is-visible");
         setBlobRadius(0, 0.45, "power3.in");
       } else {
         // Touch pointers have no persistent hover, so keep the reveal visible after release.
         setBlobRadius(blobRadius(), 1.5, "power2.out");
+        startAmbientDrift();
       }
     });
 
