@@ -21,6 +21,8 @@ body {
         linear-gradient(to bottom, var(--color-black) 1px, transparent 1px);
     background-size: 72px 72px;
     z-index: 10;
+    transform: translateZ(0);
+    will-change: transform;
 }
 
 /* Hero */
@@ -199,6 +201,7 @@ body {
 .about-marquee__track {
     display: flex;
     width: max-content;
+    will-change: transform;
 
     font-size: clamp(4rem, 14vw, 16rem);
     line-height: 0.82;
@@ -223,6 +226,12 @@ body {
 
     to {
         transform: translateX(-50%);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .about-marquee__track {
+        animation: none;
     }
 }
 

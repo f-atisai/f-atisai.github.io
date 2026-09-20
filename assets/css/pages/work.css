@@ -21,6 +21,8 @@ body {
         linear-gradient(to bottom, var(--color-black) 1px, transparent 1px);
     background-size: 72px 72px;
     z-index: 10;
+    transform: translateZ(0);
+    will-change: transform;
 }
 
 /* Hero */

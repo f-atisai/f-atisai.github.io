@@ -10,18 +10,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ page.title }}</title>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/shared.css">
   <link rel="stylesheet" href="/assets/css/pages/post.css">
 
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script src="https://assets.codepen.io/16327/ScrollSmoother.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://assets.codepen.io/16327/ScrollSmoother.min.js" defer></script>
 
   <script src="/assets/js/smooth-scroll.js" defer></script>
   <script src="/assets/js/dynamic.js" defer></script>
@@ -35,7 +34,9 @@
         <section class="post-hero">
           <div class="post-hero__meta">
             <a class="post-hero__back" href="/work.html" aria-label="Back to scribbles">
-              <i class="fa-solid fa-arrow-left-long"></i>
+              <svg class="post-hero__back-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20 12H4m6-6-6 6 6 6" />
+              </svg>
               <span>Back</span>
             </a>
 

@@ -67,7 +67,16 @@ async function updateLocationAndWeather() {
   }
 }
 
-updateLocationAndWeather();
+const startWeatherUpdates = () => {
+  updateLocationAndWeather();
 
-// Refresh weather every 10 minutes
-setInterval(updateLocationAndWeather, 10 * 60 * 1000);
+  // Refresh weather every 10 minutes
+  setInterval(updateLocationAndWeather, 10 * 60 * 1000);
+};
+
+// The weather is decorative metadata, so wait until initial rendering is idle.
+if ("requestIdleCallback" in window) {
+  window.requestIdleCallback(startWeatherUpdates, { timeout: 2500 });
+} else {
+  window.setTimeout(startWeatherUpdates, 1000);
+}

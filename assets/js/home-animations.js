@@ -3,17 +3,22 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 const reduceMotion = window.matchMedia(
   "(prefers-reduced-motion: reduce)",
 ).matches;
+const useSmoothScroll = window.matchMedia(
+  "(hover: hover) and (pointer: fine)",
+).matches;
 
 if (!reduceMotion) {
   const ease = "power4.out";
+  let smoother = null;
 
-  ScrollSmoother.create({
-    wrapper: "#smooth-wrapper",
-    content: "#smooth-content",
-    smooth: 1.2,
-    effects: true,
-    normalizeScroll: true,
-  });
+  // Native scrolling is substantially cheaper and more reliable on touch Safari.
+  if (useSmoothScroll) {
+    smoother = ScrollSmoother.create({
+      wrapper: "#smooth-wrapper",
+      content: "#smooth-content",
+      smooth: 1.2,
+    });
+  }
 
   /*
   ================================
@@ -31,7 +36,11 @@ if (!reduceMotion) {
 
     if (target) {
       e.preventDefault();
-      ScrollSmoother.get().scrollTo(target, true);
+      if (smoother) {
+        smoother.scrollTo(target, true);
+      } else {
+        target.scrollIntoView({ behavior: "smooth" });
+      }
     }
   });
 
@@ -192,12 +201,24 @@ if (!reduceMotion) {
   const heroReveal = hero ? hero.querySelector(".hero__reveal") : null;
   const heroRevealMask = hero ? hero.querySelector(".hero__reveal-mask") : null;
   const heroSmokeMask = hero ? hero.querySelector(".hero__smoke-mask") : null;
-  const hasHoverPointer = window.matchMedia(
-    "(hover: hover) and (pointer: fine)",
-  ).matches;
+  const hasHoverPointer = useSmoothScroll;
 
   if (hero && heroReveal && heroRevealMask && heroSmokeMask) {
-    // Resting size: minimum 85px, maximum 160px, otherwise 11% of the viewport width.
+    // Mobile Safari handles animated SVG noise poorly. Keep the same organic edge,
+    // movement, and size animation while making the costly noise field static.
+    if (!hasHoverPointer) {
+      heroReveal
+        .querySelectorAll(
+          "#hero-blob-wobble feTurbulence animate, #hero-smoke-wobble animate",
+        )
+        .forEach((animation) => animation.remove());
+
+      heroReveal.querySelectorAll("feTurbulence").forEach((noise) => {
+        noise.setAttribute("numOctaves", "1");
+      });
+    }
+
+    // Resting size: minimum 130px, maximum 160px, otherwise 11% of the viewport width.
     const blobRadius = () =>
       Math.max(130, Math.min(160, window.innerWidth * 0.11));
     // Movement growth: 1.3 makes the blob 30% larger (use 1.1 for 10%).
@@ -213,6 +234,15 @@ if (!reduceMotion) {
     let initialBlobTimeline;
     let ambientTween;
     let lastAmbientDirection = -1;
+    let heroIsActive = true;
+    let lastBlobFrame = -Infinity;
+    let blobTickerAttached = true;
+    let heroBounds = hero.getBoundingClientRect();
+    let boundsScrollX = window.scrollX;
+    let boundsScrollY = window.scrollY;
+
+    // Touch devices render the filtered SVG at 30fps; desktop pointers retain 60fps.
+    const blobFrameInterval = hasHoverPointer ? 0 : 1 / 30;
 
     // Resting drift distance in pixels. Increase for wider ambient movement.
     const ambientTravel = 18;
@@ -235,6 +265,18 @@ if (!reduceMotion) {
         ease,
         overwrite: true,
       });
+    };
+
+    const positionBlobMasks = (x, y) => {
+      const transform = `translate(${x} ${y})`;
+      heroRevealMask.setAttribute("transform", transform);
+      heroSmokeMask.setAttribute("transform", transform);
+    };
+
+    const refreshHeroBounds = () => {
+      heroBounds = hero.getBoundingClientRect();
+      boundsScrollX = window.scrollX;
+      boundsScrollY = window.scrollY;
     };
 
     const stopAmbientDrift = () => {
@@ -273,14 +315,64 @@ if (!reduceMotion) {
       });
     };
 
-    gsap.ticker.add(() => {
+    const updateBlobPosition = (time) => {
+      if (!heroIsActive || time - lastBlobFrame < blobFrameInterval) return;
+
+      lastBlobFrame = time;
       // Cursor-follow smoothing: lower values trail more; higher values follow more tightly.
       blobX += (targetX - blobX) * 0.16;
       blobY += (targetY - blobY) * 0.16;
-      heroRevealMask.setAttribute("cx", blobX + ambientOffset.x);
-      heroRevealMask.setAttribute("cy", blobY + ambientOffset.y);
-      heroSmokeMask.setAttribute("cx", blobX + ambientOffset.x);
-      heroSmokeMask.setAttribute("cy", blobY + ambientOffset.y);
+      positionBlobMasks(blobX + ambientOffset.x, blobY + ambientOffset.y);
+    };
+
+    gsap.ticker.add(updateBlobPosition);
+
+    const setHeroActivity = (isActive) => {
+      heroIsActive = isActive && !document.hidden;
+
+      if (heroIsActive && !blobTickerAttached) {
+        gsap.ticker.add(updateBlobPosition);
+        blobTickerAttached = true;
+      } else if (!heroIsActive && blobTickerAttached) {
+        gsap.ticker.remove(updateBlobPosition);
+        blobTickerAttached = false;
+      }
+
+      if (typeof heroReveal.pauseAnimations === "function") {
+        if (heroIsActive) {
+          heroReveal.unpauseAnimations();
+        } else {
+          heroReveal.pauseAnimations();
+        }
+      }
+
+      if (ambientTween) {
+        if (heroIsActive) ambientTween.resume();
+        else ambientTween.pause();
+      }
+
+      if (initialBlobTimeline) {
+        if (heroIsActive) initialBlobTimeline.resume();
+        else initialBlobTimeline.pause();
+      }
+    };
+
+    let heroIntersectsViewport = true;
+
+    if ("IntersectionObserver" in window) {
+      const heroObserver = new IntersectionObserver(
+        ([entry]) => {
+          heroIntersectsViewport = entry.isIntersecting;
+          setHeroActivity(heroIntersectsViewport);
+        },
+        { rootMargin: "100px 0px" },
+      );
+
+      heroObserver.observe(hero);
+    }
+
+    document.addEventListener("visibilitychange", () => {
+      setHeroActivity(heroIntersectsViewport);
     });
 
     const cancelInitialBlobAnimation = () => {
@@ -291,14 +383,11 @@ if (!reduceMotion) {
     };
 
     const showCenteredBlob = () => {
-      const bounds = hero.getBoundingClientRect();
+      refreshHeroBounds();
 
-      blobX = targetX = bounds.width / 2;
-      blobY = targetY = bounds.height / 2;
-      heroRevealMask.setAttribute("cx", blobX);
-      heroRevealMask.setAttribute("cy", blobY);
-      heroSmokeMask.setAttribute("cx", blobX);
-      heroSmokeMask.setAttribute("cy", blobY);
+      blobX = targetX = heroBounds.width / 2;
+      blobY = targetY = heroBounds.height / 2;
+      positionBlobMasks(blobX, blobY);
       heroReveal.classList.add("is-visible");
 
       initialBlobTimeline = gsap
@@ -327,15 +416,16 @@ if (!reduceMotion) {
 
     const placeBlob = (event) => {
       cancelInitialBlobAnimation();
-      stopAmbientDrift();
 
-      const bounds = hero.getBoundingClientRect();
+      const currentLeft = heroBounds.left - (window.scrollX - boundsScrollX);
+      const currentTop = heroBounds.top - (window.scrollY - boundsScrollY);
 
-      targetX = event.clientX - bounds.left;
-      targetY = event.clientY - bounds.top;
+      targetX = event.clientX - currentLeft;
+      targetY = event.clientY - currentTop;
 
       if (!isPointerMoving) {
         isPointerMoving = true;
+        stopAmbientDrift();
         // Growth duration in seconds: higher values make movement growth slower.
         setBlobRadius(movingBlobRadius(), 1.8, "power2.out");
       }
@@ -353,21 +443,20 @@ if (!reduceMotion) {
     hero.addEventListener("pointerenter", (event) => {
       cancelInitialBlobAnimation();
       stopAmbientDrift();
+      refreshHeroBounds();
 
-      const bounds = hero.getBoundingClientRect();
-
-      blobX = targetX = event.clientX - bounds.left;
-      blobY = targetY = event.clientY - bounds.top;
-      heroRevealMask.setAttribute("cx", blobX);
-      heroRevealMask.setAttribute("cy", blobY);
-      heroSmokeMask.setAttribute("cx", blobX);
-      heroSmokeMask.setAttribute("cy", blobY);
+      blobX = targetX = event.clientX - heroBounds.left;
+      blobY = targetY = event.clientY - heroBounds.top;
+      positionBlobMasks(blobX, blobY);
       heroReveal.classList.add("is-visible");
       setBlobRadius(blobRadius(), 0.8, "elastic.out(1, 0.55)");
     });
 
     hero.addEventListener("pointerdown", (event) => {
-      if (!hasHoverPointer) placeBlob(event);
+      if (!hasHoverPointer) {
+        refreshHeroBounds();
+        placeBlob(event);
+      }
     });
 
     hero.addEventListener("pointermove", placeBlob);
@@ -388,6 +477,8 @@ if (!reduceMotion) {
     });
 
     window.addEventListener("resize", () => {
+      refreshHeroBounds();
+
       if (heroReveal.classList.contains("is-visible")) {
         gsap.set([heroRevealMask, heroSmokeMask], {
           attr: { r: isPointerMoving ? movingBlobRadius() : blobRadius() },
@@ -557,23 +648,28 @@ if (!reduceMotion) {
     }
 
     if (imageImg) {
+      const imageFrom = { scale: 1.16 };
+      const imageTo = {
+        scale: 1,
+        ease,
+        scrollTrigger: {
+          trigger: card,
+          start: "top 75%",
+          end: "center 35%",
+          scrub: 1,
+        },
+      };
+
+      // Animated blur on large images is particularly expensive on mobile Safari.
+      if (hasHoverPointer) {
+        imageFrom["--image-blur"] = "10px";
+        imageTo["--image-blur"] = "0px";
+      }
+
       gsap.fromTo(
         imageImg,
-        {
-          scale: 1.16,
-          "--image-blur": "10px",
-        },
-        {
-          scale: 1,
-          "--image-blur": "0px",
-          ease,
-          scrollTrigger: {
-            trigger: card,
-            start: "top 75%",
-            end: "center 35%",
-            scrub: 1,
-          },
-        },
+        imageFrom,
+        imageTo,
       );
     }
 
@@ -708,8 +804,6 @@ if (!reduceMotion) {
     ScrollTrigger.refresh();
   });
 } else {
-  gsap.set("*", { clearProps: "all" });
-
   if (window.ScrollTrigger) {
     ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
   }

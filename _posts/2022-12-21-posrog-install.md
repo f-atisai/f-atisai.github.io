@@ -4,7 +4,7 @@ title: Install POSROG V3U8 (PhoenixOS) alongside Solus
 category: Linux
 tag: Systemd Solus Configuration
 length: 3
-image: posrog-install/posrog-cover.jpg
+image: posrog-install/posrog-cover.avif
 lead: I wanted PhoenixOS without giving up Solus. This is how I got POSROG running alongside it.
 next_post_title: Install POSROG V3U8 (PhoenixOS) Alongside Solus
 next_post_slug: 2022-12-21-posrog-install

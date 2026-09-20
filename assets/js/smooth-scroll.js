@@ -3,15 +3,21 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 const reduceMotion = window.matchMedia(
   "(prefers-reduced-motion: reduce)",
 ).matches;
+const useSmoothScroll = window.matchMedia(
+  "(hover: hover) and (pointer: fine)",
+).matches;
 
 if (!reduceMotion) {
-  ScrollSmoother.create({
-    wrapper: "#smooth-wrapper",
-    content: "#smooth-content",
-    smooth: 1.2,
-    effects: true,
-    normalizeScroll: true,
-  });
+  let smoother = null;
+
+  // Keep native scrolling on touch devices to avoid transform-heavy mobile scrolling.
+  if (useSmoothScroll) {
+    smoother = ScrollSmoother.create({
+      wrapper: "#smooth-wrapper",
+      content: "#smooth-content",
+      smooth: 1.2,
+    });
+  }
 
   /*
   ================================
@@ -29,7 +35,11 @@ if (!reduceMotion) {
 
     if (target) {
       e.preventDefault();
-      ScrollSmoother.get().scrollTo(target, true);
+      if (smoother) {
+        smoother.scrollTo(target, true);
+      } else {
+        target.scrollIntoView({ behavior: "smooth" });
+      }
     }
   });
 }

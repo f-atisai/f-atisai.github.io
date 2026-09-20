@@ -77,6 +77,16 @@ body {
         transform 250ms var(--ease);
 }
 
+.post-hero__back-icon {
+    width: 1.25em;
+    height: 1.25em;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.75;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
 .post-hero__back:hover {
     color: var(--theme-light-accent);
     transform: translateX(-0.2rem);

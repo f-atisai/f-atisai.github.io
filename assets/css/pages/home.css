@@ -22,6 +22,7 @@ a {
 
   position: relative;
   isolation: isolate;
+  contain: paint;
   overflow: hidden;
 
   /* background: #000000; */

@@ -4,7 +4,7 @@ title: Transparent Reporting and Auditable Code Execution
 category: Clinical Programming
 tag: Python
 length: 5
-image: trace/trace-cover.jpg
+image: trace/trace-cover.avif
 lead: A statistical program shouldn't only produce the right output. It should leave behind a clear record of how it got there.
 next_post_title: Install POSROG V3U8 (PhoenixOS) Alongside Solus
 next_post_slug: 2022-12-21-posrog-install

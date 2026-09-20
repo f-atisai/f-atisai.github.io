@@ -312,6 +312,7 @@ body {
 .site-footer__marquee {
     display: flex;
     width: max-content;
+    will-change: transform;
 
     font-size: clamp(4rem, 15vw, 16rem);
     line-height: 0.8;
@@ -391,6 +392,12 @@ body {
 
     to {
         transform: translateX(-50%);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .site-footer__marquee {
+        animation: none;
     }
 }
 

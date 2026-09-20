@@ -11,6 +11,8 @@ title: f-atisai.github.io
 
   <title>{{ page.title }}</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
     rel="stylesheet">
@@ -18,9 +20,9 @@ title: f-atisai.github.io
   <link rel="stylesheet" href="/assets/css/shared.css">
   <link rel="stylesheet" href="/assets/css/pages/home.css">
 
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script src="https://assets.codepen.io/16327/ScrollSmoother.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://assets.codepen.io/16327/ScrollSmoother.min.js" defer></script>
 
   <script src="/assets/js/home-animations.js" defer></script>
   {% feed_meta %}
@@ -83,10 +85,12 @@ title: f-atisai.github.io
             <!-- Smoke color: replace this fill value with any CSS color. -->
             <rect class="hero__reveal-smoke" width="100%" height="100%" fill="hsl(0, 0%, 29%)"
               mask="url(#hero-smoke-mask)" />
-            <image href="/assets/images/hero-bg.jpg" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"
-              mask="url(#hero-blob-mask)" />
-            <!-- The masked black overlay subtly tones down the revealed image. -->
-            <rect class="hero__reveal-overlay" width="100%" height="100%" fill="black" mask="url(#hero-blob-mask)" />
+            <g mask="url(#hero-blob-mask)">
+              <image href="/assets/images/hero-bg.webp" width="100%" height="100%"
+                preserveAspectRatio="xMidYMid slice" />
+              <!-- The black overlay subtly tones down the revealed image. -->
+              <rect class="hero__reveal-overlay" width="100%" height="100%" fill="black" />
+            </g>
           </svg>
 
           <div class="hero__content">
@@ -168,7 +172,8 @@ title: f-atisai.github.io
 
             <div class="work-preview__hero">
               <figure class="work-preview__image">
-                <img src="/assets/images/trace/trace-cover-large.jpg" alt="trace">
+                <img src="/assets/images/trace/trace-cover-large.webp" alt="trace" width="2400" height="1590"
+                  loading="lazy" decoding="async">
               </figure>
             </div>
 
@@ -204,7 +209,8 @@ title: f-atisai.github.io
 
             <div class="work-preview__hero">
               <figure class="work-preview__image">
-                <img src="/assets/images/ecd-gen/ecd-gen-cover.jpg" alt="ecd gen">
+                <img src="/assets/images/ecd-gen/ecd-gen-cover.avif" alt="ecd gen" width="1200" height="800"
+                  loading="lazy" decoding="async">
               </figure>
             </div>
 

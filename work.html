@@ -11,15 +11,17 @@ subtitle: / Work
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }}</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/shared.css">
     <link rel="stylesheet" href="/assets/css/pages/work.css">
 
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-    <script src="https://assets.codepen.io/16327/ScrollSmoother.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+    <script src="https://assets.codepen.io/16327/ScrollSmoother.min.js" defer></script>
 
     <script src="/assets/js/smooth-scroll.js" defer></script>
 </head>
@@ -62,7 +64,8 @@ subtitle: / Work
                                 </div>
 
                                 <figure class="work-card__image">
-                                    <img src="/assets/images/{{ post.image }}" alt="{{ post.title }}" loading="lazy">
+                                    <img src="/assets/images/{{ post.image }}" alt="{{ post.title }}" loading="lazy"
+                                        decoding="async">
                                 </figure>
                             </a>
                         </article>
