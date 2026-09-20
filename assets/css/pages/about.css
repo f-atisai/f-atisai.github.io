@@ -390,6 +390,10 @@ body {
         grid-template-columns: 1fr;
     }
 
+    .about-capabilities {
+        border-bottom: none;
+    }
+
     .about-capabilities__list {
         grid-template-columns: 1fr 1fr;
     }
@@ -425,6 +429,11 @@ body {
 
     .capability-card {
         border-right: none;
+        border-bottom: 1px solid var(--theme-light-border);
+    }
+
+    .capability-card:last-child {
+        border-bottom: none;
     }
 
     .capability-card h3 {
