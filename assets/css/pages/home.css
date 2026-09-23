@@ -642,6 +642,10 @@ Work Preview
     .home-about {
         grid-template-columns: 1fr;
     }
+
+    .home-services__title {
+        font-size: var(--fluid-5);
+    }
 }
 
 
