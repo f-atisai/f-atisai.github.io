@@ -1,5 +1,5 @@
 ---
-title: f-atisai.github.io - Archive
+title: Frederick Atisai | Archive
 subtitle: / archive
 ---
 
@@ -138,7 +138,7 @@ subtitle: / archive
                     </nav>
 
                     <div class="site-footer__bottom">
-                        <p>&copy; 2026 f-atisai.github.io</p>
+                        <p>&copy; 2026 Frederick Atisai</p>
                         <p>Portfolio / Data / Insights</p>
                     </div>
                 </div>
@@ -158,63 +158,63 @@ Archive
 
             if (document.querySelector(".archive-page")) {
 
-            gsap.from(".archive-hero__meta > *", {
-                y: 20,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.08,
-                ease,
-            });
-
-            gsap.from(".archive-hero__title span", {
-                yPercent: 110,
-                opacity: 0,
-                duration: 1.2,
-                stagger: 0.08,
-                ease,
-            });
-
-            gsap.from(".archive-hero__aside > *", {
-                y: 40,
-                opacity: 0,
-                duration: 1,
-                stagger: 0.1,
-                ease,
-                delay: 0.3,
-            });
-
-
-            gsap.utils.toArray(".archive-group").forEach((group) => {
-
-                const year = group.querySelector(".archive-group__year");
-                const entries = group.querySelectorAll(".archive-entry");
-
-                gsap.from(year, {
-                    y: 40,
+                gsap.from(".archive-hero__meta > *", {
+                    y: 20,
                     opacity: 0,
-
-                    scrollTrigger: {
-                        trigger: group,
-                        start: "top 80%",
-                        end: "top 55%",
-                        scrub: 1,
-                    },
-                });
-
-                gsap.from(entries, {
-                    y: 40,
-                    opacity: 0,
+                    duration: 0.8,
                     stagger: 0.08,
-
-                    scrollTrigger: {
-                        trigger: group,
-                        start: "top 75%",
-                        end: "top 35%",
-                        scrub: 1,
-                    },
+                    ease,
                 });
 
-            });
+                gsap.from(".archive-hero__title span", {
+                    yPercent: 110,
+                    opacity: 0,
+                    duration: 1.2,
+                    stagger: 0.08,
+                    ease,
+                });
+
+                gsap.from(".archive-hero__aside > *", {
+                    y: 40,
+                    opacity: 0,
+                    duration: 1,
+                    stagger: 0.1,
+                    ease,
+                    delay: 0.3,
+                });
+
+
+                gsap.utils.toArray(".archive-group").forEach((group) => {
+
+                    const year = group.querySelector(".archive-group__year");
+                    const entries = group.querySelectorAll(".archive-entry");
+
+                    gsap.from(year, {
+                        y: 40,
+                        opacity: 0,
+
+                        scrollTrigger: {
+                            trigger: group,
+                            start: "top 80%",
+                            end: "top 55%",
+                            scrub: 1,
+                        },
+                    });
+
+                    gsap.from(entries, {
+                        y: 40,
+                        opacity: 0,
+                        stagger: 0.08,
+
+                        scrollTrigger: {
+                            trigger: group,
+                            start: "top 75%",
+                            end: "top 35%",
+                            scrub: 1,
+                        },
+                    });
+
+                });
 
             }
         });
