@@ -2,7 +2,15 @@
 
 # Site settings
 title: Frederick Atisai
+description: Clinical data engineering, automation, and data systems by Frederick Atisai—turning complex, regulated data into clear, reliable tools and insights.
+url: "https://f-atisai.github.io"
+baseurl: ""
+lang: en
 github_username: f-atisai
+author:
+  name: Frederick Atisai
+  url: "https://f-atisai.github.io"
+social_image: /assets/images/brand/social-preview.png
 
 # Build settings
 plugins:

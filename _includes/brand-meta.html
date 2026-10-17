@@ -1,0 +1,63 @@
+{% assign meta_title = page.title | default: site.title %}
+{% assign meta_description = page.description | default: page.lead | default: page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 %}
+{% assign canonical_url = page.url | replace: 'index.html', '' | absolute_url %}
+{% assign social_image_path = page.social_image | default: site.social_image %}
+{% assign social_image_url = social_image_path | absolute_url %}
+
+<meta name="description" content="{{ meta_description | escape }}">
+<meta name="author" content="{{ site.author.name | escape }}">
+<meta name="theme-color" content="#111111">
+<link rel="canonical" href="{{ canonical_url }}">
+
+<link rel="icon" href="{{ '/assets/images/brand/favicon.svg' | relative_url }}" type="image/svg+xml">
+<link rel="icon" href="{{ '/assets/images/brand/favicon-32x32.png' | relative_url }}" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="{{ '/assets/images/brand/apple-touch-icon.png' | relative_url }}" sizes="180x180">
+<link rel="manifest" href="{{ '/site.webmanifest' | relative_url }}">
+
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="{{ site.title | escape }}">
+<meta property="og:title" content="{{ meta_title | escape }}">
+<meta property="og:description" content="{{ meta_description | escape }}">
+<meta property="og:url" content="{{ canonical_url }}">
+<meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+<meta property="og:image" content="{{ social_image_url }}">
+<meta property="og:image:alt" content="{{ page.image_alt | default: meta_title | escape }}">
+{% if page.layout == 'post' %}
+<meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+{% if page.category %}
+<meta property="article:section" content="{{ page.category | escape }}">{% endif %}
+{% if page.tag %}
+<meta property="article:tag" content="{{ page.tag | escape }}">{% endif %}
+{% endif %}
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ meta_title | escape }}">
+<meta name="twitter:description" content="{{ meta_description | escape }}">
+<meta name="twitter:image" content="{{ social_image_url }}">
+<meta name="twitter:image:alt" content="{{ page.image_alt | default: meta_title | escape }}">
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": {
+      {
+        site.author.name | jsonify
+      }
+    },
+    "url": {
+      {
+        site.author.url | jsonify
+      }
+    },
+    "image": {
+      {
+        '/assets/images/avatar.jpg' | absolute_url | jsonify
+      }
+    },
+    "jobTitle": "Clinical Data Programmer",
+    "sameAs": [
+      "https://github.com/{{ site.github_username }}"
+    ]
+  }
+</script>

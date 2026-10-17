@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+  <title id="title">Frederick Atisai</title>
+  <desc id="description">Clinical data, systems, and automation portfolio</desc>
+  <defs>
+    <pattern id="grid" width="75" height="75" patternUnits="userSpaceOnUse">
+      <path d="M75 0H0V75" fill="none" stroke="#6cdca8" stroke-opacity=".16"/>
+    </pattern>
+    <radialGradient id="reveal" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#87f5c4" stop-opacity=".95"/>
+      <stop offset=".72" stop-color="#6cdca8" stop-opacity=".62"/>
+      <stop offset="1" stop-color="#111111" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="#111111"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <circle cx="1055" cy="315" r="330" fill="url(#reveal)" opacity=".85"/>
+  <circle cx="1055" cy="315" r="188" fill="#111111" fill-opacity=".34" stroke="#c9e5d7" stroke-opacity=".24"/>
+
+  <g font-family="DejaVu Sans, Arial, sans-serif" text-anchor="start">
+    <text x="76" y="82" fill="#ff4d1c" font-size="18" font-weight="700" letter-spacing="3">PORTFOLIO / 2026</text>
+    <text x="70" y="278" fill="#f4f8f6" font-size="102" font-weight="700">FREDERICK</text>
+    <text x="70" y="386" fill="#f4f8f6" font-size="102" font-weight="700">ATISAI</text>
+    <line x1="76" y1="468" x2="666" y2="468" stroke="#c9e5d7" stroke-opacity=".55"/>
+    <text x="76" y="517" fill="#c9e5d7" font-size="22" font-weight="500" letter-spacing="2">CLINICAL DATA PROGRAMMER</text>
+  </g>
+
+  <rect x="76" y="564" width="12" height="12" fill="#ff4d1c"/>
+  <text x="104" y="576" fill="#f4f8f6" fill-opacity=".72" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" letter-spacing="1">DATA THAT DRIVES</text>
+</svg>

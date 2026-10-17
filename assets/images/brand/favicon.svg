@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Frederick Atisai</title>
+  <rect width="64" height="64" rx="12" fill="#111111"/>
+  <path d="M17 14h34v9H27v8h18v9H27v15H17z" fill="#edf7f2"/>
+  <rect x="46" y="46" width="8" height="8" fill="#ff4d1c"/>
+</svg>
