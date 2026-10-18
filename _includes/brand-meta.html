@@ -1,8 +1,6 @@
 {% assign meta_title = page.title | default: site.title %}
 {% assign meta_description = page.description | default: page.lead | default: page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 %}
 {% assign canonical_url = page.url | replace: 'index.html', '' | absolute_url %}
-{% assign social_image_path = page.social_image | default: site.social_image %}
-{% assign social_image_url = social_image_path | absolute_url %}
 
 <meta name="description" content="{{ meta_description | escape }}">
 <meta name="author" content="{{ site.author.name | escape }}">
@@ -20,8 +18,6 @@
 <meta property="og:description" content="{{ meta_description | escape }}">
 <meta property="og:url" content="{{ canonical_url }}">
 <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
-<meta property="og:image" content="{{ social_image_url }}">
-<meta property="og:image:alt" content="{{ page.image_alt | default: meta_title | escape }}">
 {% if page.layout == 'post' %}
 <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
 {% if page.category %}
@@ -30,11 +26,9 @@
 <meta property="article:tag" content="{{ page.tag | escape }}">{% endif %}
 {% endif %}
 
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="{{ meta_title | escape }}">
 <meta name="twitter:description" content="{{ meta_description | escape }}">
-<meta name="twitter:image" content="{{ social_image_url }}">
-<meta name="twitter:image:alt" content="{{ page.image_alt | default: meta_title | escape }}">
 
 <script type="application/ld+json">
   {

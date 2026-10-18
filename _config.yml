@@ -10,7 +10,6 @@ github_username: f-atisai
 author:
   name: Frederick Atisai
   url: "https://f-atisai.github.io"
-social_image: /assets/images/brand/social-preview.png
 
 # Build settings
 plugins:
